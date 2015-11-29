@@ -1,0 +1,403 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
+		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
+		8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* ViewController.swift */; };
+		8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFEE1C0B9B0A00B1029D /* Main.storyboard */; };
+		8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF11C0B9B0A00B1029D /* Assets.xcassets */; };
+		8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8434FFFC1C0B9B0A00B1029D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8434FFDF1C0B9B0A00B1029D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8434FFE61C0B9B0A00B1029D;
+			remoteInfo = Cellulon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8434FFEC1C0B9B0A00B1029D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8434FFEF1C0B9B0A00B1029D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8434FFF11C0B9B0A00B1029D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8434FFF41C0B9B0A00B1029D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8434FFF61C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8434FFFB1C0B9B0A00B1029D /* CellulonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CellulonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellulonTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8434FFE41C0B9B0A00B1029D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8434FFF81C0B9B0A00B1029D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8434FFDE1C0B9B0A00B1029D = {
+			isa = PBXGroup;
+			children = (
+				8434FFE91C0B9B0A00B1029D /* Cellulon */,
+				8434FFFE1C0B9B0A00B1029D /* CellulonTests */,
+				8434FFE81C0B9B0A00B1029D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8434FFE81C0B9B0A00B1029D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFE71C0B9B0A00B1029D /* Cellulon.app */,
+				8434FFFB1C0B9B0A00B1029D /* CellulonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8434FFE91C0B9B0A00B1029D /* Cellulon */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */,
+				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
+				8434FFEE1C0B9B0A00B1029D /* Main.storyboard */,
+				8434FFF11C0B9B0A00B1029D /* Assets.xcassets */,
+				8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */,
+				8434FFF61C0B9B0A00B1029D /* Info.plist */,
+			);
+			path = Cellulon;
+			sourceTree = "<group>";
+		};
+		8434FFFE1C0B9B0A00B1029D /* CellulonTests */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */,
+				843400011C0B9B0A00B1029D /* Info.plist */,
+			);
+			path = CellulonTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8434FFE61C0B9B0A00B1029D /* Cellulon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843400041C0B9B0A00B1029D /* Build configuration list for PBXNativeTarget "Cellulon" */;
+			buildPhases = (
+				8434FFE31C0B9B0A00B1029D /* Sources */,
+				8434FFE41C0B9B0A00B1029D /* Frameworks */,
+				8434FFE51C0B9B0A00B1029D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cellulon;
+			productName = Cellulon;
+			productReference = 8434FFE71C0B9B0A00B1029D /* Cellulon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8434FFFA1C0B9B0A00B1029D /* CellulonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843400071C0B9B0A00B1029D /* Build configuration list for PBXNativeTarget "CellulonTests" */;
+			buildPhases = (
+				8434FFF71C0B9B0A00B1029D /* Sources */,
+				8434FFF81C0B9B0A00B1029D /* Frameworks */,
+				8434FFF91C0B9B0A00B1029D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8434FFFD1C0B9B0A00B1029D /* PBXTargetDependency */,
+			);
+			name = CellulonTests;
+			productName = CellulonTests;
+			productReference = 8434FFFB1C0B9B0A00B1029D /* CellulonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8434FFDF1C0B9B0A00B1029D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Lichen Labs";
+				TargetAttributes = {
+					8434FFE61C0B9B0A00B1029D = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					8434FFFA1C0B9B0A00B1029D = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 8434FFE61C0B9B0A00B1029D;
+					};
+				};
+			};
+			buildConfigurationList = 8434FFE21C0B9B0A00B1029D /* Build configuration list for PBXProject "Cellulon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8434FFDE1C0B9B0A00B1029D;
+			productRefGroup = 8434FFE81C0B9B0A00B1029D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8434FFE61C0B9B0A00B1029D /* Cellulon */,
+				8434FFFA1C0B9B0A00B1029D /* CellulonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8434FFE51C0B9B0A00B1029D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
+				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
+				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8434FFF91C0B9B0A00B1029D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8434FFE31C0B9B0A00B1029D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
+				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8434FFF71C0B9B0A00B1029D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8434FFFD1C0B9B0A00B1029D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8434FFE61C0B9B0A00B1029D /* Cellulon */;
+			targetProxy = 8434FFFC1C0B9B0A00B1029D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8434FFEE1C0B9B0A00B1029D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8434FFEF1C0B9B0A00B1029D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8434FFF41C0B9B0A00B1029D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		843400021C0B9B0A00B1029D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		843400031C0B9B0A00B1029D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		843400051C0B9B0A00B1029D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cellulon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.Cellulon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		843400061C0B9B0A00B1029D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cellulon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.Cellulon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		843400081C0B9B0A00B1029D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CellulonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.CellulonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cellulon.app/Cellulon";
+			};
+			name = Debug;
+		};
+		843400091C0B9B0A00B1029D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CellulonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.CellulonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cellulon.app/Cellulon";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		843400041C0B9B0A00B1029D /* Build configuration list for PBXNativeTarget "Cellulon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843400051C0B9B0A00B1029D /* Debug */,
+				843400061C0B9B0A00B1029D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		843400071C0B9B0A00B1029D /* Build configuration list for PBXNativeTarget "CellulonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843400081C0B9B0A00B1029D /* Debug */,
+				843400091C0B9B0A00B1029D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8434FFE21C0B9B0A00B1029D /* Build configuration list for PBXProject "Cellulon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843400021C0B9B0A00B1029D /* Debug */,
+				843400031C0B9B0A00B1029D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8434FFDF1C0B9B0A00B1029D /* Project object */;
+}
