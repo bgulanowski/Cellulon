@@ -8,7 +8,24 @@
 
 import Foundation
 
-public class Grove<V> : Grid<V> {
+public class Grove<V> : Branch<V> {
+    
+    override func valueAtPoint(point: GridPoint) -> V {
+        return super.valueAtPoint(transformedPoint(point))
+    }
+    
+    override func setValue(value: V, atPoint point: GridPoint) {
+        super.setValue(value, atPoint: transformedPoint(point))
+    }
+    
+    func transformedPoint(point: GridPoint) -> GridPoint {
+        return abs(point)
+    }
+    
+    func expandSector(sector: Sector) -> Void {
+        
+    }
+    
     
 }
 

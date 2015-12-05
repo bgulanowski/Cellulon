@@ -15,7 +15,7 @@ public enum Sector : Int {
     case s3 = 3
 }
 
-public final class Branch<V> : Grid<V> {
+public class Branch<V> : Grid<V> {
     
     // MARK: Grid_
     
