@@ -26,6 +26,13 @@ private class Grid_<V> {
     }
 }
 
+private enum Sector : Int {
+    case s0 = 0
+    case s1 = 1
+    case s2 = 2
+    case s3 = 3
+}
+
 private final class Branch<V> : Grid_<V> {
     
     // MARK: Grid_
@@ -55,7 +62,7 @@ private final class Branch<V> : Grid_<V> {
     
     // MARK: New
     
-    private var _limbs = [ Int : Grid_<V> ]()
+    private var _limbs = [ Sector : Grid_<V> ]()
 
     func limbForPoint(point: GridPoint) -> Grid_<V> {
         let sector = sectorForPoint(point)
@@ -67,8 +74,9 @@ private final class Branch<V> : Grid_<V> {
         return limb!
     }
     
-    func sectorForPoint(point: GridPoint) -> Int {
-        return 0
+    func sectorForPoint(point: GridPoint) -> Sector {
+        // FIXME:
+        return .s0
     }
     
     func newLimb() -> Branch {

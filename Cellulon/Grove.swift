@@ -8,13 +8,6 @@
 
 import Foundation
 
-public enum GridSector : Int {
-    case s0 = 0
-    case s1 = 1
-    case s2 = 2
-    case s3 = 3
-}
-
 public class Grove<V> : Grid_<V> {
     
 }
