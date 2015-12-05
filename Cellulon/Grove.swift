@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Grove<V> : Grid_<V> {
+public class Grove<V> : Grid<V> {
     
 }
 

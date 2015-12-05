@@ -10,7 +10,7 @@ import Foundation
 
 public typealias GridPoint = PointI
 
-public class Grid_<V> {
+public class Grid<V> {
     
     private let def: V
     
@@ -33,13 +33,13 @@ public enum Sector : Int {
     case s3 = 3
 }
 
-public final class Branch<V> : Grid_<V> {
+public final class Branch<V> : Grid<V> {
     
     // MARK: Grid_
     
     let root: Branch?
-    var limbs: [Grid_<V>] {
-        return [Grid_<V>](_limbs.values)
+    var limbs: [Grid<V>] {
+        return [Grid<V>](_limbs.values)
     }
     
     let lev: Int
@@ -60,11 +60,11 @@ public final class Branch<V> : Grid_<V> {
     
     // MARK: New
     
-    private var _limbs = [ Sector : Grid_<V> ]()
+    private var _limbs = [ Sector : Grid<V> ]()
 
-    func limbForPoint(point: GridPoint) -> Grid_<V> {
+    func limbForPoint(point: GridPoint) -> Grid<V> {
         let sector = sectorForPoint(point)
-        var limb : Grid_<V>? = _limbs[sector]
+        var limb : Grid<V>? = _limbs[sector]
         if limb == nil {
             limb = newLimb()
             _limbs[sector] = limb
@@ -83,7 +83,7 @@ public final class Branch<V> : Grid_<V> {
     }
 }
 
-public class Leaf<V> : Grid_<V> {
+public class Leaf<V> : Grid<V> {
     
     var values: [V]
     
