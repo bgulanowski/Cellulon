@@ -1,5 +1,5 @@
 //
-//  Grove.swift
+//  Tree.swift
 //  Cellulon
 //
 //  Created by Brent Gulanowski on 2015-12-05.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Grove<V> : Branch<V> {
+public class Tree<V> : Branch<V> {
     
     override func valueAtPoint(point: GridPoint) -> V {
         return super.valueAtPoint(transformedPoint(point))
