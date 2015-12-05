@@ -13,7 +13,7 @@ public class Leaf<V> : Grid<V> {
     var values: [V]
     
     override init(def: V, dim: Int) {
-        values = [V](count: 100, repeatedValue: def)
+        values = [V](count: dim * dim, repeatedValue: def)
         super.init(def: def, dim: dim)
     }
     
