@@ -13,9 +13,11 @@ public typealias GridPoint = PointI
 public class Grid<V> {
     
     let def: V
+    let dim: Int
     
-    init(def: V) {
+    init(def: V, dim: Int) {
         self.def = def
+        self.dim = dim
     }
     
     func valueAtPoint(point: GridPoint) -> V {

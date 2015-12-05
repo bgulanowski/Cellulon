@@ -34,10 +34,10 @@ public final class Branch<V> : Grid<V> {
         limbForPoint(point).setValue(value, atPoint: point)
     }
         
-    required public init(def: V, root: Branch?) {
+    required public init(def: V, dim: Int, root: Branch?) {
         self.root = root
         lev = 1
-        super.init(def: def)
+        super.init(def: def, dim: dim)
     }
     
     // MARK: New
@@ -60,7 +60,7 @@ public final class Branch<V> : Grid<V> {
     }
     
     func newLimb() -> Branch {
-        let limb = Branch(def: def, root: self)
+        let limb = Branch(def: def, dim: dim, root: self)
         return limb
     }
 }

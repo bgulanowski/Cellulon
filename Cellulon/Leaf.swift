@@ -12,9 +12,9 @@ public class Leaf<V> : Grid<V> {
     
     var values: [V]
     
-    override init(def: V) {
+    override init(def: V, dim: Int) {
         values = [V](count: 100, repeatedValue: def)
-        super.init(def: def)
+        super.init(def: def, dim: dim)
     }
     
     override func valueAtPoint(point: GridPoint) -> V {
