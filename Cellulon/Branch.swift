@@ -17,6 +17,14 @@ public enum Sector : Int {
     case s1 = 1
     case s2 = 2
     case s3 = 3
+
+    static func sectorForPoint(point: GridPoint, dim: Int) -> Sector {
+        return self.init(rawValue: (point.x > dim ? 0 : 1) + (point.y > dim ? 0 : 2))!
+    }
+    
+    static func sectorForPoint(point: GridPoint) -> Sector {
+        return Sector.sectorForPoint(point, dim: 0)
+    }
 }
 
 public class Branch<V> : Grid<V> {
@@ -70,8 +78,7 @@ public class Branch<V> : Grid<V> {
     }
     
     func sectorForPoint(point: GridPoint) -> Sector {
-        // FIXME:
-        return .s0
+        return Sector.sectorForPoint(point, dim: dim)
     }
     
     func newLimb() -> Branch {
