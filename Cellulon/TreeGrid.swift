@@ -51,9 +51,7 @@ public final class Branch<V> : Grid_<V> {
     override func setValue(value: V, atPoint point: GridPoint) {
         limbForPoint(point).setValue(value, atPoint: point)
     }
-    
-    // MARK: Tree_
-    
+        
     required public init(def: V, root: Branch?) {
         self.root = root
         lev = 1
