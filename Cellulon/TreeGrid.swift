@@ -8,15 +8,6 @@
 
 import Foundation
 
-
-private protocol Tree_ {
-    typealias Limb
-    var root: Self? { get }
-    var limbs: [Limb] { get }
-    init(root: Self?)
-    func addLimb(limb: Limb)
-    func remLimb(limb: Limb)
-}
 public typealias GridPoint = PointI
 
 private class Grid_<V> {
