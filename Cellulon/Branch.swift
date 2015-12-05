@@ -8,6 +8,10 @@
 
 import Foundation
 
+public func pow(base: Int, _ exponent: Int) -> Int {
+    return Int(pow(Double(base), Double(exponent)))
+}
+
 public enum Sector : Int {
     case s0 = 0
     case s1 = 1
@@ -35,6 +39,7 @@ public class Branch<V> : Grid<V> {
     required public init(def: V, dim: Int, lev: Int, root: Branch?) {
         self.root = root
         self.lev = lev
+        self.leafDim = Branch.leafDimForDim(dim, level: lev)
         super.init(def: def, dim: dim)
     }
     
@@ -42,6 +47,12 @@ public class Branch<V> : Grid<V> {
     
     let lev: Int
     private var _limbs = [ Sector : Grid<V> ]()
+    
+    let leafDim: Int
+    
+    static func leafDimForDim(dim: Int, level lev: Int) -> Int {
+        return dim / pow(2, lev)
+    }
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
         let sector = sectorForPoint(point)
