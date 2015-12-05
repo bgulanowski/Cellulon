@@ -10,7 +10,7 @@ import Foundation
 
 public typealias GridPoint = PointI
 
-private class Grid_<V> {
+public class Grid_<V> {
     
     private let def: V
     
@@ -26,14 +26,14 @@ private class Grid_<V> {
     }
 }
 
-private enum Sector : Int {
+public enum Sector : Int {
     case s0 = 0
     case s1 = 1
     case s2 = 2
     case s3 = 3
 }
 
-private final class Branch<V> : Grid_<V> {
+public final class Branch<V> : Grid_<V> {
     
     // MARK: Grid_
     
@@ -54,7 +54,7 @@ private final class Branch<V> : Grid_<V> {
     
     // MARK: Tree_
     
-    required init(def: V, root: Branch?) {
+    required public init(def: V, root: Branch?) {
         self.root = root
         lev = 1
         super.init(def: def)
@@ -85,7 +85,7 @@ private final class Branch<V> : Grid_<V> {
     }
 }
 
-private class Leaf<V> : Grid_<V> {
+public class Leaf<V> : Grid_<V> {
     
     var values: [V]
     
