@@ -24,8 +24,6 @@ public final class Branch<V> : Grid<V> {
         return [Grid<V>](_limbs.values)
     }
     
-    let lev: Int
-    
     override func valueAtPoint(point: GridPoint) -> V {
         return limbForPoint(point).valueAtPoint(point)
     }
@@ -34,14 +32,15 @@ public final class Branch<V> : Grid<V> {
         limbForPoint(point).setValue(value, atPoint: point)
     }
         
-    required public init(def: V, dim: Int, root: Branch?) {
+    required public init(def: V, dim: Int, lev: Int, root: Branch?) {
         self.root = root
-        lev = 1
+        self.lev = lev
         super.init(def: def, dim: dim)
     }
     
     // MARK: New
     
+    let lev: Int
     private var _limbs = [ Sector : Grid<V> ]()
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
@@ -60,7 +59,7 @@ public final class Branch<V> : Grid<V> {
     }
     
     func newLimb() -> Branch {
-        let limb = Branch(def: def, dim: dim, root: self)
+        let limb = Branch(def: def, dim: dim, lev: lev-1, root: self)
         return limb
     }
 }
