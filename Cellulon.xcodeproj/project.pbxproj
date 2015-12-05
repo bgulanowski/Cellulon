@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8409BA751C13315200962068 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA741C13315200962068 /* Tree.swift */; };
+		8409BA7B1C13321E00962068 /* GridTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA7A1C13321E00962068 /* GridTree.swift */; };
+		8409BA7D1C13329100962068 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA7C1C13329100962068 /* Point.swift */; };
+		8409BA7F1C1332CC00962068 /* PointSubscriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA7E1C1332CC00962068 /* PointSubscriptable.swift */; };
+		8409BA811C1332DE00962068 /* Grove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA801C1332DE00962068 /* Grove.swift */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434000D1C0B9FB400B1029D /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434000C1C0B9FB400B1029D /* Grid.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
@@ -27,6 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8409BA741C13315200962068 /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		8409BA7A1C13321E00962068 /* GridTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTree.swift; sourceTree = "<group>"; };
+		8409BA7C1C13329100962068 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		8409BA7E1C1332CC00962068 /* PointSubscriptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSubscriptable.swift; sourceTree = "<group>"; };
+		8409BA801C1332DE00962068 /* Grove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grove.swift; sourceTree = "<group>"; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434000C1C0B9FB400B1029D /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +68,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8409BA761C1331B300962068 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8434000C1C0B9FB400B1029D /* Grid.swift */,
+				8409BA741C13315200962068 /* Tree.swift */,
+				8409BA7A1C13321E00962068 /* GridTree.swift */,
+				8409BA7C1C13329100962068 /* Point.swift */,
+				8409BA7E1C1332CC00962068 /* PointSubscriptable.swift */,
+				8409BA801C1332DE00962068 /* Grove.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8409BA771C1331C300962068 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFEE1C0B9B0A00B1029D /* Main.storyboard */,
+				8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */,
+			);
+			name = Interfaces;
+			sourceTree = "<group>";
+		};
+		8409BA781C1331ED00962068 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */,
+				8409BA791C1331F300962068 /* Main View */,
+				8409BA761C1331B300962068 /* Model */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		8409BA791C1331F300962068 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
+			);
+			name = "Main View";
+			sourceTree = "<group>";
+		};
 		8434FFDE1C0B9B0A00B1029D = {
 			isa = PBXGroup;
 			children = (
@@ -79,13 +129,10 @@
 		8434FFE91C0B9B0A00B1029D /* Cellulon */ = {
 			isa = PBXGroup;
 			children = (
-				8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */,
-				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
-				8434000C1C0B9FB400B1029D /* Grid.swift */,
-				8434FFEE1C0B9B0A00B1029D /* Main.storyboard */,
 				8434FFF11C0B9B0A00B1029D /* Assets.xcassets */,
-				8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */,
 				8434FFF61C0B9B0A00B1029D /* Info.plist */,
+				8409BA771C1331C300962068 /* Interfaces */,
+				8409BA781C1331ED00962068 /* Sources */,
 			);
 			path = Cellulon;
 			sourceTree = "<group>";
@@ -200,7 +247,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8409BA7B1C13321E00962068 /* GridTree.swift in Sources */,
+				8409BA811C1332DE00962068 /* Grove.swift in Sources */,
+				8409BA7F1C1332CC00962068 /* PointSubscriptable.swift in Sources */,
 				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
+				8409BA7D1C13329100962068 /* Point.swift in Sources */,
+				8409BA751C13315200962068 /* Tree.swift in Sources */,
 				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
 				8434000D1C0B9FB400B1029D /* Grid.swift in Sources */,
 			);
@@ -383,6 +435,7 @@
 				843400061C0B9B0A00B1029D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		843400071C0B9B0A00B1029D /* Build configuration list for PBXNativeTarget "CellulonTests" */ = {
 			isa = XCConfigurationList;
@@ -391,6 +444,7 @@
 				843400091C0B9B0A00B1029D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8434FFE21C0B9B0A00B1029D /* Build configuration list for PBXProject "Cellulon" */ = {
 			isa = XCConfigurationList;
