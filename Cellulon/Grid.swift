@@ -131,15 +131,15 @@ public class Grid<V> : PointSubscriptable {
 
 public class Tree<T> {
     
-    let root: T?
+    let root: Tree?
     var limbs: [Int : T]
     
-    init(root: T?, limbs: [Int : T]) {
+    init(root: Tree?, limbs: [Int : T]) {
         self.root = root
         self.limbs = limbs
     }
     
-    convenience init(root: T?) {
+    convenience init(root: Tree?) {
         self.init(root: root, limbs: [Int : T]())
     }
     
@@ -152,21 +152,19 @@ public class GridTree<T:PointSubscriptable> : Tree<T> {
     
     public typealias ValueType = T.ValueType
     
-    let par: GridTree?
     let dim: Int
     let lev: Int
-    let def: ValueType
+    let def: T.ValueType
     
-    init(par: GridTree?, dim: Int, lev: Int, def: ValueType) {
-        self.par = par
+    init(root: GridTree?, dim: Int, lev: Int, def: ValueType) {
         self.dim = dim
         self.lev = lev
         self.def = def
-        super.init(root: nil, limbs: [Int : T]())
+        super.init(root: root, limbs: [Int : T]())
     }
     
     convenience init(dim: Int, def: ValueType) {
-        self.init(par: nil, dim: dim, lev: 0, def: def)
+        self.init(root: nil, dim: dim, lev: 0, def: def)
     }
     
     public func offsetForIndex(index: Int) -> Int {
@@ -219,7 +217,7 @@ extension GridTree : PointSubscriptable {
     }
     
     final func newBranch() -> GridTree<T> {
-        return GridTree<T>(par: self, dim: dim, lev: lev-1, def: def)
+        return GridTree<T>(root: self, dim: dim, lev: lev-1, def: def)
     }
     
     final func newLeaf() -> Grid<T.ValueType> {
@@ -228,8 +226,7 @@ extension GridTree : PointSubscriptable {
     
     final func newLimb() -> T {
         // FIXME: there is a property type that both GridTree<T> and Grid<T.ValueType> conform to?
-        let result: T = lev == 0 ? newLeaf() as! T : newBranch() as! T
-        return result
+        return lev == 0 ? newLeaf() as! T : newBranch() as! T
     }
 }
 
