@@ -27,3 +27,14 @@ public class Grid<V> {
     func setValue(value: V, atPoint point: GridPoint) -> Void {
     }
 }
+
+extension Grid {
+    subscript(index: GridPoint) -> V {
+        get {
+            return valueAtPoint(index)
+        }
+        set {
+            setValue(newValue, atPoint: index)
+        }
+    }
+}
