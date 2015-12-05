@@ -17,7 +17,7 @@ public enum Sector : Int {
 
 public class Branch<V> : Grid<V> {
     
-    // MARK: Grid_
+    // MARK: Grid
     
     let root: Branch?
     var limbs: [Grid<V>] {
@@ -45,12 +45,14 @@ public class Branch<V> : Grid<V> {
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
         let sector = sectorForPoint(point)
-        var limb : Grid<V>? = _limbs[sector]
-        if limb == nil {
-            limb = newLimb()
-            _limbs[sector] = limb
+        if let limb = _limbs[sector] {
+            return limb
         }
-        return limb!
+        else {
+            let limb = newLimb()
+            _limbs[sector] = limb
+            return limb
+        }
     }
     
     func sectorForPoint(point: GridPoint) -> Sector {
@@ -59,7 +61,6 @@ public class Branch<V> : Grid<V> {
     }
     
     func newLimb() -> Branch {
-        let limb = Branch(def: def, dim: dim, lev: lev-1, root: self)
-        return limb
+        return Branch(def: def, dim: dim, lev: lev-1, root: self)
     }
 }
