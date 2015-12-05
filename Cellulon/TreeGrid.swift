@@ -64,25 +64,3 @@ public final class Branch<V> : Grid<V> {
         return limb
     }
 }
-
-public class Leaf<V> : Grid<V> {
-    
-    var values: [V]
-    
-    override init(def: V) {
-        values = [V](count: 100, repeatedValue: def)
-        super.init(def: def)
-    }
-    
-    override func valueAtPoint(point: GridPoint) -> V {
-        return values[indexForPoint(point)]
-    }
-    
-    override func setValue(value: V, atPoint point: GridPoint) {
-        values[indexForPoint(point)] = value
-    }
-    
-    private final func indexForPoint(point: GridPoint) -> Int {
-        return point.x + point.y * 10
-    }
-}
