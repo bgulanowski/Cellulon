@@ -15,6 +15,11 @@ public enum GridSector : Int {
     case s3 = 3
 }
 
+public class Grove<V> : Grid_<V> {
+    
+}
+
+/*
 public class Grove<T:PointSubscriptable>: PointSubscriptable {
     
     // FIXME: use Sector instead of Int
@@ -80,3 +85,4 @@ public class Grove<T:PointSubscriptable>: PointSubscriptable {
         }
     }
 }
+*/

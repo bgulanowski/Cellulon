@@ -17,6 +17,7 @@ private protocol Tree_ {
     func addLimb(limb: Limb)
     func remLimb(limb: Limb)
 }
+public typealias GridPoint = PointI
 
 private class Grid_<V> {
     
