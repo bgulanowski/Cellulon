@@ -8,24 +8,6 @@
 
 import Foundation
 
-public typealias GridPoint = PointI
-
-public class Grid<V> {
-    
-    private let def: V
-    
-    init(def: V) {
-        self.def = def
-    }
-    
-    func valueAtPoint(point: GridPoint) -> V {
-        return def
-    }
-    
-    func setValue(value: V, atPoint point: GridPoint) -> Void {
-    }
-}
-
 public enum Sector : Int {
     case s0 = 0
     case s1 = 1
