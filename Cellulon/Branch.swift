@@ -40,6 +40,7 @@ public class Branch<V> : Grid<V> {
         self.root = root
         self.lev = lev
         self.leafDim = Branch.leafDimForDim(dim, level: lev)
+        onBuild = {_,_ in }
         super.init(def: def, dim: dim)
     }
     
@@ -49,6 +50,7 @@ public class Branch<V> : Grid<V> {
     private var _limbs = [ Sector : Grid<V> ]()
     
     let leafDim: Int
+    var onBuild: (branch: Branch, sector: Sector) -> Void
     
     static func leafDimForDim(dim: Int, level lev: Int) -> Int {
         return dim / pow(2, lev)
@@ -62,6 +64,7 @@ public class Branch<V> : Grid<V> {
         else {
             let limb = newLimb()
             _limbs[sector] = limb
+            onBuild(branch: self, sector: sector)
             return limb
         }
     }
