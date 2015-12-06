@@ -14,11 +14,11 @@ public class TreeSupport {
 
 public class Tree<V> : Branch<V> {
     
-    override func valueAtPoint(point: GridPoint) -> V {
+    override public func valueAtPoint(point: GridPoint) -> V {
         return super.valueAtPoint(transformedPoint(point))
     }
     
-    override func setValue(value: V, atPoint point: GridPoint) {
+    override public func setValue(value: V, atPoint point: GridPoint) {
         super.setValue(value, atPoint: transformedPoint(point))
     }
     

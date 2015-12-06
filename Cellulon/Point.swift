@@ -8,23 +8,34 @@
 
 import Foundation
 
-public class Point<T> {
+public struct Point<T> {
     
-    let x: T
-    let y: T
+    public let x: T
+    public let y: T
     
-    init(x: T, y: T) {
+    public init(x: T, y: T) {
         self.x = x
         self.y = y
     }
     
-    init(n: T) {
+    public init(n: T) {
         self.x = n
         self.y = n
     }
 }
 
 public typealias PointI = Point<Int>
+
+// Why does this cause other initializers to become inaccessible?
+//public extension Point where T : Int {
+//    public convenience init() {
+//        self.init(n: 0)
+//    }
+//}
+
+public func ==(lhs: PointI, rhs: PointI) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y
+}
 
 public func +(lhs: PointI, rhs: PointI) -> PointI {
     return PointI(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
@@ -35,7 +46,7 @@ public prefix func -(lhs: PointI) -> PointI {
 }
 
 public func -(lhs: PointI, rhs: PointI) -> PointI {
-    return PointI(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    return lhs + (-rhs)
 }
 
 public func -(lhs: PointI, rhs: Int) -> PointI {
@@ -44,6 +55,10 @@ public func -(lhs: PointI, rhs: Int) -> PointI {
 
 public func *(lhs: PointI, rhs: Int) -> PointI {
     return PointI(x: lhs.x * rhs, y: lhs.y * rhs)
+}
+
+public func *(lhs: Int, rhs: PointI) -> PointI {
+    return PointI(x: lhs * rhs.x, y: lhs * rhs.y)
 }
 
 // Cross product and Dot product don't make sense for Integer Points

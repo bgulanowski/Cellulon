@@ -23,15 +23,15 @@ public class Grid<V> {
         self.dim = dim
     }
     
-    func valueAtPoint(point: GridPoint) -> V {
+    public func valueAtPoint(point: GridPoint) -> V {
         return def
     }
     
-    func setValue(value: V, atPoint point: GridPoint) -> Void {
+    public func setValue(value: V, atPoint point: GridPoint) -> Void {
     }
 }
 
-extension Grid {
+public extension Grid {
     subscript(index: GridPoint) -> V {
         get {
             return valueAtPoint(index)
@@ -66,11 +66,11 @@ public class BasicGrid<V>: Grid<V> {
         self.init(def: def, dim: dim, values: values)
     }
 
-    override func valueAtPoint(point: GridPoint) -> V {
+    override public func valueAtPoint(point: GridPoint) -> V {
         return values[indexForPoint(point)]
     }
     
-    override func setValue(value: V, atPoint point: GridPoint) {
+    override public func setValue(value: V, atPoint point: GridPoint) {
         values[indexForPoint(point)] = value
     }
 }

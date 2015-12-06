@@ -36,11 +36,11 @@ public class Branch<V> : Grid<V> {
         return [Grid<V>](_limbs.values)
     }
     
-    override func valueAtPoint(point: GridPoint) -> V {
+    override public func valueAtPoint(point: GridPoint) -> V {
         return limbForPoint(point).valueAtPoint(point)
     }
     
-    override func setValue(value: V, atPoint point: GridPoint) {
+    override public func setValue(value: V, atPoint point: GridPoint) {
         limbForPoint(point).setValue(value, atPoint: point)
     }
         
