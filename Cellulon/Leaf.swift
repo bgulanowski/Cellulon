@@ -12,7 +12,7 @@ public class Leaf<V> : BasicGrid<V> {
     
     var index: Int
     
-    required public init(index: Int, def: V, dim: Int) {
+    public init(index: Int, def: V, dim: Int) {
         self.index = index
         let values = Leaf.loadValues(index, def: def, dim: dim)
         super.init(def: def, dim: dim, values: values)
