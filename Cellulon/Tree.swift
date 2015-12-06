@@ -8,6 +8,10 @@
 
 import Foundation
 
+public class TreeSupport {
+    static var serialQueue = dispatch_queue_create("Tree", DISPATCH_QUEUE_SERIAL)
+}
+
 public class Tree<V> : Branch<V> {
     
     override func valueAtPoint(point: GridPoint) -> V {
@@ -16,6 +20,10 @@ public class Tree<V> : Branch<V> {
     
     override func setValue(value: V, atPoint point: GridPoint) {
         super.setValue(value, atPoint: transformedPoint(point))
+    }
+    
+    override func sectorForPoint(point: GridPoint) -> Sector {
+        return Sector.sectorForPoint(point)
     }
     
     func transformedPoint(point: GridPoint) -> GridPoint {

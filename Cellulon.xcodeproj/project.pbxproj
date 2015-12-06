@@ -69,11 +69,11 @@
 		8409BA761C1331B300962068 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8409BA7C1C13329100962068 /* Point.swift */,
-				8409BA801C1332DE00962068 /* Tree.swift */,
 				8409BA821C13356B00962068 /* Branch.swift */,
 				8409BA841C134D9900962068 /* Grid.swift */,
 				8409BA861C134E3800962068 /* Leaf.swift */,
+				8409BA7C1C13329100962068 /* Point.swift */,
+				8409BA801C1332DE00962068 /* Tree.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

@@ -11,9 +11,11 @@ import Foundation
 public class Leaf<V> : Grid<V> {
     
     var values: [V]
+    var index: Int
     
-    override init(def: V, dim: Int) {
-        values = [V](count: dim * dim, repeatedValue: def)
+    required public init(index: Int, def: V, dim: Int) {
+        self.index = index
+        values = Leaf.loadValues(index, def: def, dim: dim)
         super.init(def: def, dim: dim)
     }
     
@@ -25,7 +27,12 @@ public class Leaf<V> : Grid<V> {
         values[indexForPoint(point)] = value
     }
     
-    private final func indexForPoint(point: GridPoint) -> Int {
-        return point.x + point.y * 10
+    static func loadValues(index: Int, def: V, dim: Int) -> [V] {
+        // TODO: load from storage
+        return [V](count: dim * dim, repeatedValue: def)
+    }
+    
+    static func storeValues(leaf: Leaf) -> Void {
+        // TODO:
     }
 }
