@@ -14,6 +14,7 @@
 		8409BA871C134E3800962068 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA861C134E3800962068 /* Leaf.swift */; };
 		8409BA891C147E5A00962068 /* GridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA881C147E5A00962068 /* GridTests.swift */; };
 		8409BA8B1C1481BF00962068 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8A1C1481BF00962068 /* PointTests.swift */; };
+		8409BA8D1C14DA0200962068 /* LeafTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8C1C14DA0200962068 /* LeafTests.swift */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
 		8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		8409BA861C134E3800962068 /* Leaf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
 		8409BA881C147E5A00962068 /* GridTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 		8409BA8A1C1481BF00962068 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		8409BA8C1C14DA0200962068 /* LeafTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTests.swift; sourceTree = "<group>"; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				843400011C0B9B0A00B1029D /* Info.plist */,
 				8409BA881C147E5A00962068 /* GridTests.swift */,
 				8409BA8A1C1481BF00962068 /* PointTests.swift */,
+				8409BA8C1C14DA0200962068 /* LeafTests.swift */,
 			);
 			path = CellulonTests;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8409BA8B1C1481BF00962068 /* PointTests.swift in Sources */,
+				8409BA8D1C14DA0200962068 /* LeafTests.swift in Sources */,
 				843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */,
 				8409BA891C147E5A00962068 /* GridTests.swift in Sources */,
 			);

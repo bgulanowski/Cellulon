@@ -10,7 +10,7 @@ import Foundation
 
 public class Leaf<V> : BasicGrid<V> {
     
-    var index: Int
+    public var index: Int
     
     public init(index: Int, def: V, dim: Int) {
         self.index = index

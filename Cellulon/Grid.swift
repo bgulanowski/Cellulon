@@ -23,6 +23,14 @@ public class Grid<V> {
         self.dim = dim
     }
     
+    public func min() -> GridPoint {
+        return GridPoint(n: 0)
+    }
+    
+    public func max() -> GridPoint {
+        return GridPoint(n: dim - 1)
+    }
+    
     public func valueAtPoint(point: GridPoint) -> V {
         return def
     }
@@ -42,12 +50,14 @@ public extension Grid {
     }
 }
 
-extension Grid {
-    func indexForPoint(point: GridPoint) -> Int {
+public extension Grid {
+    public func indexForPoint(point: GridPoint) -> Int {
+        assert(point.x < dim && point.y < dim)
         return point.y * dim + point.x
     }
     
-    func pointForIndex(index: Int) -> GridPoint {
+    public func pointForIndex(index: Int) -> GridPoint {
+        assert(index < dim * dim)
         return GridPoint(x: index % dim, y: index / dim)
     }
 }

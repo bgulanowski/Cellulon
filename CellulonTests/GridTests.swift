@@ -10,6 +10,35 @@ import XCTest
 import Cellulon
 
 class GridTests: XCTestCase {
+    
+    func testGridDefault() {
+        let grid = Grid<Int>(def: -1, dim: 2)
+        let min = grid.min()
+        let max = grid.max()
+        XCTAssertTrue(PointI(n: 0) == min)
+        XCTAssertTrue(PointI(n: 1) == max)
+        XCTAssertEqual(-1, grid.valueAtPoint(min))
+        XCTAssertEqual(-1, grid.valueAtPoint(max))
+    }
+    
+    func testGridIndexConversion() {
+        let grid = Grid<Int>(def: 0, dim: 8)
+        var point = GridPoint(x: 0, y: 0)
+        XCTAssertTrue(point == grid.pointForIndex(0))
+        XCTAssertEqual(0, grid.indexForPoint(point))
+        
+        point = GridPoint(x: 7, y: 0)
+        XCTAssertTrue(point == grid.pointForIndex(7))
+        XCTAssertEqual(7, grid.indexForPoint(point))
+        
+        point = GridPoint(x: 0, y: 7)
+        XCTAssertTrue(point == grid.pointForIndex(56))
+        XCTAssertEqual(56, grid.indexForPoint(point))
+        
+        point = GridPoint(x: 7, y: 7)
+        XCTAssertTrue(point == grid.pointForIndex(63))
+        XCTAssertEqual(63, grid.indexForPoint(point))
+    }
 
     func testBasicGridAccess() {
         let grid = BasicIntGrid(def: 0, dim: 8)
@@ -24,13 +53,4 @@ class GridTests: XCTestCase {
         grid[point] = 100
         XCTAssertEqual(grid[point], 100)
     }
-
-    /*
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }*/
-
 }
