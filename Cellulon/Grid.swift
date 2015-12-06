@@ -55,11 +55,17 @@ extension Grid {
 public class BasicGrid<V>: Grid<V> {
     
     var values: [V]
-    required public init(def: V, dim: Int) {
-        values = [V](count: dim * dim, repeatedValue: def)
+    
+    required public init(def: V, dim: Int, values: [V]) {
+        self.values = values
         super.init(def: def, dim: dim)
     }
-    
+
+    public required convenience init(def: V, dim: Int) {
+        let values = [V](count: dim * dim, repeatedValue: def)
+        self.init(def: def, dim: dim, values: values)
+    }
+
     override func valueAtPoint(point: GridPoint) -> V {
         return values[indexForPoint(point)]
     }
