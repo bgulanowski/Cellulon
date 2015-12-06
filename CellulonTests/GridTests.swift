@@ -12,14 +12,14 @@ import Cellulon
 class GridTests: XCTestCase {
 
     func testBasicGridAccess() {
-        let grid = BasicGrid<Int>(def: 0, dim: 8)
+        let grid = BasicIntGrid(def: 0, dim: 8)
         let point = GridPoint(x: 4, y: 4)
         grid.setValue(100, atPoint: point)
         XCTAssertEqual(grid.valueAtPoint(point), 100)
     }
     
     func testBasicGridSubscripting() {
-        let grid = BasicGrid<Int>(def: 0, dim: 8)
+        let grid = BasicIntGrid(def: 0, dim: 8)
         let point = GridPoint(x: 4, y: 4)
         grid[point] = 100
         XCTAssertEqual(grid[point], 100)

@@ -75,5 +75,4 @@ public class BasicGrid<V>: Grid<V> {
     }
 }
 
-public class BasicIntGrid : BasicGrid<Int> {
-}
+public typealias BasicIntGrid = BasicGrid<Int>
