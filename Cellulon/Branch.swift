@@ -8,11 +8,25 @@
 
 import Foundation
 
-public func pow(base: Int, _ exponent: Int) -> Int {
-    return Int(pow(Double(base), Double(exponent)))
+func pow2(exponent: Int) -> Int {
+    return Int(pow(2.0, Double(exponent)))
 }
 
-public enum Sector : Int {
+func log2(exponent: Int) -> Int {
+    return Int(log2(Double(exponent)))
+}
+
+func firstBit(n: Int) -> Int {
+    var result = 0
+    var temp = n
+    while temp > 0 {
+        temp >>= 1
+        ++result
+    }
+    return result
+}
+
+enum Sector : Int {
     case s0 = 0
     case s1 = 1
     case s2 = 2
@@ -28,7 +42,9 @@ public enum Sector : Int {
 }
 
 public class Branch<V> : Grid<V> {
-    
+
+    public typealias Address = GridPoint
+
     // MARK: Grid
     
     let root: Branch?
@@ -61,7 +77,44 @@ public class Branch<V> : Grid<V> {
     var onBuild: (branch: Branch, sector: Sector) -> Void
     
     static func leafDimForDim(dim: Int, level lev: Int) -> Int {
-        return dim / pow(2, lev)
+        return dim / pow2(lev)
+    }
+    
+    public func leafIndexForPoint(point: GridPoint) -> Int {
+        return indexOffsetForPoint(point) + indexForPoint(point)
+    }
+    
+    func indexOffsetForPoint(point: GridPoint) -> Int {
+        return branchIndexForPoint(point) * leafDim * leafDim
+    }
+    
+    func branchIndexForPoint(point: GridPoint) -> Int {
+        
+        var address = addressForPoint(point)
+        var level = Branch.levelForAddress(address)
+        var total = 0
+        repeat {
+            let levelDim = pow2(level)
+            let block = levelDim * levelDim
+            total += ((address.x >= levelDim ? 1 : 0) + (address.y >= levelDim ? 2 : 0)) * block
+            address = address - Address(n: levelDim)
+            --level
+        }
+        while level > 0
+        
+        return total
+    }
+    
+    func originForPoint(point: GridPoint) -> GridPoint {
+        return addressForPoint(point) * leafDim
+    }
+    
+    func addressForPoint(point: GridPoint) -> Address {
+        return point / leafDim
+    }
+    
+    public static func levelForAddress(address: Address) -> Int {
+        return log2(address.max())
     }
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
@@ -70,15 +123,26 @@ public class Branch<V> : Grid<V> {
             return limb
         }
         else {
-            let limb = newLimb()
-            _limbs[sector] = limb
+            _limbs[sector] = newLimbForPoint(point)
             onBuild(branch: self, sector: sector)
-            return limb
+            return _limbs[sector]!
         }
     }
     
     func sectorForPoint(point: GridPoint) -> Sector {
         return Sector.sectorForPoint(point, dim: dim)
+    }
+    
+    func newLimbForPoint(point: GridPoint) -> Grid<V> {
+        return lev > 1 ? newLimb() : newLeafForPoint(point)
+    }
+    
+    func newLeafForPoint(point: GridPoint) -> Leaf<V> {
+        return self.newLeafWithIndex(leafIndexForPoint(point))
+    }
+    
+    func newLeafWithIndex(index: Int) -> Leaf<V> {
+        return Leaf<V>(index: index, def: def, dim: dim)
     }
     
     func newLimb() -> Branch {
