@@ -61,26 +61,22 @@ public class Branch<V> : Grid<V> {
     }
     
     // MARK: New
+    
+    let lev: Int
+    private var _limbs = [ Sector : Grid<V> ]()
 
     required public init(def: V, pow: Int, lev: Int, root: Branch?) {
     
         self.root = root
         self.lev = lev
-        self.leafDim = Branch.leafDimForPow(pow, level: lev)
+        self.leafDim = pow2(pow)
         onBuild = {_,_ in }
         super.init(def: def, pow: pow)
     }
     
-    let lev: Int
-    private var _limbs = [ Sector : Grid<V> ]()
-    
     let leafDim: Int
     var onBuild: (branch: Branch, sector: Sector) -> Void
-    
-    static func leafDimForPow(pow: Int, level lev: Int) -> Int {
-        return pow2(pow / (lev + 1))
-    }
-    
+        
     func indexOffsetForPoint(point: GridPoint) -> Int {
         return leafIndexForPoint(point) * leafDim * leafDim
     }
@@ -88,16 +84,15 @@ public class Branch<V> : Grid<V> {
     func leafIndexForPoint(point: GridPoint) -> Int {
         
         var address = addressForPoint(point)
-        var level = Branch.levelForAddress(address)
+        let lev = Branch.levelForAddress(address) - 1
+        var dim = pow2(lev)
         var total = 0
-        repeat {
-            let levelDim = pow2(level)
-            let block = levelDim * levelDim
-            total += ((address.x >= levelDim ? 1 : 0) + (address.y >= levelDim ? 2 : 0)) * block
-            address = address - Address(n: levelDim)
-            --level
+        while dim > 0 {
+            let block = dim * dim
+            total += ((address.x >= dim ? 1 : 0) + (address.y >= dim ? 2 : 0)) * block
+            address = address % dim
+            dim/=2
         }
-        while level > 0
         
         return total
     }
@@ -112,7 +107,7 @@ public class Branch<V> : Grid<V> {
     
     public static func levelForAddress(address: Address) -> Int {
         let maxDim = address.max()
-        return maxDim > 0 ? log2(maxDim) : 0
+        return maxDim > 0 ? log2(maxDim) + 1 : 0
     }
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
