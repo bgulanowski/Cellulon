@@ -7,29 +7,50 @@
 //
 
 import XCTest
+import Cellulon
 
 class BranchTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testBranchPointToIndex1_0() {
+        let branch = Branch(def: 0, pow: 1, lev: 0, root: nil)
+        XCTAssertEqual(0, branch.indexForPoint(GridPoint(x: 0, y: 0)))
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testBranchPointToIndex1_1() {
+        let branch = Branch(def: 0, pow: 1, lev: 1, root: nil)
+        XCTAssertEqual(1, branch.indexForPoint(GridPoint(x: 1, y: 0)))
+        XCTAssertEqual(2, branch.indexForPoint(GridPoint(x: 0, y: 1)))
+        XCTAssertEqual(3, branch.indexForPoint(GridPoint(x: 1, y: 1)))
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testBranchPointToIndex1_2() {
+        let branch = Branch(def: 0, pow: 1, lev: 2, root: nil)
+        XCTAssertEqual(6, branch.indexForPoint(GridPoint(x: 3, y: 0)))
+        XCTAssertEqual(11, branch.indexForPoint(GridPoint(x: 0, y: 3)))
+        XCTAssertEqual(15, branch.indexForPoint(GridPoint(x: 3, y: 3)))
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testBranchToPointIndex2_0() {
+        let branch = Branch(def: 0, pow: 2, lev: 0, root: nil)
+        XCTAssertEqual(0, branch.indexForPoint(GridPoint(x: 0, y: 0)))
+        XCTAssertEqual(1, branch.indexForPoint(GridPoint(x: 1, y: 0)))
+        XCTAssertEqual(2, branch.indexForPoint(GridPoint(x: 0, y: 1)))
+        XCTAssertEqual(3, branch.indexForPoint(GridPoint(x: 1, y: 1)))
     }
-
+    
+    func testBranchToPointIndex2_1() {
+        let branch = Branch(def: 0, pow: 2, lev: 1, root: nil)
+        // Different leaf size, same layout as dim = 1, because 2x2 = 2+2?
+        XCTAssertEqual(6, branch.indexForPoint(GridPoint(x: 3, y: 0)))
+        XCTAssertEqual(11, branch.indexForPoint(GridPoint(x: 0, y: 3)))
+        XCTAssertEqual(15, branch.indexForPoint(GridPoint(x: 3, y: 3)))
+    }
+    
+    func testBranchToPointIndex4_1() {
+        let branch = Branch(def: 0, pow: 3, lev: 1, root: nil)
+        // Different leaf size, same layout as dim = 1, because 2x2 = 2+2?
+        XCTAssertEqual(6, branch.indexForPoint(GridPoint(x: 3, y: 0)))
+        XCTAssertEqual(11, branch.indexForPoint(GridPoint(x: 0, y: 3)))
+        XCTAssertEqual(15, branch.indexForPoint(GridPoint(x: 3, y: 3)))
+    }
 }

@@ -78,7 +78,7 @@ public class Branch<V> : Grid<V> {
     var onBuild: (branch: Branch, sector: Sector) -> Void
     
     static func leafDimForPow(pow: Int, level lev: Int) -> Int {
-        return pow / lev
+        return pow2(pow / (lev + 1))
     }
     
     func indexOffsetForPoint(point: GridPoint) -> Int {
@@ -111,7 +111,8 @@ public class Branch<V> : Grid<V> {
     }
     
     public static func levelForAddress(address: Address) -> Int {
-        return log2(address.max())
+        let maxDim = address.max()
+        return maxDim > 0 ? log2(maxDim) : 0
     }
 
     func limbForPoint(point: GridPoint) -> Grid<V> {
