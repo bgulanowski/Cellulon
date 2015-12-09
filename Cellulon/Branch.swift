@@ -59,7 +59,13 @@ public class Branch<V> : Grid<V> {
     override public func setValue(value: V, atPoint point: GridPoint) {
         limbForPoint(point).setValue(value, atPoint: point)
     }
-        
+    
+    override public func indexForPoint(point: GridPoint) -> Int {
+        return indexOffsetForPoint(point) + super.indexForPoint(point - originForPoint(point))
+    }
+    
+    // MARK: New
+
     required public init(def: V, dim: Int, lev: Int, root: Branch?) {
         self.root = root
         self.lev = lev
@@ -67,8 +73,6 @@ public class Branch<V> : Grid<V> {
         onBuild = {_,_ in }
         super.init(def: def, dim: dim)
     }
-    
-    // MARK: New
     
     let lev: Int
     private var _limbs = [ Sector : Grid<V> ]()
@@ -80,15 +84,11 @@ public class Branch<V> : Grid<V> {
         return dim / pow2(lev)
     }
     
-    public func leafIndexForPoint(point: GridPoint) -> Int {
-        return indexOffsetForPoint(point) + indexForPoint(point)
-    }
-    
     func indexOffsetForPoint(point: GridPoint) -> Int {
-        return branchIndexForPoint(point) * leafDim * leafDim
+        return leafIndexForPoint(point) * leafDim * leafDim
     }
     
-    func branchIndexForPoint(point: GridPoint) -> Int {
+    func leafIndexForPoint(point: GridPoint) -> Int {
         
         var address = addressForPoint(point)
         var level = Branch.levelForAddress(address)
