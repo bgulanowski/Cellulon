@@ -12,7 +12,7 @@ import Cellulon
 class GridTests: XCTestCase {
     
     func testGridDefault() {
-        let grid = Grid<Int>(def: -1, dim: 2)
+        let grid = Grid<Int>(def: -1, pow: 1)
         let min = grid.min()
         let max = grid.max()
         XCTAssertTrue(PointI(n: 0) == min)
@@ -22,7 +22,7 @@ class GridTests: XCTestCase {
     }
     
     func testGridIndexConversion() {
-        let grid = Grid<Int>(def: 0, dim: 8)
+        let grid = Grid<Int>(def: 0, pow: 3)
         var point = GridPoint(x: 0, y: 0)
         XCTAssertTrue(point == grid.pointForIndex(0))
         XCTAssertEqual(0, grid.indexForPoint(point))
@@ -41,14 +41,14 @@ class GridTests: XCTestCase {
     }
 
     func testBasicGridAccess() {
-        let grid = BasicIntGrid(def: 0, dim: 8)
+        let grid = BasicIntGrid(def: 0, pow: 3)
         let point = GridPoint(x: 4, y: 4)
         grid.setValue(100, atPoint: point)
         XCTAssertEqual(grid.valueAtPoint(point), 100)
     }
     
     func testBasicGridSubscripting() {
-        let grid = BasicIntGrid(def: 0, dim: 8)
+        let grid = BasicIntGrid(def: 0, pow: 3)
         let point = GridPoint(x: 4, y: 4)
         grid[point] = 100
         XCTAssertEqual(grid[point], 100)

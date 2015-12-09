@@ -8,10 +8,6 @@
 
 import Foundation
 
-func pow2(exponent: Int) -> Int {
-    return Int(pow(2.0, Double(exponent)))
-}
-
 func log2(exponent: Int) -> Int {
     return Int(log2(Double(exponent)))
 }
@@ -66,12 +62,13 @@ public class Branch<V> : Grid<V> {
     
     // MARK: New
 
-    required public init(def: V, dim: Int, lev: Int, root: Branch?) {
+    required public init(def: V, pow: Int, lev: Int, root: Branch?) {
+    
         self.root = root
         self.lev = lev
-        self.leafDim = Branch.leafDimForDim(dim, level: lev)
+        self.leafDim = Branch.leafDimForPow(pow, level: lev)
         onBuild = {_,_ in }
-        super.init(def: def, dim: dim)
+        super.init(def: def, pow: pow)
     }
     
     let lev: Int
@@ -80,8 +77,8 @@ public class Branch<V> : Grid<V> {
     let leafDim: Int
     var onBuild: (branch: Branch, sector: Sector) -> Void
     
-    static func leafDimForDim(dim: Int, level lev: Int) -> Int {
-        return dim / pow2(lev)
+    static func leafDimForPow(pow: Int, level lev: Int) -> Int {
+        return pow / lev
     }
     
     func indexOffsetForPoint(point: GridPoint) -> Int {
@@ -142,10 +139,10 @@ public class Branch<V> : Grid<V> {
     }
     
     func newLeafWithIndex(index: Int) -> Leaf<V> {
-        return Leaf<V>(index: index, def: def, dim: dim)
+        return Leaf<V>(index: index, def: def, pow: pow)
     }
     
     func newLimb() -> Branch {
-        return Branch(def: def, dim: dim, lev: lev-1, root: self)
+        return Branch(def: def, pow: pow, lev: lev-1, root: self)
     }
 }
