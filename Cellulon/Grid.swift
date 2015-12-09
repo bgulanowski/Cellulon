@@ -37,6 +37,16 @@ public class Grid<V> {
     
     public func setValue(value: V, atPoint point: GridPoint) -> Void {
     }
+
+    public func indexForPoint(point: GridPoint) -> Int {
+        assert(point.x < dim && point.y < dim)
+        return point.y * dim + point.x
+    }
+    
+    public func pointForIndex(index: Int) -> GridPoint {
+        assert(index < dim * dim)
+        return GridPoint(x: index % dim, y: index / dim)
+    }
 }
 
 public extension Grid {
@@ -47,18 +57,6 @@ public extension Grid {
         set {
             setValue(newValue, atPoint: index)
         }
-    }
-}
-
-public extension Grid {
-    public func indexForPoint(point: GridPoint) -> Int {
-        assert(point.x < dim && point.y < dim)
-        return point.y * dim + point.x
-    }
-    
-    public func pointForIndex(index: Int) -> GridPoint {
-        assert(index < dim * dim)
-        return GridPoint(x: index % dim, y: index / dim)
     }
 }
 
