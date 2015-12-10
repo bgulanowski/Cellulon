@@ -22,7 +22,7 @@ func firstBit(n: Int) -> Int {
     return result
 }
 
-enum Sector : Int {
+public enum Sector : Int {
     case s0 = 0
     case s1 = 1
     case s2 = 2
