@@ -49,15 +49,15 @@ public class Branch<V> : Grid<V> {
     }
     
     override public func valueAtPoint(point: GridPoint) -> V {
-        return limbForPoint(point).valueAtPoint(point)
+        return limbForPoint(point).valueAtPoint(offsetPointForLimbs(point))
     }
     
     override public func setValue(value: V, atPoint point: GridPoint) {
-        limbForPoint(point).setValue(value, atPoint: point)
+        limbForPoint(point).setValue(value, atPoint: offsetPointForLimbs(point))
     }
     
     override public func indexForPoint(point: GridPoint) -> Int {
-        return indexOffsetForPoint(point) + super.indexForPoint(point - originForPoint(point))
+        return indexOffsetForPoint(point) + super.indexForPoint(offsetPointForLimbs(point))
     }
     
     // MARK: New
@@ -95,6 +95,10 @@ public class Branch<V> : Grid<V> {
         }
         
         return total
+    }
+    
+    func offsetPointForLimbs(point: GridPoint) -> GridPoint {
+        return point - originForPoint(point)
     }
     
     func originForPoint(point: GridPoint) -> GridPoint {
