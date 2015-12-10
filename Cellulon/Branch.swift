@@ -79,7 +79,7 @@ public class Branch<V> : Grid<V> {
     }
     
     let leafDim: Int
-    var onBuild: (branch: Branch, sector: Sector) -> Void
+    public var onBuild: (branch: Branch, sector: Sector) -> Void
     
     // MARK: - index calculations
         
