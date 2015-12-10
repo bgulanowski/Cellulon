@@ -12,26 +12,26 @@ import Cellulon
 class BranchTests: XCTestCase {
     
     func testBranchPointToIndex1_0() {
-        let branch = Branch(def: 0, pow: 0, lev: 0, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 0)
         XCTAssertEqual(0, branch.indexForPoint(GridPoint(x: 0, y: 0)))
     }
     
     func testBranchPointToIndex1_1() {
-        let branch = Branch(def: 0, pow: 0, lev: 1, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 0)
         XCTAssertEqual(1, branch.indexForPoint(GridPoint(x: 1, y: 0)))
         XCTAssertEqual(2, branch.indexForPoint(GridPoint(x: 0, y: 1)))
         XCTAssertEqual(3, branch.indexForPoint(GridPoint(x: 1, y: 1)))
     }
     
     func testBranchPointToIndex1_2() {
-        let branch = Branch(def: 0, pow: 0, lev: 2, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 0)
         XCTAssertEqual(5, branch.indexForPoint(GridPoint(x: 3, y: 0)))
         XCTAssertEqual(10, branch.indexForPoint(GridPoint(x: 0, y: 3)))
         XCTAssertEqual(15, branch.indexForPoint(GridPoint(x: 3, y: 3)))
     }
     
     func testBranchToPointIndex2_0() {
-        let branch = Branch(def: 0, pow: 1, lev: 0, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 1)
         XCTAssertEqual(0, branch.indexForPoint(GridPoint(x: 0, y: 0)))
         XCTAssertEqual(1, branch.indexForPoint(GridPoint(x: 1, y: 0)))
         XCTAssertEqual(2, branch.indexForPoint(GridPoint(x: 0, y: 1)))
@@ -39,7 +39,7 @@ class BranchTests: XCTestCase {
     }
     
     func testBranchToPointIndex2_1() {
-        let branch = Branch(def: 0, pow: 1, lev: 1, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 1)
         // Different leaf size, same layout as dim = 1, because 2x2 = 2+2?
         XCTAssertEqual(5, branch.indexForPoint(GridPoint(x: 3, y: 0)))
         XCTAssertEqual(10, branch.indexForPoint(GridPoint(x: 0, y: 3)))
@@ -47,10 +47,23 @@ class BranchTests: XCTestCase {
     }
     
     func testBranchToPointIndex4_1() {
-        let branch = Branch(def: 0, pow: 2, lev: 1, idx: 0, root: nil)
+        let branch = Branch(def: 0, pow: 2)
         // Different leaf size, same layout as dim = 1, because 2x2 = 2+2?
         XCTAssertEqual(3, branch.indexForPoint(GridPoint(x: 3, y: 0)))
-        XCTAssertEqual(12, branch.indexForPoint(GridPoint(x: 0, y: 3)))
+         XCTAssertEqual(12, branch.indexForPoint(GridPoint(x: 0, y: 3)))
         XCTAssertEqual(15, branch.indexForPoint(GridPoint(x: 3, y: 3)))
+    }
+    
+    func testBranchSet() {
+        let branch = Branch(def: 0, pow: 7, lev: 2, idx: 0, root: nil)
+        let expectation = self.expectationWithDescription("hi")
+        branch.onBuild = { _, _ in
+            expectation.fulfill()
+        }
+        
+        let p = GridPoint(x: 127, y: 127)
+        branch.setValue(1, atPoint: p)
+        XCTAssertEqual(branch.valueAtPoint(p), 1)
+        self.waitForExpectationsWithTimeout(0.5, handler: nil)
     }
 }

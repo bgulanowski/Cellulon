@@ -23,7 +23,7 @@ public class Tree<V> : Branch<V> {
     }
     
     override func sectorForPoint(point: GridPoint) -> Sector {
-        return Sector.sectorForPoint(point)
+        return Sector.sectorForPoint(point)!
     }
     
     func transformedPoint(point: GridPoint) -> GridPoint {
