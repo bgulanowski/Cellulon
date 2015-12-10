@@ -60,22 +60,28 @@ public class Branch<V> : Grid<V> {
         return indexOffsetForPoint(point) + super.indexForPoint(offsetPointForLimbs(point))
     }
     
-    // MARK: New
+    // MARK: Branch
     
     let lev: Int
+    let idx: Int
     private var _limbs = [ Sector : Grid<V> ]()
 
-    required public init(def: V, pow: Int, lev: Int, root: Branch?) {
+    required public init(def: V, pow: Int, lev: Int, idx: Int, root: Branch?) {
     
         self.root = root
         self.lev = lev
+        self.idx = idx
+        
         self.leafDim = pow2(pow)
         onBuild = {_,_ in }
+        
         super.init(def: def, pow: pow)
     }
     
     let leafDim: Int
     var onBuild: (branch: Branch, sector: Sector) -> Void
+    
+    // MARK: - index calculations
         
     func indexOffsetForPoint(point: GridPoint) -> Int {
         return leafIndexForPoint(point) * leafDim * leafDim
@@ -96,6 +102,12 @@ public class Branch<V> : Grid<V> {
         
         return total
     }
+    
+    func limbIndexForSector(sector: Sector) -> Int {
+        return idx * 4 + sector.rawValue
+    }
+    
+    // MARK: - point calculations
     
     func offsetPointForLimbs(point: GridPoint) -> GridPoint {
         return point - originForPoint(point)
@@ -131,7 +143,7 @@ public class Branch<V> : Grid<V> {
     }
     
     func newLimbForPoint(point: GridPoint) -> Grid<V> {
-        return lev > 1 ? newLimb() : newLeafForPoint(point)
+        return lev > 1 ? newLimbWithIndex(limbIndexForSector(sectorForPoint(point))) : newLeafForPoint(point)
     }
     
     func newLeafForPoint(point: GridPoint) -> Leaf<V> {
@@ -142,7 +154,7 @@ public class Branch<V> : Grid<V> {
         return Leaf<V>(index: index, def: def, pow: pow)
     }
     
-    func newLimb() -> Branch {
-        return Branch(def: def, pow: pow, lev: lev-1, root: self)
+    func newLimbWithIndex(index: Int) -> Branch {
+        return Branch(def: def, pow: pow, lev: lev-1, idx: index, root: self)
     }
 }
