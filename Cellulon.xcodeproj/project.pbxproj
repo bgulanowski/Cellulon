@@ -16,6 +16,7 @@
 		8409BA8B1C1481BF00962068 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8A1C1481BF00962068 /* PointTests.swift */; };
 		8409BA8D1C14DA0200962068 /* LeafTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8C1C14DA0200962068 /* LeafTests.swift */; };
 		8409BA8F1C14DBFE00962068 /* BranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8E1C14DBFE00962068 /* BranchTests.swift */; };
+		842F31FB1C1AFC02002202AB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 842F31FA1C1AFC02002202AB /* README.md */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
 		8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		8409BA8A1C1481BF00962068 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		8409BA8C1C14DA0200962068 /* LeafTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTests.swift; sourceTree = "<group>"; };
 		8409BA8E1C14DBFE00962068 /* BranchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchTests.swift; sourceTree = "<group>"; };
+		842F31FA1C1AFC02002202AB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		8434FFE91C0B9B0A00B1029D /* Cellulon */ = {
 			isa = PBXGroup;
 			children = (
+				842F31FA1C1AFC02002202AB /* README.md */,
 				8434FFF11C0B9B0A00B1029D /* Assets.xcassets */,
 				8434FFF61C0B9B0A00B1029D /* Info.plist */,
 				8409BA771C1331C300962068 /* Interfaces */,
@@ -262,6 +265,7 @@
 				8409BA7D1C13329100962068 /* Point.swift in Sources */,
 				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
 				8409BA851C134D9900962068 /* Grid.swift in Sources */,
+				842F31FB1C1AFC02002202AB /* README.md in Sources */,
 				8409BA871C134E3800962068 /* Leaf.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
