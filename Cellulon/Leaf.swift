@@ -12,10 +12,10 @@ public class Leaf<V> : BasicGrid<V> {
     
     public var index: Int
     
-    public init(index: Int, def: V, pow: Int) {
+    public init(index: Int, def: V, ord: Int) {
         self.index = index
-        let values = Leaf.loadValues(index, def: def, count: areaForPower(pow))
-        super.init(def: def, pow: pow, values: values)
+        let values = Leaf.loadValues(index, def: def, count: areaForOrder(ord))
+        super.init(def: def, ord: ord, values: values)
     }
     
     static func loadValues(index: Int, def: V, count: Int) -> [V] {

@@ -84,24 +84,24 @@ public class Branch<V> : Grid<V> {
     }
     private var _limbs = [ Sector : Grid<V> ]()
 
-    required public init(def: V, pow: Int, lev: Int, idx: Int, root: Branch?) {
+    required public init(def: V, ord: Int, lev: Int, idx: Int, root: Branch?) {
     
         self.root = root
         self.lev = lev
         self.idx = idx
         
-        self.leafDim = pow2(pow)
+        self.leafDim = pow2(ord)
         onBuild = {_,_ in }
         
-        super.init(def: def, pow: pow)
+        super.init(def: def, ord: ord)
     }
     
-    public convenience override init(def: V, pow: Int) {
-        self.init(def: def, pow: pow, lev: 1, idx: 0, root: nil)
+    public convenience override init(def: V, ord: Int) {
+        self.init(def: def, ord: ord, lev: 1, idx: 0, root: nil)
     }
     
     public convenience init(def: V) {
-        self.init(def: def, pow: 3, lev: 1, idx: 0, root: nil)
+        self.init(def: def, ord: 3, lev: 1, idx: 0, root: nil)
     }
     
     let leafDim: Int
@@ -207,11 +207,11 @@ public class Branch<V> : Grid<V> {
     }
     
     func newLeafWithIndex(index: Int) -> Leaf<V> {
-        return Leaf<V>(index: index, def: def, pow: pow)
+        return Leaf<V>(index: index, def: def, ord: ord)
     }
     
     func newLimbWithIndex(index: Int) -> Branch {
-        return Branch(def: def, pow: pow, lev: lev-1, idx: index, root: self)
+        return Branch(def: def, ord: ord, lev: lev-1, idx: index, root: self)
     }
     
     // MARK: - sector calculations
