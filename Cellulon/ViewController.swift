@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let grid = Grid<UInt8>(def: 0, ord: 8)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +23,10 @@ class ViewController: UIViewController {
     }
 
 
+}
+
+func makeBitmap() {
+    
+    
 }
 

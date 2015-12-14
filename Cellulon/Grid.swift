@@ -80,10 +80,10 @@ public class BasicGrid<V>: Grid<V> {
         super.init(def: def, ord: ord)
     }
 
-    public convenience override init(def: V, ord: Int) {
+    public override init(def: V, ord: Int) {
         let area = areaForOrder(ord)
-        let values = [V](count: area, repeatedValue: def)
-        self.init(def: def, ord: ord, values: values)
+        self.values = [V](count: area, repeatedValue: def)
+        super.init(def: def, ord: ord)
     }
 
     override public func valueAtPoint(point: GridPoint) -> V {
