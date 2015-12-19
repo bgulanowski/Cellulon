@@ -22,6 +22,7 @@
 		8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFEE1C0B9B0A00B1029D /* Main.storyboard */; };
 		8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF11C0B9B0A00B1029D /* Assets.xcassets */; };
 		8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */; };
+		845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,8 @@
 		8434FFF61C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFFB1C0B9B0A00B1029D /* CellulonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CellulonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellulonTests.swift; sourceTree = "<group>"; };
+		845F5FB71C25A5B6005337E9 /* Bitmap+ImageCreating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bitmap+ImageCreating.h"; sourceTree = "<group>"; };
+		845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bitmap+ImageCreating.m"; sourceTree = "<group>"; };
 		84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellulon-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DC50E11C204FB3007D2DED /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		84DC50E21C204FB3007D2DED /* Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bitmap.m; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 				8409BA761C1331B300962068 /* Model */,
 				84DC50E11C204FB3007D2DED /* Bitmap.h */,
 				84DC50E21C204FB3007D2DED /* Bitmap.m */,
+				845F5FB71C25A5B6005337E9 /* Bitmap+ImageCreating.h */,
+				845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */,
 				84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */,
 			);
 			name = Sources;
@@ -275,6 +280,7 @@
 				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
 				8409BA7D1C13329100962068 /* Point.swift in Sources */,
 				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
+				845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */,
 				8409BA851C134D9900962068 /* Grid.swift in Sources */,
 				8409BA871C134E3800962068 /* Leaf.swift in Sources */,
 			);

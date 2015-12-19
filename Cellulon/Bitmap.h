@@ -27,6 +27,7 @@ extern CGColorRef CGColorForColor(Color color);
 @interface Bitmap : NSObject
 
 @property (nonatomic, readonly) CGSize size;
+@property (nonatomic, readonly) CGContextRef graphicsContext;
 
 - (instancetype)initWithSize:(CGSize)size color:(Color)color;
 - (instancetype)initWithSize:(CGSize)size CGColor:(CGColorRef)color;

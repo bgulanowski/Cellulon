@@ -42,6 +42,11 @@ static inline NSUInteger OffsetForPoint(CGPoint point, CGFloat w) {
     return self;
 }
 
+- (CGContextRef)graphicsContext
+{
+    return _context;
+}
+
 - (instancetype)initWithSize:(CGSize)size CGColor:(CGColorRef)color
 {
     return [self initWithSize:size color:ColorForCGColor(color)];
