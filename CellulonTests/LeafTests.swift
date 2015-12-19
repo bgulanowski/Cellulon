@@ -11,12 +11,12 @@ import Cellulon
 
 class LeafTests: XCTestCase {
     func testIndex() {
-        let leaf = Leaf<Int>(index: 0, def: 0, pow: 2)
+        let leaf = Leaf<Int>(index: 0, def: 0, ord: 2)
         XCTAssertEqual(0,leaf.index)
     }
     
     func testValue() {
-        let leaf = Leaf<Int>(index: 0, def: 99, pow: 2)
+        let leaf = Leaf<Int>(index: 0, def: 99, ord: 2)
         XCTAssertEqual(99, leaf[GridPoint(n: 0)])
     }
 }
