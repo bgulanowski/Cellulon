@@ -27,9 +27,11 @@ class BitmapTests: XCTestCase {
     }
     
     func testColorToGrey() {
+        
         let color = Color(c: Components(r: 127, g: 127, b: 127, a: 255))
         let cgColor = ColorToCGColor(color).takeUnretainedValue()
         XCTAssertEqual(CGColorGetNumberOfComponents(cgColor), 4, "color had wrong number of components")
+        
         let comps = CGColorGetComponents(cgColor)
         let actual = [ comps[0], comps[1], comps[2], comps[3] ]
         let expected: [CGFloat] = [ 0.5, 0.5, 0.5, 1.0 ]
@@ -44,13 +46,8 @@ class BitmapTests: XCTestCase {
     
     func testBitmapGetImage() {
         
-        let image = sampleBitmap.image
-        XCTAssertNotNil(image)
-        
-        let imageName = "bitmapTestImage"
-        let filetype = "png"
-        
-        if let actual = UIImagePNGRepresentation(image) {
+        if let actual = UIImagePNGRepresentation(Bitmap.sampleBitmap().image) {
+            let imageName = "bitmapTestImage", filetype = "png"
             if let expected = loadDataForImageNamed(imageName, type: filetype) {
                 XCTAssertEqual(actual, expected)
             }
@@ -58,27 +55,6 @@ class BitmapTests: XCTestCase {
                 saveImageData(actual, withName: imageName, type: filetype)
             }
         }
-    }
-    
-    var sampleBitmap: Bitmap {
-        let bitmap = Bitmap(size: CGSizeMake(128, 128), CGColor: UIColor.blackColor().CGColor)
-        let borderColor = UIColor.redColor().CGColor
-        let diagonalColor = UIColor.blueColor().CGColor
-        let checkColor = UIColor.whiteColor().CGColor
-        for i in 0 ..< 127 {
-            for j in 0 ..< 127 {
-                if i == 0 || i == 127 || j == 0 || j == 127 {
-                    bitmap.setCGColor(borderColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
-                }
-                else if i == j || i + j == 127 {
-                    bitmap.setCGColor(diagonalColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
-                }
-                else if (i+j) % 2 == 0 {
-                    bitmap.setCGColor(checkColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
-                }
-            }
-        }
-        return bitmap
     }
     
     func loadDataForImageNamed(name: String, type: String) -> NSData? {
@@ -95,5 +71,30 @@ class BitmapTests: XCTestCase {
         let url = NSURL(fileURLWithPath: NSString(string: "~/Desktop/\(name)").stringByExpandingTildeInPath)
         data.writeToURL(url, atomically: true)
         print("test image file has been saved to \(url); copy into bundle")
+    }
+}
+
+extension Bitmap {
+    static func sampleBitmap() -> Bitmap {
+    
+        let bitmap = Bitmap(size: CGSizeMake(128, 128), CGColor: UIColor.blackColor().CGColor)
+        let borderColor = UIColor.redColor().CGColor
+        let diagonalColor = UIColor.blueColor().CGColor
+        let checkColor = UIColor.whiteColor().CGColor
+        
+        for i in 0 ..< 127 {
+            for j in 0 ..< 127 {
+                if i == 0 || i == 127 || j == 0 || j == 127 {
+                    bitmap.setCGColor(borderColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                }
+                else if i == j || i + j == 127 {
+                    bitmap.setCGColor(diagonalColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                }
+                else if (i+j) % 2 == 0 {
+                    bitmap.setCGColor(checkColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                }
+            }
+        }
+        return bitmap
     }
 }
