@@ -6,8 +6,10 @@
 //  Copyright © 2015 Lichen Labs. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
+@import Foundation;
+@import CoreGraphics;
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef struct {
     UInt8 r;
@@ -21,8 +23,8 @@ typedef union {
     Components c;
 } Color;
 
-extern Color ColorForCGColor(CGColorRef color);
-extern CGColorRef CGColorForColor(Color color);
+extern Color ColorFromCGColor(CGColorRef color);
+extern CGColorRef ColorToCGColor(Color color);
 
 @interface Bitmap : NSObject
 
@@ -41,3 +43,5 @@ extern CGColorRef CGColorForColor(Color color);
 - (void)setCGColor:(CGColorRef)color atPoint:(CGPoint)point;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,15 +8,57 @@
 
 #import "Bitmap.h"
 
-Color ColorForCGColor(CGColorRef color) {
+static CGColorSpaceRef rgbColorSpace;
+
+/*
+ * let Q = 1.0/256.0
+ *
+ * 0x00 <->   0 <->  0.0 ..<    Q
+ * 0x01 <->   1 <->   1Q ..<   2Q
+ * 0xFE <-> 254 <-> 254Q ..< 255Q
+ * 0xFF <-> 255 <-> 255Q ...  Inf(256Q) ???
+ *
+ * 0x00       ->   0Q (0.0)
+ * 0x01       ->   1Q (~0.0039)
+ * 0x8F (127) -> 128Q (0.5)
+ * 0xFF (255) -> 256Q (1.0)
+ */
+
+static const CGFloat Q = 1.0/256.0f;
+
+inline static UInt8 FloatToByte(CGFloat f) {
+    if (f >= 1.0) {
+        return (UInt8)255;
+    }
+    else {
+        return f < Q ? 0 : (UInt8)(f * 256.0 - 1.0);
+    }
+}
+
+Color ColorFromCGColor(CGColorRef color) {
     Color r;
-    r.v = 0;
+    const CGFloat *components = CGColorGetComponents(color);
+    if (CGColorGetNumberOfComponents(color) == 4) {
+        r.c.r = FloatToByte(components[0]);
+        r.c.g = FloatToByte(components[1]);
+        r.c.b = FloatToByte(components[2]);
+        r.c.a = FloatToByte(components[3]);
+    }
+    else {
+        r.c.r = r.c.g = r.c.b = FloatToByte(components[0]);
+        r.c.a = FloatToByte(components[1]);
+    }
     return r;
 }
 
-CGColorRef CGColorForColor(Color color) {
+CGColorRef ColorToCGColor(Color color) {
     
-    CGColorRef r = CGColorCreate(NULL, NULL);
+    CGFloat components[4];
+    components[0] = ((CGFloat)color.c.r + 1.0) / 256.0;
+    components[1] = ((CGFloat)color.c.g + 1.0) / 256.0;
+    components[2] = ((CGFloat)color.c.b + 1.0) / 256.0;
+    components[3] = ((CGFloat)color.c.a + 1.0) / 256.0;
+    CGColorRef r = CGColorCreate(rgbColorSpace, components);
     return r;
 }
 
@@ -28,6 +70,11 @@ static inline NSUInteger OffsetForPoint(CGPoint point, CGFloat w) {
     CGSize _size;
     UInt32 *_bits;
     CGContextRef _context;
+}
+
++ (void)load
+{
+    rgbColorSpace = CGColorSpaceCreateDeviceRGB();
 }
 
 - (instancetype)initWithSize:(CGSize)size color:(Color)color
@@ -49,7 +96,7 @@ static inline NSUInteger OffsetForPoint(CGPoint point, CGFloat w) {
 
 - (instancetype)initWithSize:(CGSize)size CGColor:(CGColorRef)color
 {
-    return [self initWithSize:size color:ColorForCGColor(color)];
+    return [self initWithSize:size color:ColorFromCGColor(color)];
 }
 
 - (void)clearWithColor:(Color)color
@@ -73,17 +120,17 @@ static inline NSUInteger OffsetForPoint(CGPoint point, CGFloat w) {
 
 - (void)clearWithCGColor:(CGColorRef)color
 {
-    [self clearWithColor:ColorForCGColor(color)];
+    [self clearWithColor:ColorFromCGColor(color)];
 }
 
 - (CGColorRef)CGColorAtPoint:(CGPoint)point
 {
-    return CGColorForColor([self colorAtPoint:point]);
+    return ColorToCGColor([self colorAtPoint:point]);
 }
 
 - (void)setCGColor:(CGColorRef)color atPoint:(CGPoint)point
 {
-    [self setColor:ColorForCGColor(color) atPoint:point];
+    [self setColor:ColorFromCGColor(color) atPoint:point];
 }
 
 @end
