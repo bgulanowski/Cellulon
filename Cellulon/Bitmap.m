@@ -83,7 +83,8 @@ static inline NSUInteger OffsetForPoint(CGPoint point, CGFloat w) {
     if (self) {
         _size = size;
         _bits = malloc(sizeof(UInt32) * size.height * size.width);
-        _context = CGBitmapContextCreate(_bits, (size_t)size.width, (size_t)size.height, 8, size.width * 4, NULL, kCGImageAlphaPremultipliedLast);
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        _context = CGBitmapContextCreate(_bits, (size_t)size.width, (size_t)size.height, 8, size.width * 4, colorSpace, kCGImageAlphaPremultipliedLast);
         [self clearWithColor:color];
     }
     return self;

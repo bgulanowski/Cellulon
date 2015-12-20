@@ -3,3 +3,4 @@
 //
 
 #import "Bitmap.h"
+#import "Bitmap+ImageCreating.h"
