@@ -12,7 +12,7 @@ public class TreeSupport {
     static var serialQueue = dispatch_queue_create("Tree", DISPATCH_QUEUE_SERIAL)
 }
 
-public class Tree<V> : Branch<V> {
+public class Tree<V:ColorConvertable> : Branch<V> {
     
     override public func valueAtPoint(point: GridPoint) -> V {
         return super.valueAtPoint(transformedPoint(point))

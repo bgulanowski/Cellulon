@@ -13,8 +13,8 @@ class GridTests: XCTestCase {
     
     func testGridDefault() {
         let grid = Grid<Int>(def: -1, ord: 1)
-        let min = grid.min()
-        let max = grid.max()
+        let min = grid.min
+        let max = grid.max
         XCTAssertTrue(PointI(n: 0) == min)
         XCTAssertTrue(PointI(n: 1) == max)
         XCTAssertEqual(-1, grid.valueAtPoint(min))

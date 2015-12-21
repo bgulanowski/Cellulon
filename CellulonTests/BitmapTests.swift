@@ -56,22 +56,22 @@ class BitmapTests: XCTestCase {
             }
         }
     }
-    
-    func loadDataForImageNamed(name: String, type: String) -> NSData? {
-        let bundle = NSBundle(forClass: BitmapTests.self)
-        if let url = bundle.URLForResource(name, withExtension: type) {
-            return NSData(contentsOfURL: url)
-        }
-        else {
-            return nil
-        }
+}
+
+public func loadDataForImageNamed(name: String, type: String) -> NSData? {
+    let bundle = NSBundle(forClass: BitmapTests.self)
+    if let url = bundle.URLForResource(name, withExtension: type) {
+        return NSData(contentsOfURL: url)
     }
-    
-    func saveImageData(data: NSData, withName name: String, type: String) {
-        let url = NSURL(fileURLWithPath: NSString(string: "~/Desktop/\(name)").stringByExpandingTildeInPath)
-        data.writeToURL(url, atomically: true)
-        print("test image file has been saved to \(url); copy into bundle")
+    else {
+        return nil
     }
+}
+
+public func saveImageData(data: NSData, withName name: String, type: String) {
+    let url = NSURL(fileURLWithPath: NSString(string: "~/Documents/\(name).\(type)").stringByExpandingTildeInPath)
+    data.writeToURL(url, atomically: true)
+    print("test image file has been saved to \(url); copy into bundle")
 }
 
 extension Bitmap {

@@ -19,4 +19,19 @@ class LeafTests: XCTestCase {
         let leaf = Leaf<Int>(index: 0, def: 99, ord: 2)
         XCTAssertEqual(99, leaf[GridPoint(n: 0)])
     }
+    
+    func testBitmap() {
+        let bitmap = randomLeaf().bitmap
+        if let imageData = UIImagePNGRepresentation(bitmap.image) {
+            saveImageData(imageData, withName: "gridImage", type: "png")
+        }
+    }
+}
+
+func randomLeaf() -> Leaf<Bool> {
+    let leaf = Leaf<Bool>(index: 0, def: false, ord: 8)
+    for _ in 1 ..< leaf.size / 10 {
+        leaf.setValue(true, atPoint: GridPoint(x: random() % leaf.dim, y: random() % leaf.dim))
+    }
+    return leaf
 }

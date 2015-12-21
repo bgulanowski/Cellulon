@@ -19,14 +19,19 @@ func areaForOrder(ord : Int) -> Int {
 
 public typealias GridPoint = PointI
 
+public protocol ColorConvertable {
+    init(color: Color)
+    var color: Color { get }
+}
+
 /*
 This is an abstract class. It has no actual storage. See Tree, Branch and Leaf.
 */
-public class Grid<V> {
+public class Grid<V : ColorConvertable> {
     
-    let def: V
-    let ord: Int
-    let dim: Int
+    public let def: V
+    public let ord: Int
+    public let dim: Int
     
     public init(def: V, ord: Int) {
         self.def = def
@@ -34,12 +39,16 @@ public class Grid<V> {
         self.dim = pow2(ord)
     }
     
-    public func min() -> GridPoint {
+    public var min: GridPoint {
         return GridPoint(n: 0)
     }
     
-    public func max() -> GridPoint {
+    public var max: GridPoint {
         return GridPoint(n: dim - 1)
+    }
+    
+    public var size: Int {
+        return areaForOrder(ord)
     }
     
     public func valueAtPoint(point: GridPoint) -> V {
@@ -71,7 +80,7 @@ public extension Grid {
     }
 }
 
-public class BasicGrid<V>: Grid<V> {
+public class BasicGrid<V:ColorConvertable> : Grid<V> {
     
     var values: [V]
     
@@ -81,8 +90,7 @@ public class BasicGrid<V>: Grid<V> {
     }
 
     public override init(def: V, ord: Int) {
-        let area = areaForOrder(ord)
-        self.values = [V](count: area, repeatedValue: def)
+        self.values = [V](count: areaForOrder(ord), repeatedValue: def)
         super.init(def: def, ord: ord)
     }
 
@@ -92,6 +100,17 @@ public class BasicGrid<V>: Grid<V> {
     
     override public func setValue(value: V, atPoint point: GridPoint) {
         values[indexForPoint(point)] = value
+    }
+}
+
+extension Int : ColorConvertable {
+    public init(color: Color) {
+        self = Int(color.v)
+    }
+    public var color: Color {
+        get {
+            return Color(v: UInt32(self))
+        }
     }
 }
 

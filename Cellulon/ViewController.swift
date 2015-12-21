@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension UInt8 : ColorConvertable {
+    public init(color: Color) {
+        self = UInt8(color.v)
+    }
+    public var color: Color {
+        return Color(v: UInt32(self))
+    }
+}
+
 class ViewController: UIViewController {
     
     let grid = Grid<UInt8>(def: 0, ord: 8)

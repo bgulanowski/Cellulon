@@ -72,6 +72,18 @@ func below(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x, y: p.y+1)
 }
 
+let opaqueBlack = Color(v: NSSwapBigIntToHost(0x000000FF))
+let opaqueWhite = Color(v: UINT32_MAX)
+
+extension Bool : ColorConvertable {
+    public init(color: Color) {
+        self = color.v > UINT32_MAX / 2
+    }
+    public var color: Color {
+        return self ? opaqueBlack : opaqueWhite
+    }
+}
+
 class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
     typealias Cell = Bool
