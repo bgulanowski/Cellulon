@@ -19,7 +19,7 @@ extension UInt8 : ColorConvertable {
 
 class ViewController: UIViewController {
     
-    var automaton = Automaton1_5(rule: 0)
+    var automaton: Automaton1_5!
     var timer: NSTimer!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -27,15 +27,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.layer.magnificationFilter = "nearest"
-        update()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let size = imageView.bounds.size
+        automaton = Automaton1_5(rule: 169, w: Int(size.width), h: Int(size.height))
+        makeImage()
         timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "update", userInfo: nil, repeats: true)
     }
 
     func update() {
         let rule = automaton.rule == 255 ? 0 : automaton.rule + 1
-        automaton = Automaton1_5(rule: rule)
-        automaton[GridPoint(x: (automaton.dim / 2), y: 0)] = true
+        automaton = Automaton1_5(rule: rule, w: automaton.w, h: automaton.h)
+        makeImage()
+    }
+    
+    func makeImage() {
+        automaton[GridPoint(x: (automaton.w / 2), y: 0)] = true
         automaton.complete()
-        imageView.image = Bitmap(grid: automaton).image
+        imageView.image = Bitmap(automaton: automaton).image
     }
 }

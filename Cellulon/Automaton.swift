@@ -109,25 +109,38 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
     var generation = 0
     let rule: UInt8
+    let w: Int
+    let h: Int
     
     var maxGenerations: Int {
-        return dim
+        return h - 1
+    }
+    
+    var border: Int {
+        return (dim - w) / 2
+    }
+    
+    var cgSize: CGSize {
+        return CGSize(width: w, height: h)
     }
     
     // FIXME: we need to set an initial value for first generation
-    init(rule: UInt8) {
+    init(rule: UInt8, w: Int, h: Int) {
         self.rule = rule
-        super.init(def: false, ord: 7)
+        self.w = w
+        self.h = h
+        let ord = nextPowerOf2Log(max(w, h)).0
+        super.init(def: false, ord: ord)
     }
     
     convenience init() {
-        self.init(rule: UInt8(random()))
+        self.init(rule: UInt8(random()), w: 128, h: 128)
     }
     
     func update() {
-        if generation < maxGenerations - 1 {
+        if generation < maxGenerations {
             ++generation
-            for i in 0 ..< dim {
+            for i in 0 ..< w {
                 self[pointForCellIndex(i)] = next(i)
             }
         }
@@ -154,6 +167,18 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     func complete() {
         for _ in generation ..< maxGenerations {
             update()
+        }
+    }
+}
+
+extension Bitmap {
+    convenience init(automaton: Automaton1_5) {
+        self.init(size: automaton.cgSize, color: opaqueWhite)
+        for i in 0 ..< automaton.w {
+            for j in 0 ..< automaton.h {
+                let point = GridPoint(x: i, y: j)
+                setColor(automaton.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
+            }
         }
     }
 }

@@ -80,6 +80,24 @@ public extension Grid {
     }
 }
 
+public extension Grid {
+    public var bitmap: Bitmap {
+        return Bitmap(grid: self)
+    }
+}
+
+extension Bitmap {
+    public convenience init<V:ColorConvertable>(grid: Grid<V>) {
+        self.init(size: CGSizeMake(CGFloat(grid.dim), CGFloat(grid.dim)), color: ColorFromCGColor(UIColor.whiteColor().CGColor))
+        for i in 0 ..< grid.dim {
+            for j in 0 ..< grid.dim {
+                let point = GridPoint(x: i, y: j)
+                setColor(grid.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
+            }
+        }
+    }
+}
+
 public class BasicGrid<V:ColorConvertable> : Grid<V> {
     
     var values: [V]
