@@ -39,11 +39,11 @@ public class Grid<V : ColorConvertable> {
         self.dim = pow2(ord)
     }
     
-    public var min: GridPoint {
+    public var minPoint: GridPoint {
         return GridPoint(n: 0)
     }
     
-    public var max: GridPoint {
+    public var maxPoint: GridPoint {
         return GridPoint(n: dim - 1)
     }
     
