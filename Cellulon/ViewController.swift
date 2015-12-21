@@ -19,23 +19,23 @@ extension UInt8 : ColorConvertable {
 
 class ViewController: UIViewController {
     
-    let grid = Grid<UInt8>(def: 0, ord: 8)
-
+    var automaton = Automaton1_5(rule: 0)
+    var timer: NSTimer!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        imageView.layer.magnificationFilter = "nearest"
+        update()
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "update", userInfo: nil, repeats: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func update() {
+        let rule = automaton.rule == 255 ? 0 : automaton.rule + 1
+        automaton = Automaton1_5(rule: rule)
+        automaton[GridPoint(x: (automaton.dim / 2), y: 0)] = true
+        automaton.complete()
+        imageView.image = Bitmap(grid: automaton).image
     }
-
-
 }
-
-func makeBitmap() {
-    
-    
-}
-

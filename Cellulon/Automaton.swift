@@ -12,12 +12,13 @@ protocol Automaton {
     typealias Cell
     func update() -> Void
     func next(index: Int) -> Cell
+    func reset() -> Void
 }
 
 extension UInt8 {
     func test(l: Bool, _ m:Bool, _ r:Bool) -> Bool {
-        let val = Int(l) << 2 & Int(m) << 1 & Int(r)
-        return (self & UInt8(1 << val)) == 1
+        let val = (Int(l) << 2) | (Int(m) << 1) | Int(r)
+        return (self & UInt8(1 << val)) > 0
     }
 }
 
@@ -58,6 +59,9 @@ class Automaton1 : Automaton {
             return rule.test(cells[index-1], cells[index], cells[index+1])
         }
     }
+    
+    func reset() {
+    }
 }
 
 func left(p: GridPoint) -> GridPoint {
@@ -70,6 +74,10 @@ func right(p: GridPoint) -> GridPoint {
 
 func below(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x, y: p.y+1)
+}
+
+func above(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x, y: p.y-1)
 }
 
 let opaqueBlack = Color(v: NSSwapBigIntToHost(0x000000FF))
@@ -107,6 +115,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
     func update() {
         if generation < maxGenerations - 1 {
+            ++generation
             for i in 0 ..< dim {
                 self[pointForCellIndex(i)] = next(i)
             }
@@ -118,12 +127,22 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     }
     
     func next(index: Int) -> Cell {
-        let point = pointForCellIndex(index)
+        let point = above(pointForCellIndex(index))
         if index == 0 || index == dim-1 {
             return self[point]
         }
         else {
             return rule.test(self[left(point)], self[point], self[right(point)])
+        }
+    }
+    
+    func reset() {
+        generation = 0
+    }
+    
+    func complete() {
+        for _ in generation ..< maxGenerations {
+            update()
         }
     }
 }
