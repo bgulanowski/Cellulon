@@ -25,6 +25,7 @@
 		845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */; };
 		845F5FBB1C25A725005337E9 /* BitmapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FBA1C25A725005337E9 /* BitmapTests.swift */; };
 		845F5FBD1C270D65005337E9 /* bitmapTestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 845F5FBC1C270D65005337E9 /* bitmapTestImage.png */; };
+		845F5FC01C288B43005337E9 /* AutomatonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FBF1C288B43005337E9 /* AutomatonTests.swift */; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bitmap+ImageCreating.m"; sourceTree = "<group>"; };
 		845F5FBA1C25A725005337E9 /* BitmapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapTests.swift; sourceTree = "<group>"; };
 		845F5FBC1C270D65005337E9 /* bitmapTestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapTestImage.png; sourceTree = "<group>"; };
+		845F5FBF1C288B43005337E9 /* AutomatonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonTests.swift; sourceTree = "<group>"; };
 		84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellulon-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DC50E11C204FB3007D2DED /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		84DC50E21C204FB3007D2DED /* Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bitmap.m; sourceTree = "<group>"; };
@@ -91,12 +93,12 @@
 		8409BA761C1331B300962068 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84E86D6E1C1C23B200658C6C /* Automaton.swift */,
 				8409BA821C13356B00962068 /* Branch.swift */,
 				8409BA841C134D9900962068 /* Grid.swift */,
 				8409BA861C134E3800962068 /* Leaf.swift */,
 				8409BA7C1C13329100962068 /* Point.swift */,
 				8409BA801C1332DE00962068 /* Tree.swift */,
-				84E86D6E1C1C23B200658C6C /* Automaton.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -174,6 +176,7 @@
 				8409BA8A1C1481BF00962068 /* PointTests.swift */,
 				845F5FBA1C25A725005337E9 /* BitmapTests.swift */,
 				845F5FBC1C270D65005337E9 /* bitmapTestImage.png */,
+				845F5FBF1C288B43005337E9 /* AutomatonTests.swift */,
 			);
 			path = CellulonTests;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				845F5FBB1C25A725005337E9 /* BitmapTests.swift in Sources */,
 				8409BA8F1C14DBFE00962068 /* BranchTests.swift in Sources */,
 				843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */,
+				845F5FC01C288B43005337E9 /* AutomatonTests.swift in Sources */,
 				8409BA891C147E5A00962068 /* GridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

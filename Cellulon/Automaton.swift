@@ -92,6 +92,17 @@ extension Bool : ColorConvertable {
     }
 }
 
+// Returns the exponent and value of the next power of 2 greater than n
+public func nextPowerOf2Log(n: Int) -> (Int, Int) {
+    var p = 62
+    var v = 1 << p
+    while v > n {
+        --p
+        v >>= 1
+    }
+    return (p + 1, v << 1)
+}
+
 class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
     typealias Cell = Bool
