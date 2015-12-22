@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Leaf<V:ColorConvertable> : BasicGrid<V> {
+public class Leaf<V:ColorConvertible> : BasicGrid<V> {
     
     public var index: Int
     

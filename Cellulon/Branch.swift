@@ -42,7 +42,7 @@ public enum Sector : Int {
     }
 }
 
-public class Branch<V:ColorConvertable> : Grid<V> {
+public class Branch<V:ColorConvertible> : Grid<V> {
 
     public typealias Address = GridPoint
 

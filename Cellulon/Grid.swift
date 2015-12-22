@@ -19,7 +19,7 @@ func areaForOrder(ord : Int) -> Int {
 
 public typealias GridPoint = PointI
 
-public protocol ColorConvertable {
+public protocol ColorConvertible {
     init(color: Color)
     var color: Color { get }
 }
@@ -27,7 +27,7 @@ public protocol ColorConvertable {
 /*
 This is an abstract class. It has no actual storage. See Tree, Branch and Leaf.
 */
-public class Grid<V : ColorConvertable> {
+public class Grid<V : ColorConvertible> {
     
     public let def: V
     public let ord: Int
@@ -87,7 +87,7 @@ public extension Grid {
 }
 
 extension Bitmap {
-    public convenience init<V:ColorConvertable>(grid: Grid<V>) {
+    public convenience init<V:ColorConvertible>(grid: Grid<V>) {
         self.init(size: CGSizeMake(CGFloat(grid.dim), CGFloat(grid.dim)), color: ColorFromCGColor(UIColor.whiteColor().CGColor))
         for i in 0 ..< grid.dim {
             for j in 0 ..< grid.dim {
@@ -98,7 +98,7 @@ extension Bitmap {
     }
 }
 
-public class BasicGrid<V:ColorConvertable> : Grid<V> {
+public class BasicGrid<V:ColorConvertible> : Grid<V> {
     
     var values: [V]
     
@@ -121,7 +121,7 @@ public class BasicGrid<V:ColorConvertable> : Grid<V> {
     }
 }
 
-extension Int : ColorConvertable {
+extension Int : ColorConvertible {
     public init(color: Color) {
         self = Int(color.v)
     }

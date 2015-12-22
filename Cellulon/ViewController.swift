@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UInt8 : ColorConvertable {
+extension UInt8 : ColorConvertible {
     public init(color: Color) {
         self = UInt8(color.v)
     }

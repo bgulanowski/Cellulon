@@ -83,7 +83,7 @@ func above(p: GridPoint) -> GridPoint {
 let opaqueBlack = Color(v: NSSwapBigIntToHost(0x000000FF))
 let opaqueWhite = Color(v: UINT32_MAX)
 
-extension Bool : ColorConvertable {
+extension Bool : ColorConvertible {
     public init(color: Color) {
         self = color.v > UINT32_MAX / 2
     }
