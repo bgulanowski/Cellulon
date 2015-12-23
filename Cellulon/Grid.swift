@@ -8,24 +8,10 @@
 
 import Foundation
 
-func pow2(exponent: Int) -> Int {
-    return Int(pow(2.0, Double(exponent)))
-}
-
-func areaForOrder(ord : Int) -> Int {
-    let dim = pow2(ord)
-    return dim * dim
-}
-
 public typealias GridPoint = PointI
 
-public protocol ColorConvertible {
-    init(color: Color)
-    var color: Color { get }
-}
-
 /*
-This is an abstract class. It has no actual storage. See Tree, Branch and Leaf.
+This is an abstract class. It has no actual storage. See BasicGrid below.
 */
 public class Grid<V : ColorConvertible> {
     
@@ -80,24 +66,6 @@ public extension Grid {
     }
 }
 
-public extension Grid {
-    public var bitmap: Bitmap {
-        return Bitmap(grid: self)
-    }
-}
-
-extension Bitmap {
-    public convenience init<V:ColorConvertible>(grid: Grid<V>) {
-        self.init(size: CGSizeMake(CGFloat(grid.dim), CGFloat(grid.dim)), color: ColorFromCGColor(UIColor.whiteColor().CGColor))
-        for i in 0 ..< grid.dim {
-            for j in 0 ..< grid.dim {
-                let point = GridPoint(x: i, y: j)
-                setColor(grid.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
-            }
-        }
-    }
-}
-
 public class BasicGrid<V:ColorConvertible> : Grid<V> {
     
     var values: [V]
@@ -118,17 +86,6 @@ public class BasicGrid<V:ColorConvertible> : Grid<V> {
     
     override public func setValue(value: V, atPoint point: GridPoint) {
         values[indexForPoint(point)] = value
-    }
-}
-
-extension Int : ColorConvertible {
-    public init(color: Color) {
-        self = Int(color.v)
-    }
-    public var color: Color {
-        get {
-            return Color(v: UInt32(self))
-        }
     }
 }
 

@@ -8,20 +8,6 @@
 
 import Foundation
 
-func log2(exponent: Int) -> Int {
-    return Int(log2(Double(exponent)))
-}
-
-func firstBit(n: Int) -> Int {
-    var result = 0
-    var temp = n
-    while temp > 0 {
-        temp >>= 1
-        ++result
-    }
-    return result
-}
-
 public enum Sector : Int {
     case s0 = 0
     case s1 = 1

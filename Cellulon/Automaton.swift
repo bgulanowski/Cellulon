@@ -72,24 +72,12 @@ func right(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x+1, y: p.y)
 }
 
-func below(p: GridPoint) -> GridPoint {
+func above(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x, y: p.y+1)
 }
 
-func above(p: GridPoint) -> GridPoint {
+func below(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x, y: p.y-1)
-}
-
-let opaqueBlack = Color(v: NSSwapBigIntToHost(0x000000FF))
-let opaqueWhite = Color(v: UINT32_MAX)
-
-extension Bool : ColorConvertible {
-    public init(color: Color) {
-        self = color.v > UINT32_MAX / 2
-    }
-    public var color: Color {
-        return self ? opaqueBlack : opaqueWhite
-    }
 }
 
 // Returns the exponent and value of the next power of 2 greater than n
@@ -151,7 +139,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     }
     
     func next(index: Int) -> Cell {
-        let point = above(pointForCellIndex(index))
+        let point = below(pointForCellIndex(index))
         if index == 0 || index == dim-1 {
             return self[point]
         }
@@ -167,18 +155,6 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     func complete() {
         for _ in generation ..< maxGenerations {
             update()
-        }
-    }
-}
-
-extension Bitmap {
-    convenience init(automaton: Automaton1_5) {
-        self.init(size: automaton.cgSize, color: opaqueWhite)
-        for i in 0 ..< automaton.w {
-            for j in 0 ..< automaton.h {
-                let point = GridPoint(x: i, y: j)
-                setColor(automaton.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
-            }
         }
     }
 }

@@ -26,6 +26,9 @@
 		845F5FBB1C25A725005337E9 /* BitmapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FBA1C25A725005337E9 /* BitmapTests.swift */; };
 		845F5FBD1C270D65005337E9 /* bitmapTestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 845F5FBC1C270D65005337E9 /* bitmapTestImage.png */; };
 		845F5FC01C288B43005337E9 /* AutomatonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FBF1C288B43005337E9 /* AutomatonTests.swift */; };
+		845F5FC21C29944D005337E9 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC11C29944D005337E9 /* Bitmap.swift */; };
+		845F5FC41C2994B2005337E9 /* ColorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC31C2994B2005337E9 /* ColorConvertible.swift */; };
+		845F5FC61C299570005337E9 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC51C299570005337E9 /* Functions.swift */; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +69,9 @@
 		845F5FBA1C25A725005337E9 /* BitmapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapTests.swift; sourceTree = "<group>"; };
 		845F5FBC1C270D65005337E9 /* bitmapTestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bitmapTestImage.png; sourceTree = "<group>"; };
 		845F5FBF1C288B43005337E9 /* AutomatonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonTests.swift; sourceTree = "<group>"; };
+		845F5FC11C29944D005337E9 /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
+		845F5FC31C2994B2005337E9 /* ColorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConvertible.swift; sourceTree = "<group>"; };
+		845F5FC51C299570005337E9 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellulon-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DC50E11C204FB3007D2DED /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		84DC50E21C204FB3007D2DED /* Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bitmap.m; sourceTree = "<group>"; };
@@ -94,11 +100,14 @@
 			isa = PBXGroup;
 			children = (
 				84E86D6E1C1C23B200658C6C /* Automaton.swift */,
+				845F5FC11C29944D005337E9 /* Bitmap.swift */,
 				8409BA821C13356B00962068 /* Branch.swift */,
+				845F5FC51C299570005337E9 /* Functions.swift */,
 				8409BA841C134D9900962068 /* Grid.swift */,
 				8409BA861C134E3800962068 /* Leaf.swift */,
 				8409BA7C1C13329100962068 /* Point.swift */,
 				8409BA801C1332DE00962068 /* Tree.swift */,
+				845F5FC31C2994B2005337E9 /* ColorConvertible.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,9 +297,12 @@
 				8409BA811C1332DE00962068 /* Tree.swift in Sources */,
 				84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */,
 				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
+				845F5FC61C299570005337E9 /* Functions.swift in Sources */,
 				8409BA7D1C13329100962068 /* Point.swift in Sources */,
+				845F5FC21C29944D005337E9 /* Bitmap.swift in Sources */,
 				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
 				845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */,
+				845F5FC41C2994B2005337E9 /* ColorConvertible.swift in Sources */,
 				8409BA851C134D9900962068 /* Grid.swift in Sources */,
 				8409BA871C134E3800962068 /* Leaf.swift in Sources */,
 			);

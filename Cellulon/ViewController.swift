@@ -8,15 +8,6 @@
 
 import UIKit
 
-extension UInt8 : ColorConvertible {
-    public init(color: Color) {
-        self = UInt8(color.v)
-    }
-    public var color: Color {
-        return Color(v: UInt32(self))
-    }
-}
-
 class ViewController: UIViewController {
     
     var automaton: Automaton1_5!
