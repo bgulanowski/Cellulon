@@ -37,6 +37,6 @@ class ViewController: UIViewController {
     func makeImage() {
         automaton[GridPoint(x: (automaton.w / 2), y: 0)] = true
         automaton.complete()
-        imageView.image = Bitmap(automaton: automaton).image
+        imageView.image = Bitmap(grid: automaton).image
     }
 }

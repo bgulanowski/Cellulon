@@ -30,7 +30,7 @@ class LeafTests: XCTestCase {
 
 func randomLeaf() -> Leaf<Bool> {
     let leaf = Leaf<Bool>(index: 0, def: false, ord: 8)
-    for _ in 1 ..< leaf.size / 10 {
+    for _ in 1 ..< leaf.count / 10 {
         leaf.setValue(true, atPoint: GridPoint(x: random() % leaf.dim, y: random() % leaf.dim))
     }
     return leaf

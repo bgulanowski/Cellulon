@@ -10,6 +10,21 @@ import Foundation
 
 public typealias GridPoint = PointI
 
+public typealias GridSize = PointI
+
+extension Point {
+    init(w: T, h: T) {
+        x = w
+        y = h
+    }
+    var w: T {
+        return x
+    }
+    var h: T {
+        return y
+    }
+}
+
 /*
 This is an abstract class. It has no actual storage. See BasicGrid below.
 */
@@ -33,7 +48,19 @@ public class Grid<V : ColorConvertible> {
         return GridPoint(n: dim - 1)
     }
     
-    public var size: Int {
+    public var width: Int {
+        return dim
+    }
+    
+    public var height: Int {
+        return dim
+    }
+    
+    public var size: GridSize {
+        return GridSize(w: dim, h: dim)
+    }
+    
+    public var count: Int {
         return areaForOrder(ord)
     }
     

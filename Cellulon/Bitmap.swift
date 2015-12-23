@@ -13,6 +13,9 @@ import Foundation
  */
 
 public extension Grid {
+    public var cgSize: CGSize {
+        return CGSize(width: width, height: height)
+    }
     public var bitmap: Bitmap {
         return Bitmap(grid: self)
     }
@@ -20,21 +23,11 @@ public extension Grid {
 
 extension Bitmap {
     public convenience init<V:ColorConvertible>(grid: Grid<V>) {
-        self.init(size: CGSizeMake(CGFloat(grid.dim), CGFloat(grid.dim)), color: ColorFromCGColor(UIColor.whiteColor().CGColor))
-        for i in 0 ..< grid.dim {
-            for j in 0 ..< grid.dim {
+        self.init(size: grid.cgSize, color: ColorFromCGColor(UIColor.whiteColor().CGColor))
+        for i in 0 ..< grid.width {
+            for j in 0 ..< grid.height {
                 let point = GridPoint(x: i, y: j)
                 setColor(grid.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
-            }
-        }
-    }
-
-    convenience init(automaton: Automaton1_5) {
-        self.init(size: automaton.cgSize, color: opaqueWhite)
-        for i in 0 ..< automaton.w {
-            for j in 0 ..< automaton.h {
-                let point = GridPoint(x: i, y: j)
-                setColor(automaton.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
             }
         }
     }

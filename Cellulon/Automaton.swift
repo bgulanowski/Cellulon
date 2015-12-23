@@ -100,16 +100,20 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     let w: Int
     let h: Int
     
+    override var width: Int {
+        return w
+    }
+    
+    override var height: Int {
+        return h
+    }
+    
     var maxGenerations: Int {
         return h - 1
     }
     
     var border: Int {
         return (dim - w) / 2
-    }
-    
-    var cgSize: CGSize {
-        return CGSize(width: w, height: h)
     }
     
     // FIXME: we need to set an initial value for first generation
