@@ -29,7 +29,10 @@
 		845F5FC21C29944D005337E9 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC11C29944D005337E9 /* Bitmap.swift */; };
 		845F5FC41C2994B2005337E9 /* ColorConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC31C2994B2005337E9 /* ColorConvertible.swift */; };
 		845F5FC61C299570005337E9 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC51C299570005337E9 /* Functions.swift */; };
+		845F5FC81C2B0045005337E9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC71C2B0045005337E9 /* Settings.swift */; };
+		848607F51C2B080400259B29 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848607F41C2B080400259B29 /* Table.swift */; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
+		84DF93721C2C392E00813C6C /* RuleBits.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF93711C2C392E00813C6C /* RuleBits.xib */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,9 +75,12 @@
 		845F5FC11C29944D005337E9 /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		845F5FC31C2994B2005337E9 /* ColorConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConvertible.swift; sourceTree = "<group>"; };
 		845F5FC51C299570005337E9 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		845F5FC71C2B0045005337E9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		848607F41C2B080400259B29 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellulon-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DC50E11C204FB3007D2DED /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		84DC50E21C204FB3007D2DED /* Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bitmap.m; sourceTree = "<group>"; };
+		84DF93711C2C392E00813C6C /* RuleBits.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RuleBits.xib; sourceTree = "<group>"; };
 		84E86D6E1C1C23B200658C6C /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +123,7 @@
 			children = (
 				8434FFEE1C0B9B0A00B1029D /* Main.storyboard */,
 				8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */,
+				84DF93711C2C392E00813C6C /* RuleBits.xib */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -140,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
+				845F5FC71C2B0045005337E9 /* Settings.swift */,
+				848607F41C2B080400259B29 /* Table.swift */,
 			);
 			name = "Main View";
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
 				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
 				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
+				84DF93721C2C392E00813C6C /* RuleBits.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +306,9 @@
 				8409BA831C13356B00962068 /* Branch.swift in Sources */,
 				8409BA811C1332DE00962068 /* Tree.swift in Sources */,
 				84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */,
+				845F5FC81C2B0045005337E9 /* Settings.swift in Sources */,
 				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
+				848607F51C2B080400259B29 /* Table.swift in Sources */,
 				845F5FC61C299570005337E9 /* Functions.swift in Sources */,
 				8409BA7D1C13329100962068 /* Point.swift in Sources */,
 				845F5FC21C29944D005337E9 /* Bitmap.swift in Sources */,

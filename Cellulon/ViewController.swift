@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     var automaton: Automaton1_5!
-    var timer: NSTimer!
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -25,7 +24,6 @@ class ViewController: UIViewController {
         let size = imageView.bounds.size
         automaton = Automaton1_5(rule: 169, w: Int(size.width), h: Int(size.height))
         makeImage()
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: "update", userInfo: nil, repeats: true)
     }
 
     func update() {
