@@ -37,7 +37,10 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     
     var rule: UInt8 = 113 {
         didSet {
-            // TODO: Update header view
+            if ruleBits != nil {
+                ruleBits.rule = rule
+            }
+            tableView?.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
         }
     }
     
@@ -59,6 +62,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     func loadRuleBits() {
         let nib = UINib(nibName: "RuleBits", bundle: nil)
         ruleBits = nib.instantiateWithOwner(nil, options: nil).first as! RuleBits
+        ruleBits.ruleKeeper = self
         ruleBits.rule = rule
     }
     
@@ -83,7 +87,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     // MARK: Actions
     
     @IBAction func dismiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -137,6 +141,8 @@ class RuleBits: UIView, BitViewDelegate {
     @IBOutlet var bit7: BitView!
     @IBOutlet weak var numberLabel: UILabel!
     
+    var ruleKeeper: RuleKeeper!
+    
     var bitViews: [BitView] {
         return [ bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7 ]
     }
@@ -171,6 +177,7 @@ class RuleBits: UIView, BitViewDelegate {
     
     func bitViewChanged(bitView: BitView) {
         updateNumberText()
+        ruleKeeper.rule = rule
     }
 }
 

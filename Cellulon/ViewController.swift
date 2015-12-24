@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var automaton: Automaton1_5!
+    var firstAppearance = true
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -21,6 +22,30 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if firstAppearance {
+            showFirstTime()
+            firstAppearance = false
+        }
+    }
+    
+    override func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        if viewControllerToPresent.isKindOfClass(Settings.self) {
+            let settings = viewControllerToPresent as! Settings
+            settings.rule = automaton.rule
+        }
+        super.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
+    }
+    
+    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
+        if presentedViewController!.isKindOfClass(Settings.self) {
+            let settings = presentedViewController as! Settings
+            automaton = Automaton1_5(rule: settings.rule, w: automaton.w, h: automaton.h)
+            makeImage()
+        }
+        super.dismissViewControllerAnimated(flag, completion: completion)
+    }
+    
+    func showFirstTime() {
         let size = imageView.bounds.size
         automaton = Automaton1_5(rule: 169, w: Int(size.width), h: Int(size.height))
         makeImage()
