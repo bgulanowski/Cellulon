@@ -36,6 +36,7 @@
 		84DF937D1C2EEDE600813C6C /* RuleBitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */; };
 		84DF937F1C2EEDFE00813C6C /* BitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF937E1C2EEDFE00813C6C /* BitView.swift */; };
 		84DF93811C2EEF0000813C6C /* PatternCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93801C2EEF0000813C6C /* PatternCell.swift */; };
+		84DF93831C2EEF5F00813C6C /* SettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93821C2EEF5F00813C6C /* SettingsTable.swift */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleBitsView.swift; sourceTree = "<group>"; };
 		84DF937E1C2EEDFE00813C6C /* BitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitView.swift; sourceTree = "<group>"; };
 		84DF93801C2EEF0000813C6C /* PatternCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternCell.swift; sourceTree = "<group>"; };
+		84DF93821C2EEF5F00813C6C /* SettingsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTable.swift; sourceTree = "<group>"; };
 		84E86D6E1C1C23B200658C6C /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				84DF93801C2EEF0000813C6C /* PatternCell.swift */,
 				84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */,
 				845F5FC71C2B0045005337E9 /* Settings.swift */,
+				84DF93821C2EEF5F00813C6C /* SettingsTable.swift */,
 				848607F41C2B080400259B29 /* Table.swift */,
 				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
 			);
@@ -326,6 +329,7 @@
 				845F5FC21C29944D005337E9 /* Bitmap.swift in Sources */,
 				8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */,
 				845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */,
+				84DF93831C2EEF5F00813C6C /* SettingsTable.swift in Sources */,
 				845F5FC41C2994B2005337E9 /* ColorConvertible.swift in Sources */,
 				8409BA851C134D9900962068 /* Grid.swift in Sources */,
 				8409BA871C134E3800962068 /* Leaf.swift in Sources */,
