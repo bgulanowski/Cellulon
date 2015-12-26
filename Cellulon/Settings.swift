@@ -92,8 +92,17 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
 }
 
 class EmptySection: TableSection {
+    
+    // MARK: TableSection
+    
     var numberOfRows: Int {
         return 0
+    }
+    var headerTitle: String {
+        return ""
+    }
+    var footerTitle: String {
+        return ""
     }
     func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
         return UITableViewCell()
@@ -104,10 +113,6 @@ class BitFlagSection: TableSection, RuleKeeper {
     
     var ruleKeeper: RuleKeeper!
     
-    init(ruleKeeper: RuleKeeper) {
-        self.ruleKeeper = ruleKeeper
-    }
-    
     var rule: Rule {
         get {
             return ruleKeeper.rule
@@ -117,10 +122,24 @@ class BitFlagSection: TableSection, RuleKeeper {
         }
     }
     
+    init(ruleKeeper: RuleKeeper) {
+        self.ruleKeeper = ruleKeeper
+    }
+    
+    // MARK: TableSection
+    
     var numberOfRows: Int {
         return 8
     }
     
+    var headerTitle: String {
+        return ""
+    }
+    
+    var footerTitle: String {
+        return ""
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BitFlag") as! BitFlagCell
         cell.ruleKeeper = self
