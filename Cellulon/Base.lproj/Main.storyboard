@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pgi-Yp-0r1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Automaton-->
+        <!--Automaton 2-->
+        <scene sceneID="CDI-Ol-4uA">
+            <objects>
+                <viewController id="WzJ-AW-J0H" userLabel="Automaton 2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I3k-CL-UNx"/>
+                        <viewControllerLayoutGuide type="bottom" id="66F-HV-OWE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZL5-qh-bke">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="2" id="uY1-HW-8a5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cM6-G7-fjA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="586" y="1132"/>
+        </scene>
+        <!--Root-->
+        <scene sceneID="tdB-4Y-iCo">
+            <objects>
+                <tabBarController title="Root" id="pgi-Yp-0r1" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hD0-QO-DbP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hh7-To-BDE"/>
+                        <segue destination="WzJ-AW-J0H" kind="relationship" relationship="viewControllers" id="5s8-DO-5cf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wha-qa-l8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-362" y="723"/>
+        </scene>
+        <!--Automaton 1.5-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton" customClass="ViewController" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="ViewController" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -34,6 +71,7 @@
                             <constraint firstAttribute="bottom" secondItem="vPe-ZB-NdN" secondAttribute="bottomMargin" id="YWh-p4-Bqz"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="1.5" id="T0z-ub-EVF"/>
                     <connections>
                         <outlet property="imageView" destination="vPe-ZB-NdN" id="xxp-42-wgH"/>
                     </connections>
@@ -41,7 +79,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="RiM-Hw-Lg0">
                     <connections>
-                        <segue destination="OV0-fY-NPR" kind="presentation" id="I0k-wG-V3u"/>
+                        <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings_1_5" id="I0k-wG-V3u"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
