@@ -19,6 +19,8 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
         }
     }
     
+    var firstGeneration = FirstGeneration.Default
+    
     var table: Table = Table()
     var ruleBits: RuleBitsView!
 
