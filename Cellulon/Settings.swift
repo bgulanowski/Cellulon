@@ -45,7 +45,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     }
     
     var table: Table = Table()
-    var ruleBits: RuleBits!
+    var ruleBits: RuleBitsView!
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,8 +60,8 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     }
     
     func loadRuleBits() {
-        let nib = UINib(nibName: "RuleBits", bundle: nil)
-        ruleBits = nib.instantiateWithOwner(nil, options: nil).first as! RuleBits
+        let nib = UINib(nibName: "RuleBitsView", bundle: nil)
+        ruleBits = nib.instantiateWithOwner(nil, options: nil).first as! RuleBitsView
         ruleBits.ruleKeeper = self
         ruleBits.rule = rule
     }
@@ -148,7 +148,7 @@ class BitFlagSection: TableSection, RuleKeeper {
     }
 }
 
-class RuleBits: UIView, BitViewDelegate {
+class RuleBitsView: UIView, BitViewDelegate {
     
     @IBOutlet var bit0: BitView!
     @IBOutlet var bit1: BitView!
