@@ -12,12 +12,21 @@ class ViewController: UIViewController {
     
     var automaton: Automaton1_5!
     var firstAppearance = true
+    var settings: Settings?
     
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.layer.magnificationFilter = "nearest"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if settings != nil {
+            automaton = Automaton1_5(rule: settings!.rule, w: automaton.w, h: automaton.h)
+            makeImage()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -28,21 +37,13 @@ class ViewController: UIViewController {
         }
     }
     
-    override func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
-        if viewControllerToPresent.isKindOfClass(Settings.self) {
-            let settings = viewControllerToPresent as! Settings
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "settings_1_5" {
+            let settings = segue.destinationViewController as! Settings
             settings.rule = automaton.rule
+            self.settings = settings
         }
-        super.presentViewController(viewControllerToPresent, animated: flag, completion: completion)
-    }
-    
-    override func dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?) {
-        if presentedViewController!.isKindOfClass(Settings.self) {
-            let settings = presentedViewController as! Settings
-            automaton = Automaton1_5(rule: settings.rule, w: automaton.w, h: automaton.h)
-            makeImage()
-        }
-        super.dismissViewControllerAnimated(flag, completion: completion)
     }
     
     func showFirstTime() {
