@@ -109,11 +109,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pattern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxq-9A-GRi">
-                                                    <rect key="frame" x="16" y="13" width="62" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="62" id="WFG-49-mbq"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxq-9A-GRi">
+                                                    <rect key="frame" x="16" y="13" width="23" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -126,29 +123,30 @@
                                                     </connections>
                                                 </switch>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYb-PX-Dr5" userLabel="bit2" customClass="BitView" customModule="Cellulon" customModuleProvider="target">
-                                                    <rect key="frame" x="506" y="13" width="21" height="21"/>
+                                                    <rect key="frame" x="145" y="8" width="31" height="31"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="21" id="5C1-TG-43i"/>
-                                                        <constraint firstAttribute="height" constant="21" id="Unh-v4-ROU"/>
+                                                        <constraint firstAttribute="width" constant="31" id="5C1-TG-43i"/>
+                                                        <constraint firstAttribute="height" constant="31" id="Unh-v4-ROU"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaG-a3-0c8" userLabel="bit1" customClass="BitView" customModule="Cellulon" customModuleProvider="target">
-                                                    <rect key="frame" x="477" y="13" width="21" height="21"/>
+                                                    <rect key="frame" x="106" y="8" width="31" height="31"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="dzU-QB-ats"/>
-                                                    </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1J-8s-y8Y" userLabel="bit0" customClass="BitView" customModule="Cellulon" customModuleProvider="target">
-                                                    <rect key="frame" x="448" y="13" width="21" height="21"/>
+                                                    <rect key="frame" x="67" y="8" width="31" height="31"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="5De-ne-soO"/>
-                                                    </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzE-yP-bBJ">
+                                                    <rect key="frame" x="47" y="13" width="12" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="KaG-a3-0c8" firstAttribute="height" secondItem="pYb-PX-Dr5" secondAttribute="height" id="68z-0O-Vcm"/>
                                                 <constraint firstItem="KaG-a3-0c8" firstAttribute="width" secondItem="pYb-PX-Dr5" secondAttribute="width" id="6mA-1w-U5o"/>
                                                 <constraint firstItem="pYb-PX-Dr5" firstAttribute="centerY" secondItem="NHQ-LQ-J05" secondAttribute="centerY" id="6q8-nk-nJe"/>
                                                 <constraint firstItem="N1J-8s-y8Y" firstAttribute="bottom" secondItem="KaG-a3-0c8" secondAttribute="bottom" id="8hP-1Q-2mk"/>
@@ -157,18 +155,22 @@
                                                 <constraint firstItem="qks-fu-Lg9" firstAttribute="centerY" secondItem="NHQ-LQ-J05" secondAttribute="centerY" id="WnA-u5-PuC"/>
                                                 <constraint firstItem="qks-fu-Lg9" firstAttribute="trailing" secondItem="NHQ-LQ-J05" secondAttribute="trailingMargin" id="YAD-Pp-NYf"/>
                                                 <constraint firstItem="KaG-a3-0c8" firstAttribute="bottom" secondItem="pYb-PX-Dr5" secondAttribute="bottom" id="ZjK-Z3-Epa"/>
+                                                <constraint firstItem="N1J-8s-y8Y" firstAttribute="height" secondItem="pYb-PX-Dr5" secondAttribute="height" id="eSl-sq-GgD"/>
                                                 <constraint firstItem="dxq-9A-GRi" firstAttribute="leading" secondItem="NHQ-LQ-J05" secondAttribute="leadingMargin" id="emz-og-Rwq"/>
+                                                <constraint firstItem="BzE-yP-bBJ" firstAttribute="baseline" secondItem="dxq-9A-GRi" secondAttribute="baseline" id="f3L-VU-3jN"/>
                                                 <constraint firstItem="N1J-8s-y8Y" firstAttribute="width" secondItem="pYb-PX-Dr5" secondAttribute="width" id="iTj-Ze-Boe"/>
-                                                <constraint firstItem="qks-fu-Lg9" firstAttribute="leading" secondItem="pYb-PX-Dr5" secondAttribute="trailing" constant="8" id="jAi-N6-fLL"/>
+                                                <constraint firstItem="BzE-yP-bBJ" firstAttribute="leading" secondItem="dxq-9A-GRi" secondAttribute="trailing" constant="8" id="kpk-Ek-dPM"/>
                                                 <constraint firstItem="KaG-a3-0c8" firstAttribute="leading" secondItem="N1J-8s-y8Y" secondAttribute="trailing" constant="8" id="mPw-Ui-QNk"/>
+                                                <constraint firstItem="N1J-8s-y8Y" firstAttribute="leading" secondItem="BzE-yP-bBJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uWn-Dt-AbE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                         <connections>
-                                            <outlet property="bit0View" destination="N1J-8s-y8Y" id="OHN-7i-wOu"/>
+                                            <outlet property="bit0View" destination="pYb-PX-Dr5" id="MSE-pc-VZR"/>
                                             <outlet property="bit1View" destination="KaG-a3-0c8" id="miz-B2-bx1"/>
-                                            <outlet property="bit2View" destination="pYb-PX-Dr5" id="bf1-WM-AMa"/>
+                                            <outlet property="bit2View" destination="N1J-8s-y8Y" id="gv5-3t-0jd"/>
                                             <outlet property="enabledSwitch" destination="qks-fu-Lg9" id="IOO-MN-GDg"/>
+                                            <outlet property="label" destination="BzE-yP-bBJ" id="PWS-Fn-SqF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

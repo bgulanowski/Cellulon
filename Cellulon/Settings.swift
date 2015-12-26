@@ -189,10 +189,12 @@ class BitFlagCell: UITableViewCell {
     @IBOutlet var bit1View: BitView!
     @IBOutlet var bit2View: BitView!
     
+    @IBOutlet var label: UILabel!
     @IBOutlet var enabledSwitch: UISwitch!
     
     var number: Int = 0 {
         didSet {
+            label.text = "\(number)"
             enabledSwitch.on = ruleKeeper.rule.bit(number)
             bit0View.enabled = (number & 1 == 1)
             bit1View.enabled = (number & 2 == 2)
