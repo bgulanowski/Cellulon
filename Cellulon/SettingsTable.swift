@@ -33,7 +33,7 @@ protocol RuleKeeper {
     var rule: UInt8 { get set }
 }
 
-class EmptySection: TableSection {
+class RuleBitsSection: TableSection {
     
     // MARK: TableSection
     
@@ -51,7 +51,7 @@ class EmptySection: TableSection {
     }
 }
 
-class BitFlagSection: TableSection, RuleKeeper {
+class PatternsSection: TableSection, RuleKeeper {
     
     var ruleKeeper: RuleKeeper!
     
@@ -75,7 +75,7 @@ class BitFlagSection: TableSection, RuleKeeper {
     }
     
     var headerTitle: String {
-        return ""
+        return "Patterns"
     }
     
     var footerTitle: String {

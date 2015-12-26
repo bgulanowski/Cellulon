@@ -28,8 +28,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     
     override func viewDidLoad() {
         loadRuleBits()
-        table.sections.append(BitFlagSection(ruleKeeper: self))
-        table.sections.append(EmptySection())
+        table.sections = [RuleBitsSection(), PatternsSection(ruleKeeper: self)]
         tableView.delegate = self
         tableView.dataSource = table
     }
@@ -49,10 +48,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 66
-        }
-        return 0
+        return section == 0 ? 66 : tableView.sectionHeaderHeight
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
