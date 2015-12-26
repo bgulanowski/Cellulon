@@ -141,14 +141,14 @@ class BitFlagSection: TableSection, RuleKeeper {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BitFlag") as! BitFlagCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Pattern") as! PatternCell
         cell.ruleKeeper = self
         cell.number = index
         return cell
     }
 }
 
-class BitFlagCell: UITableViewCell {
+class PatternCell: UITableViewCell {
     
     var ruleKeeper: RuleKeeper!
     

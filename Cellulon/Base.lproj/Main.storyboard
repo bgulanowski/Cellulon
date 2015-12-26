@@ -102,7 +102,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BitFlag" rowHeight="48" id="mgF-Kh-me6" customClass="BitFlagCell" customModule="Cellulon" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Pattern" rowHeight="48" id="mgF-Kh-me6" userLabel="Pattern" customClass="PatternCell" customModule="Cellulon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="600" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="mgF-Kh-me6" id="NHQ-LQ-J05">
