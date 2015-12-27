@@ -8,18 +8,47 @@
 
 import Foundation
 
-protocol Automaton {
-    typealias Cell
-    func update() -> Void
-    func next(index: Int) -> Cell
-    func reset() -> Void
-}
-
 extension UInt8 {
     func test(l: Bool, _ m:Bool, _ r:Bool) -> Bool {
         let val = (Int(l) << 2) | (Int(m) << 1) | Int(r)
         return (self & UInt8(1 << val)) > 0
     }
+}
+
+func left(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x-1, y: p.y)
+}
+
+func right(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x+1, y: p.y)
+}
+
+func above(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x, y: p.y+1)
+}
+
+func below(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x, y: p.y-1)
+}
+
+// Returns the exponent and value of the next power of 2 greater than n
+public func nextPowerOf2Log(n: Int) -> (Int, Int) {
+    var p = 62
+    var v = 1 << p
+    while v > n {
+        --p
+        v >>= 1
+    }
+    return (p + 1, v << 1)
+}
+
+// MARK: -
+
+protocol Automaton {
+    typealias Cell
+    func update() -> Void
+    func next(index: Int) -> Cell
+    func reset() -> Void
 }
 
 class Automaton1 : Automaton {
@@ -62,33 +91,6 @@ class Automaton1 : Automaton {
     
     func reset() {
     }
-}
-
-func left(p: GridPoint) -> GridPoint {
-    return GridPoint(x: p.x-1, y: p.y)
-}
-
-func right(p: GridPoint) -> GridPoint {
-    return GridPoint(x: p.x+1, y: p.y)
-}
-
-func above(p: GridPoint) -> GridPoint {
-    return GridPoint(x: p.x, y: p.y+1)
-}
-
-func below(p: GridPoint) -> GridPoint {
-    return GridPoint(x: p.x, y: p.y-1)
-}
-
-// Returns the exponent and value of the next power of 2 greater than n
-public func nextPowerOf2Log(n: Int) -> (Int, Int) {
-    var p = 62
-    var v = 1 << p
-    while v > n {
-        --p
-        v >>= 1
-    }
-    return (p + 1, v << 1)
 }
 
 class Automaton1_5 : BasicGrid<Bool>, Automaton {
