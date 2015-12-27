@@ -9,7 +9,7 @@
 import Foundation
 
 extension UInt8 {
-    func test(l: Bool, _ m:Bool, _ r:Bool) -> Bool {
+    func test1(l: Bool, _ m:Bool, _ r:Bool) -> Bool {
         let val = (Int(l) << 2) | (Int(m) << 1) | Int(r)
         return (self & UInt8(1 << val)) > 0
     }
@@ -163,7 +163,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
             return self[point]
         }
         else {
-            return rule.test(self[left(point)], self[point], self[right(point)])
+            return rule.test1(self[left(point)], self[point], self[right(point)])
         }
     }
     

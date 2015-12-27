@@ -39,6 +39,9 @@
 		84DF93831C2EEF5F00813C6C /* SettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93821C2EEF5F00813C6C /* SettingsTable.swift */; };
 		84DF93851C2EFE4900813C6C /* SettingsOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93841C2EFE4900813C6C /* SettingsOptions.swift */; };
 		84DF93891C2F765700813C6C /* Automaton2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93881C2F765700813C6C /* Automaton2VC.swift */; };
+		84DF938B1C30656600813C6C /* Automaton1_5CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF938A1C30656600813C6C /* Automaton1_5CollectionVC.swift */; };
+		84DF938F1C306DBA00813C6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF938E1C306DBA00813C6C /* Collection.swift */; };
+		84DF93911C306FC300813C6C /* A1_5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93901C306FC300813C6C /* A1_5Cell.swift */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +96,9 @@
 		84DF93821C2EEF5F00813C6C /* SettingsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTable.swift; sourceTree = "<group>"; };
 		84DF93841C2EFE4900813C6C /* SettingsOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsOptions.swift; sourceTree = "<group>"; };
 		84DF93881C2F765700813C6C /* Automaton2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton2VC.swift; sourceTree = "<group>"; };
+		84DF938A1C30656600813C6C /* Automaton1_5CollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton1_5CollectionVC.swift; sourceTree = "<group>"; };
+		84DF938E1C306DBA00813C6C /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		84DF93901C306FC300813C6C /* A1_5Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A1_5Cell.swift; sourceTree = "<group>"; };
 		84E86D6E1C1C23B200658C6C /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +151,7 @@
 			children = (
 				8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */,
 				8409BA791C1331F300962068 /* Automaton 1.5 */,
+				84DF93921C306FCE00813C6C /* Automaton 1_5 Collection */,
 				84DF93871C2F760800813C6C /* Automaton 2 */,
 				8409BA761C1331B300962068 /* Model */,
 				84DC50E11C204FB3007D2DED /* Bitmap.h */,
@@ -159,6 +166,7 @@
 		8409BA791C1331F300962068 /* Automaton 1.5 */ = {
 			isa = PBXGroup;
 			children = (
+				8434FFEC1C0B9B0A00B1029D /* Automaton1_5VC.swift */,
 				84DF937E1C2EEDFE00813C6C /* BitView.swift */,
 				84DF93801C2EEF0000813C6C /* PatternCell.swift */,
 				84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */,
@@ -166,7 +174,6 @@
 				84DF93841C2EFE4900813C6C /* SettingsOptions.swift */,
 				84DF93821C2EEF5F00813C6C /* SettingsTable.swift */,
 				848607F41C2B080400259B29 /* Table.swift */,
-				8434FFEC1C0B9B0A00B1029D /* Automaton1_5VC.swift */,
 			);
 			name = "Automaton 1.5";
 			sourceTree = "<group>";
@@ -223,6 +230,16 @@
 				84DF93881C2F765700813C6C /* Automaton2VC.swift */,
 			);
 			name = "Automaton 2";
+			sourceTree = "<group>";
+		};
+		84DF93921C306FCE00813C6C /* Automaton 1_5 Collection */ = {
+			isa = PBXGroup;
+			children = (
+				84DF93901C306FC300813C6C /* A1_5Cell.swift */,
+				84DF938A1C30656600813C6C /* Automaton1_5CollectionVC.swift */,
+				84DF938E1C306DBA00813C6C /* Collection.swift */,
+			);
+			name = "Automaton 1_5 Collection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +352,7 @@
 				84DF93811C2EEF0000813C6C /* PatternCell.swift in Sources */,
 				84DF93891C2F765700813C6C /* Automaton2VC.swift in Sources */,
 				84DF937F1C2EEDFE00813C6C /* BitView.swift in Sources */,
+				84DF93911C306FC300813C6C /* A1_5Cell.swift in Sources */,
 				84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */,
 				845F5FC81C2B0045005337E9 /* Settings.swift in Sources */,
 				8434FFED1C0B9B0A00B1029D /* Automaton1_5VC.swift in Sources */,
@@ -347,6 +365,8 @@
 				845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */,
 				84DF93831C2EEF5F00813C6C /* SettingsTable.swift in Sources */,
 				845F5FC41C2994B2005337E9 /* ColorConvertible.swift in Sources */,
+				84DF938F1C306DBA00813C6C /* Collection.swift in Sources */,
+				84DF938B1C30656600813C6C /* Automaton1_5CollectionVC.swift in Sources */,
 				8409BA851C134D9900962068 /* Grid.swift in Sources */,
 				8409BA871C134E3800962068 /* Leaf.swift in Sources */,
 			);

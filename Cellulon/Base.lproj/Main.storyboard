@@ -35,7 +35,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hh7-To-BDE"/>
+                        <segue destination="Uo9-Kh-cax" kind="relationship" relationship="viewControllers" id="0bq-3T-e5A"/>
                         <segue destination="WzJ-AW-J0H" kind="relationship" relationship="viewControllers" id="5s8-DO-5cf"/>
                     </connections>
                 </tabBarController>
@@ -43,10 +43,68 @@
             </objects>
             <point key="canvasLocation" x="-362" y="723"/>
         </scene>
+        <!--Automaton15 CollectionVC-->
+        <scene sceneID="CXE-Lr-aNn">
+            <objects>
+                <collectionViewController id="RA8-5Y-ax5" customClass="Automaton1_5CollectionVC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="S51-fL-sFf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5bv-UZ-67a">
+                            <size key="itemSize" width="256" height="293"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="a1_5Cell" id="D17-W3-5Hd" customClass="A1_5Cell" customModule="Cellulon" customModuleProvider="target">
+                                <rect key="frame" x="10" y="74" width="256" height="293"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="293"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvo-pu-MAH">
+                                            <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr0-57-hL1">
+                                            <rect key="frame" x="107" y="264" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="bvo-pu-MAH" firstAttribute="top" secondItem="D17-W3-5Hd" secondAttribute="top" id="QMX-Rw-NbR"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Wr0-57-hL1" secondAttribute="bottom" id="TBR-TI-qBz"/>
+                                    <constraint firstItem="Wr0-57-hL1" firstAttribute="top" secondItem="bvo-pu-MAH" secondAttribute="bottom" constant="8" id="bij-rY-Gye"/>
+                                    <constraint firstItem="Wr0-57-hL1" firstAttribute="centerX" secondItem="D17-W3-5Hd" secondAttribute="centerX" id="iaj-kG-ByC"/>
+                                    <constraint firstItem="bvo-pu-MAH" firstAttribute="leading" secondItem="D17-W3-5Hd" secondAttribute="leading" id="now-LR-y1W"/>
+                                    <constraint firstAttribute="trailing" secondItem="bvo-pu-MAH" secondAttribute="trailing" id="pfz-83-xga"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="bvo-pu-MAH" id="eJt-Tn-OHN"/>
+                                    <outlet property="label" destination="Wr0-57-hL1" id="mml-tw-IPI"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="RA8-5Y-ax5" id="FdZ-rG-7SF"/>
+                            <outlet property="delegate" destination="RA8-5Y-ax5" id="rFS-UQ-la5"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="Ld9-8B-0su"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MiB-bf-9Ma" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398" y="-293"/>
+        </scene>
         <!--Automaton 1.5-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="automaton1_5" title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -288,6 +346,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHh-8R-meF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1609" y="391"/>
+        </scene>
+        <!--1.5-->
+        <scene sceneID="PoA-kX-JXN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uo9-Kh-cax" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="1.5" id="pnN-jO-ztc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8tH-Hk-gkV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RA8-5Y-ax5" kind="relationship" relationship="rootViewController" id="ZXf-km-laJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVc-sw-zoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="586" y="-293"/>
         </scene>
     </scenes>
 </document>

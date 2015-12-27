@@ -10,4 +10,7 @@ import UIKit
 
 class Automaton2VC: UIViewController {
 
+//    var automaton = Automaton2(def: false, ord: 8)
+    
+    
 }
