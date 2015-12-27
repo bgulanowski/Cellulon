@@ -181,4 +181,70 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
         return GridPoint(x: index, y: generation)
     }
 }
+
+// MARK: -
+
+class Automaton2 : BasicGrid<Bool>, Automaton {
+    
+    typealias Cell = Bool
+
+    func next(index: Int) -> Cell {
+        let point = pointForIndex(index)
+        if pointOnEdge(point) {
+            return valueAtPoint(point)
+        }
+        else {
+            let count = neighbourCount(point)
+            return count > 1 && count < 4
+        }
+    }
+    
+    func update() -> Void {
+        var newCells = [Bool](count: count, repeatedValue: false)
+        for i in 0 ..< count {
+            newCells[i] = next(i)
+        }
+        values = newCells
+    }
+    
+    func reset() -> Void {
+        values = [Bool](count: count, repeatedValue: false)
+    }
+    
+    func pointOnEdge(point: GridPoint) -> Bool {
+        return point.x == minPoint.x || point.y == minPoint.y || point.x == maxPoint.x || point.y == maxPoint.y
+    }
+
+    func neighbourCount(point: GridPoint) -> Int {
+        
+        var count = 0
+        
+        if point.x > 0 && valueAtPoint(left(point)) {
+            ++count
+        }
+        if point.x < width && valueAtPoint(right(point)) {
+            ++count
+        }
+        if point.y > 0 && valueAtPoint(below(point)) {
+            ++count
+        }
+        if point.y < height && valueAtPoint(above(point)) {
+            ++count
+        }
+        
+        if point.x > 0 && point.y > 0 && valueAtPoint(belowLeft(point)) {
+            ++count
+        }
+        if point.x < width && point.y > 0 && valueAtPoint(belowRight(point)) {
+            ++count
+        }
+        if point.x > 0 && point.y < height && valueAtPoint(aboveLeft(point)) {
+            ++count
+        }
+        if point.x < width && point.y < height && valueAtPoint(aboveRight(point)) {
+            ++count
+        }
+        
+        return count
+    }
 }
