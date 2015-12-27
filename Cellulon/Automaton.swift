@@ -23,12 +23,28 @@ func right(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x+1, y: p.y)
 }
 
+func below(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x, y: p.y-1)
+}
+
 func above(p: GridPoint) -> GridPoint {
     return GridPoint(x: p.x, y: p.y+1)
 }
 
-func below(p: GridPoint) -> GridPoint {
-    return GridPoint(x: p.x, y: p.y-1)
+func belowLeft(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x-1, y: p.y-1)
+}
+
+func belowRight(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x+1, y: p.y-1)
+}
+
+func aboveLeft(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x-1, y: p.y+1)
+}
+
+func aboveRight(p: GridPoint) -> GridPoint {
+    return GridPoint(x: p.x+1, y: p.y+1)
 }
 
 // Returns the exponent and value of the next power of 2 greater than n
@@ -46,8 +62,8 @@ public func nextPowerOf2Log(n: Int) -> (Int, Int) {
 
 protocol Automaton {
     typealias Cell
-    func update() -> Void
     func next(index: Int) -> Cell
+    func update() -> Void
     func reset() -> Void
 }
 
@@ -69,29 +85,28 @@ class Automaton1 : Automaton {
         self.init(rule: UInt8(random()))
     }
     
-    func update() {
-        var newCells = [Cell](count: size, repeatedValue: false)
-        for i in 1...126 {
-            let nexti = next(i)
-            if nexti {
-                newCells[i] = nexti
-            }
-        }
-        cells = newCells
-    }
-    
     func next(index: Int) -> Cell {
         if index == 0 || index == size-1 {
             return cells[index]
         }
         else {
-            return rule.test(cells[index-1], cells[index], cells[index+1])
+            return rule.test1(cells[index-1], cells[index], cells[index+1])
         }
+    }
+    
+    func update() {
+        var newCells = [Cell](count: size, repeatedValue: false)
+        for i in 1...126 {
+            newCells[i] = next(i)
+        }
+        cells = newCells
     }
     
     func reset() {
     }
 }
+
+// MARK: -
 
 class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
@@ -131,6 +146,8 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
         self.init(rule: UInt8(random()), w: 128, h: 128)
     }
     
+    // MARK: Automaton
+    
     func update() {
         if generation < maxGenerations {
             ++generation
@@ -138,10 +155,6 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
                 self[pointForCellIndex(i)] = next(i)
             }
         }
-    }
-    
-    func pointForCellIndex(index: Int) -> GridPoint {
-        return GridPoint(x: index, y: generation)
     }
     
     func next(index: Int) -> Cell {
@@ -163,4 +176,9 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
             update()
         }
     }
+    
+    func pointForCellIndex(index: Int) -> GridPoint {
+        return GridPoint(x: index, y: generation)
+    }
+}
 }
