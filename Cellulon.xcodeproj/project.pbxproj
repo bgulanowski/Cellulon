@@ -37,6 +37,7 @@
 		84DF937F1C2EEDFE00813C6C /* BitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF937E1C2EEDFE00813C6C /* BitView.swift */; };
 		84DF93811C2EEF0000813C6C /* PatternCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93801C2EEF0000813C6C /* PatternCell.swift */; };
 		84DF93831C2EEF5F00813C6C /* SettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93821C2EEF5F00813C6C /* SettingsTable.swift */; };
+		84DF93851C2EFE4900813C6C /* SettingsOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93841C2EFE4900813C6C /* SettingsOptions.swift */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		84DF937E1C2EEDFE00813C6C /* BitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitView.swift; sourceTree = "<group>"; };
 		84DF93801C2EEF0000813C6C /* PatternCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternCell.swift; sourceTree = "<group>"; };
 		84DF93821C2EEF5F00813C6C /* SettingsTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTable.swift; sourceTree = "<group>"; };
+		84DF93841C2EFE4900813C6C /* SettingsOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsOptions.swift; sourceTree = "<group>"; };
 		84E86D6E1C1C23B200658C6C /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				84DF93801C2EEF0000813C6C /* PatternCell.swift */,
 				84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */,
 				845F5FC71C2B0045005337E9 /* Settings.swift */,
+				84DF93841C2EFE4900813C6C /* SettingsOptions.swift */,
 				84DF93821C2EEF5F00813C6C /* SettingsTable.swift */,
 				848607F41C2B080400259B29 /* Table.swift */,
 				8434FFEC1C0B9B0A00B1029D /* ViewController.swift */,
@@ -323,6 +326,7 @@
 				84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */,
 				845F5FC81C2B0045005337E9 /* Settings.swift in Sources */,
 				8434FFED1C0B9B0A00B1029D /* ViewController.swift in Sources */,
+				84DF93851C2EFE4900813C6C /* SettingsOptions.swift in Sources */,
 				848607F51C2B080400259B29 /* Table.swift in Sources */,
 				845F5FC61C299570005337E9 /* Functions.swift in Sources */,
 				8409BA7D1C13329100962068 /* Point.swift in Sources */,

@@ -176,7 +176,7 @@
                                             <outlet property="label" destination="BzE-yP-bBJ" id="PWS-Fn-SqF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="First Generation" rowHeight="48" id="Txz-vp-5dR" userLabel="First Row">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="First Generation" rowHeight="48" id="Txz-vp-5dR" userLabel="First Row" customClass="OptionCell" customModule="Cellulon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="98" width="600" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="Txz-vp-5dR" id="oXD-GE-q8Z">
@@ -212,8 +212,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                        <connections>
+                                            <outlet property="control" destination="mbc-1m-i4e" id="FoR-M5-CO7"/>
+                                            <outlet property="titleLabel" destination="9qN-o2-pFi" id="A0P-1R-K5q"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Toggle" rowHeight="48" id="LeG-tb-sR4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Toggle" rowHeight="48" id="LeG-tb-sR4" customClass="OptionCell" customModule="Cellulon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="146" width="600" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="LeG-tb-sR4" id="oQD-uI-pej">
@@ -239,6 +243,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                        <connections>
+                                            <outlet property="control" destination="wqq-jm-1O8" id="Ocu-2g-VBK"/>
+                                            <outlet property="titleLabel" destination="bzq-Hu-BTC" id="kOV-LS-Wqf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

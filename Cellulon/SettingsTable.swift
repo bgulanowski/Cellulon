@@ -29,13 +29,6 @@ extension Rule {
     }
 }
 
-enum FirstGeneration {
-    case Default
-    case Random
-    case Dots
-    case Dashes
-}
-
 protocol RuleKeeper {
     var rule: UInt8 { get set }
 }
