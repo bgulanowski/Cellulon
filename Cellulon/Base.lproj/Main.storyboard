@@ -29,7 +29,7 @@
         <scene sceneID="tdB-4Y-iCo">
             <objects>
                 <tabBarController title="Root" id="pgi-Yp-0r1" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="hD0-QO-DbP">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="hD0-QO-DbP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="-362" y="723"/>
         </scene>
-        <!--Automaton15 CollectionVC-->
+        <!--Automaton 1.5 Collection-->
         <scene sceneID="CXE-Lr-aNn">
             <objects>
-                <collectionViewController id="RA8-5Y-ax5" customClass="Automaton1_5CollectionVC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="RA8-5Y-ax5" userLabel="Automaton 1.5 Collection" customClass="Automaton1_5CollectionVC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="S51-fL-sFf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,15 +96,24 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Ld9-8B-0su"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="detail" id="PVm-L5-OpV"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MiB-bf-9Ma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1398" y="-293"/>
+            <point key="canvasLocation" x="1398" y="387"/>
         </scene>
         <!--Automaton 1.5-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="automaton1_5" title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="RiM-Hw-Lg0">
+                    <connections>
+                        <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings_1_5" id="I0k-wG-V3u"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <viewController storyboardIdentifier="automaton1_5" title="1.5D Automaton" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -114,14 +123,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vPe-ZB-NdN">
-                                <rect key="frame" x="0.0" y="20" width="600" height="588"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="544"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="RiM-Hw-Lg0" appends="YES" id="lJr-1s-sJs"/>
                                 </connections>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vPe-ZB-NdN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="N9V-cW-xo2"/>
                             <constraint firstItem="vPe-ZB-NdN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="PFr-Ig-1Ex"/>
@@ -134,14 +143,8 @@
                         <outlet property="imageView" destination="vPe-ZB-NdN" id="xxp-42-wgH"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="RiM-Hw-Lg0">
-                    <connections>
-                        <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings_1_5" id="I0k-wG-V3u"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="581" y="413"/>
+            <point key="canvasLocation" x="2136" y="387"/>
         </scene>
         <!--Settings-->
         <scene sceneID="0dW-9N-9Aa">
@@ -345,7 +348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHh-8R-meF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609" y="391"/>
+            <point key="canvasLocation" x="2918" y="387"/>
         </scene>
         <!--1.5-->
         <scene sceneID="PoA-kX-JXN">
@@ -353,7 +356,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uo9-Kh-cax" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="1.5" id="pnN-jO-ztc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8tH-Hk-gkV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="8tH-Hk-gkV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -364,7 +367,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVc-sw-zoD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="586" y="-293"/>
+            <point key="canvasLocation" x="586" y="387"/>
         </scene>
     </scenes>
 </document>
