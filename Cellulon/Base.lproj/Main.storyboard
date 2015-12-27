@@ -46,7 +46,7 @@
         <!--Automaton 1.5-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="ViewController" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="1.5D Automaton" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

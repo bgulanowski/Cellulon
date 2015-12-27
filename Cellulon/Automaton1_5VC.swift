@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Automaton1_5VC: UIViewController {
     
     var automaton: Automaton1_5!
     var firstAppearance = true
