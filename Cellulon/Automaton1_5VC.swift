@@ -10,11 +10,13 @@ import UIKit
 
 class Automaton1_5VC: UIViewController {
     
-    var automaton: Automaton1_5!
-    var firstAppearance = true
-    var settings: Settings?
-    var edgesWrap = false
-    var firstGen = FirstGeneration.Default
+    var rule: Rule = 165
+    
+    private var automaton: Automaton1_5!
+    private var firstAppearance = true
+    private var settings: Settings?
+    private var edgesWrap = false
+    private var firstGen = FirstGeneration.Default
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -26,7 +28,7 @@ class Automaton1_5VC: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if settings != nil {
-            update(settings!.rule, width: automaton.w, height: automaton.h, firstGen: settings!.firstGeneration, edgesWrap: false)
+            updateWithRule(settings!.rule, width: automaton.w, height: automaton.h, firstGen: settings!.firstGeneration, edgesWrap: false)
             settings = nil
         }
     }
@@ -51,10 +53,10 @@ class Automaton1_5VC: UIViewController {
     
     func showFirstTime() {
         let size = imageView.bounds.size
-        update(165, width: Int(size.width), height: Int(size.height), firstGen: .Default, edgesWrap: false)
+        updateWithRule(rule, width: Int(size.width), height: Int(size.height), firstGen: .Default, edgesWrap: false)
     }
 
-    func update(rule: UInt8, width: Int, height: Int, firstGen: FirstGeneration, edgesWrap: Bool) {
+    func updateWithRule(rule: Rule, width: Int, height: Int, firstGen: FirstGeneration, edgesWrap: Bool) {
         automaton = Automaton1_5(rule: rule, w: width, h: height)
         self.firstGen = firstGen
         self.edgesWrap = edgesWrap

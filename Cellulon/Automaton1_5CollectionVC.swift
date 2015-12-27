@@ -13,6 +13,7 @@ private let reuseIdentifier = "a1_5Cell"
 class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControllerDelegate {
     
     var cellDim: Int = 128
+    var ruleToPresent: Rule = 0
     
     // MARK: UIViewController
     
@@ -20,6 +21,13 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
         super.viewDidLoad()
         self.navigationController?.delegate = self
         updateCellSize()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "detail" {
+            let detail = segue.destinationViewController as! Automaton1_5VC
+            detail.rule = ruleToPresent
+        }
     }
     
     // MARK: UICollectionViewDataSource
@@ -35,13 +43,14 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! A1_5Cell
         cell.dim = cellDim
-        cell.rule = UInt8(indexPath.row)
+        cell.rule = Rule(indexPath.row)
         return cell
     }
     
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        ruleToPresent = Rule(indexPath.row)
         performSegueWithIdentifier("detail", sender: self)
     }
     
@@ -50,6 +59,8 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         navigationController.setNavigationBarHidden(viewController === self, animated: true)
     }
+    
+    // MARK: New
     
     func updateCellSize() {
         
