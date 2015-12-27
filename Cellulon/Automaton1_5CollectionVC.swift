@@ -10,6 +10,8 @@ import UIKit
 
 private let reuseIdentifier = "a1_5Cell"
 
+private let detailSegueID = "detail"
+
 class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControllerDelegate {
     
     var cellDim: Int = 128
@@ -24,7 +26,7 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "detail" {
+        if segue.identifier == detailSegueID {
             let detail = segue.destinationViewController as! Automaton1_5VC
             detail.rule = ruleToPresent
         }
@@ -51,7 +53,7 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         ruleToPresent = Rule(indexPath.row)
-        performSegueWithIdentifier("detail", sender: self)
+        performSegueWithIdentifier(detailSegueID, sender: self)
     }
     
     // MARK: UINavigationControllerDelegate

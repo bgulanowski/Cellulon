@@ -8,6 +8,8 @@
 
 import UIKit
 
+let settingsSegueID = "settings"
+
 class Automaton1_5VC: UIViewController {
     
     var rule: Rule = 165
@@ -20,8 +22,11 @@ class Automaton1_5VC: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    // MARK: UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "showSettings:")
         imageView.layer.magnificationFilter = "nearest"
     }
     
@@ -43,13 +48,15 @@ class Automaton1_5VC: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "settings_1_5" {
+        if segue.identifier == settingsSegueID {
             let settings = segue.destinationViewController as! Settings
             settings.rule = automaton.rule
             settings.firstGeneration = firstGen
             self.settings = settings
         }
     }
+    
+    // MARK: New
     
     func showFirstTime() {
         let size = imageView.bounds.size
@@ -67,6 +74,11 @@ class Automaton1_5VC: UIViewController {
     func makeImage() {
         automaton.complete()
         imageView.image = Bitmap(grid: automaton).image
+    }
+    
+    // MARK: Actions
+    func showSettings(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier(settingsSegueID, sender: sender)
     }
 }
 

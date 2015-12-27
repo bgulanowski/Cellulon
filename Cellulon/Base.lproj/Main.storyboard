@@ -107,12 +107,6 @@
         <!--Automaton 1.5-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer cancelsTouchesInView="NO" id="RiM-Hw-Lg0">
-                    <connections>
-                        <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings_1_5" id="I0k-wG-V3u"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <viewController storyboardIdentifier="automaton1_5" title="1.5D Automaton" hidesBottomBarWhenPushed="YES" id="BYZ-38-t0r" userLabel="Automaton 1.5" customClass="Automaton1_5VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -125,9 +119,6 @@
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vPe-ZB-NdN">
                                 <rect key="frame" x="0.0" y="64" width="600" height="544"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="RiM-Hw-Lg0" appends="YES" id="lJr-1s-sJs"/>
-                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,8 +132,10 @@
                     <tabBarItem key="tabBarItem" title="1.5" id="T0z-ub-EVF"/>
                     <connections>
                         <outlet property="imageView" destination="vPe-ZB-NdN" id="xxp-42-wgH"/>
+                        <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings" id="6fe-pL-dZ6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2136" y="387"/>
         </scene>
