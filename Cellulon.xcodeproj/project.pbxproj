@@ -153,11 +153,8 @@
 				8409BA791C1331F300962068 /* Automaton 1.5 */,
 				84DF93921C306FCE00813C6C /* Automaton 1_5 Collection */,
 				84DF93871C2F760800813C6C /* Automaton 2 */,
+				84DF93931C308A1100813C6C /* Bitmap creation */,
 				8409BA761C1331B300962068 /* Model */,
-				84DC50E11C204FB3007D2DED /* Bitmap.h */,
-				84DC50E21C204FB3007D2DED /* Bitmap.m */,
-				845F5FB71C25A5B6005337E9 /* Bitmap+ImageCreating.h */,
-				845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */,
 				84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */,
 			);
 			name = Sources;
@@ -240,6 +237,17 @@
 				84DF938E1C306DBA00813C6C /* Collection.swift */,
 			);
 			name = "Automaton 1_5 Collection";
+			sourceTree = "<group>";
+		};
+		84DF93931C308A1100813C6C /* Bitmap creation */ = {
+			isa = PBXGroup;
+			children = (
+				84DC50E11C204FB3007D2DED /* Bitmap.h */,
+				84DC50E21C204FB3007D2DED /* Bitmap.m */,
+				845F5FB71C25A5B6005337E9 /* Bitmap+ImageCreating.h */,
+				845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */,
+			);
+			name = "Bitmap creation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

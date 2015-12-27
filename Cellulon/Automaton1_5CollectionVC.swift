@@ -14,25 +14,12 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     
     var cellDim: Int = 128
     
+    // MARK: UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.delegate = self
         updateCellSize()
-    }
-    
-    func updateCellSize() {
-        
-        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        var itemWidth = layout.itemSize.width
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let columns: CGFloat = 3.0
-        if screenWidth / columns < itemWidth {
-            let spacing = layout.sectionInset.left + layout.sectionInset.right + layout.minimumInteritemSpacing * (columns - 1.0)
-            itemWidth = floor((screenWidth - spacing)/3.0)
-        }
-        
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth + 37.0)
-        cellDim = Int(itemWidth)
     }
     
     // MARK: UICollectionViewDataSource
@@ -62,5 +49,21 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         navigationController.setNavigationBarHidden(viewController === self, animated: true)
+    }
+    
+    func updateCellSize() {
+        
+        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let columns: CGFloat = 3.0
+        
+        var itemWidth = layout.itemSize.width
+        if screenWidth / columns < itemWidth {
+            let spacing = layout.sectionInset.left + layout.sectionInset.right + layout.minimumInteritemSpacing * (columns - 1.0)
+            itemWidth = floor((screenWidth - spacing)/3.0)
+        }
+        
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth + 37.0)
+        cellDim = Int(itemWidth)
     }
 }
