@@ -188,15 +188,23 @@ public class Automaton2 : BasicGrid<Bool>, Automaton {
     
     public typealias Cell = Bool
 
+    public required override init(def: Bool, ord: Int) {
+        super.init(def: def, ord: ord)
+    }
+    
     public func next(index: Int) -> Cell {
         let point = pointForIndex(index)
-        if pointOnEdge(point) {
-            return valueAtPoint(point)
-        }
-        else {
+        var value = valueAtPoint(point)
+        if !pointOnEdge(point) {
             let count = neighbourCount(point)
-            return count > 1 && count < 4
+            if count == 3 {
+                value = true
+            }
+            else if count != 2 {
+                value = false
+            }
         }
+        return value
     }
     
     public func update() -> Void {
@@ -206,9 +214,15 @@ public class Automaton2 : BasicGrid<Bool>, Automaton {
         }
         values = newCells
     }
-  public   
-    func reset() -> Void {
+    
+    public func reset() -> Void {
         values = [Bool](count: count, repeatedValue: false)
+    }
+    
+    public func populate() -> Void {
+        for i in 0 ..< random() % (count/8) {
+            values[i] = random() & 1 == 1
+        }
     }
     
     func pointOnEdge(point: GridPoint) -> Bool {

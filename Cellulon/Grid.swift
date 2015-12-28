@@ -12,7 +12,7 @@ public typealias GridPoint = PointI
 
 public typealias GridSize = PointI
 
-extension Point {
+public extension Point {
     init(w: T, h: T) {
         x = w
         y = h
