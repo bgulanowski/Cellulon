@@ -42,6 +42,7 @@
 		84DF938B1C30656600813C6C /* Automaton1_5CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF938A1C30656600813C6C /* Automaton1_5CollectionVC.swift */; };
 		84DF938F1C306DBA00813C6C /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF938E1C306DBA00813C6C /* Collection.swift */; };
 		84DF93911C306FC300813C6C /* A1_5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93901C306FC300813C6C /* A1_5Cell.swift */; };
+		84DF93951C318DBD00813C6C /* Automaton2Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93941C318DBD00813C6C /* Automaton2Test.swift */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		84DF938A1C30656600813C6C /* Automaton1_5CollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton1_5CollectionVC.swift; sourceTree = "<group>"; };
 		84DF938E1C306DBA00813C6C /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		84DF93901C306FC300813C6C /* A1_5Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A1_5Cell.swift; sourceTree = "<group>"; };
+		84DF93941C318DBD00813C6C /* Automaton2Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Automaton2Test.swift; path = CellulonTests/Automaton2Test.swift; sourceTree = SOURCE_ROOT; };
 		84E86D6E1C1C23B200658C6C /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,8 @@
 		8434FFFE1C0B9B0A00B1029D /* CellulonTests */ = {
 			isa = PBXGroup;
 			children = (
+				845F5FBF1C288B43005337E9 /* AutomatonTests.swift */,
+				84DF93941C318DBD00813C6C /* Automaton2Test.swift */,
 				8409BA8E1C14DBFE00962068 /* BranchTests.swift */,
 				8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */,
 				8409BA881C147E5A00962068 /* GridTests.swift */,
@@ -216,7 +220,6 @@
 				8409BA8A1C1481BF00962068 /* PointTests.swift */,
 				845F5FBA1C25A725005337E9 /* BitmapTests.swift */,
 				845F5FBC1C270D65005337E9 /* bitmapTestImage.png */,
-				845F5FBF1C288B43005337E9 /* AutomatonTests.swift */,
 			);
 			path = CellulonTests;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8409BA8B1C1481BF00962068 /* PointTests.swift in Sources */,
+				84DF93951C318DBD00813C6C /* Automaton2Test.swift in Sources */,
 				8409BA8D1C14DA0200962068 /* LeafTests.swift in Sources */,
 				845F5FBB1C25A725005337E9 /* BitmapTests.swift in Sources */,
 				8409BA8F1C14DBFE00962068 /* BranchTests.swift in Sources */,

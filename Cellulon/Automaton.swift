@@ -60,16 +60,16 @@ public func nextPowerOf2Log(n: Int) -> (Int, Int) {
 
 // MARK: -
 
-protocol Automaton {
+public protocol Automaton {
     typealias Cell
     func next(index: Int) -> Cell
     func update() -> Void
     func reset() -> Void
 }
 
-class Automaton1 : Automaton {
+public class Automaton1 : Automaton {
     
-    typealias Cell = Bool
+    public typealias Cell = Bool
     
     let size = 128
     var cells: [Cell]
@@ -85,7 +85,7 @@ class Automaton1 : Automaton {
         self.init(rule: UInt8(random()))
     }
     
-    func next(index: Int) -> Cell {
+    public func next(index: Int) -> Cell {
         if index == 0 || index == size-1 {
             return cells[index]
         }
@@ -94,7 +94,7 @@ class Automaton1 : Automaton {
         }
     }
     
-    func update() {
+    public func update() {
         var newCells = [Cell](count: size, repeatedValue: false)
         for i in 1...126 {
             newCells[i] = next(i)
@@ -102,26 +102,26 @@ class Automaton1 : Automaton {
         cells = newCells
     }
     
-    func reset() {
+    public func reset() {
     }
 }
 
 // MARK: -
 
-class Automaton1_5 : BasicGrid<Bool>, Automaton {
+public class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
-    typealias Cell = Bool
+    public typealias Cell = Bool
     
     var generation = 0
     let rule: UInt8
     let w: Int
     let h: Int
     
-    override var width: Int {
+    public override var width: Int {
         return w
     }
     
-    override var height: Int {
+    public override var height: Int {
         return h
     }
     
@@ -148,7 +148,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
     
     // MARK: Automaton
     
-    func update() {
+    public func update() {
         if generation < maxGenerations {
             ++generation
             for i in 0 ..< w {
@@ -157,7 +157,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
         }
     }
     
-    func next(index: Int) -> Cell {
+    public func next(index: Int) -> Cell {
         let point = below(pointForCellIndex(index))
         if index == 0 || index == dim-1 {
             return self[point]
@@ -167,7 +167,7 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
         }
     }
     
-    func reset() {
+    public func reset() {
         generation = 0
     }
     
@@ -184,11 +184,11 @@ class Automaton1_5 : BasicGrid<Bool>, Automaton {
 
 // MARK: -
 
-class Automaton2 : BasicGrid<Bool>, Automaton {
+public class Automaton2 : BasicGrid<Bool>, Automaton {
     
-    typealias Cell = Bool
+    public typealias Cell = Bool
 
-    func next(index: Int) -> Cell {
+    public func next(index: Int) -> Cell {
         let point = pointForIndex(index)
         if pointOnEdge(point) {
             return valueAtPoint(point)
@@ -199,14 +199,14 @@ class Automaton2 : BasicGrid<Bool>, Automaton {
         }
     }
     
-    func update() -> Void {
+    public func update() -> Void {
         var newCells = [Bool](count: count, repeatedValue: false)
         for i in 0 ..< count {
             newCells[i] = next(i)
         }
         values = newCells
     }
-    
+  public   
     func reset() -> Void {
         values = [Bool](count: count, repeatedValue: false)
     }
