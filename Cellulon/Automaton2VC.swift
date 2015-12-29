@@ -8,9 +8,30 @@
 
 import UIKit
 
-class Automaton2VC: UIViewController {
+class Automaton2VC: UIViewController, ImageProvider {
 
-//    var automaton = Automaton2(def: false, ord: 8)
+    var automaton = Automaton2(def: false, ord: 8)
     
+    @IBOutlet var automatonView: Automaton2View!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        automatonView.period = 6
+        automatonView.imageProvider = self
+        automaton.populate()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        automatonView.startAnimating()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        automatonView.stopAnimating()
+    }
+    
+    var image: UIImage {
+        automaton.update()
+        return automaton.bitmap.image
+    }
 }

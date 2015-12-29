@@ -220,8 +220,9 @@ public class Automaton2 : BasicGrid<Bool>, Automaton {
     }
     
     public func populate() -> Void {
-        for i in 0 ..< random() % (count/8) {
-            values[i] = random() & 1 == 1
+        let living = count/8 + random() % (count/8)
+        for _ in 0 ..< living {
+            values[random()%count] = true
         }
     }
     

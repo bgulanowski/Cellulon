@@ -9,7 +9,7 @@
         <!--Automaton 2-->
         <scene sceneID="CDI-Ol-4uA">
             <objects>
-                <viewController id="WzJ-AW-J0H" userLabel="Automaton 2" sceneMemberID="viewController">
+                <viewController id="WzJ-AW-J0H" userLabel="Automaton 2" customClass="Automaton2VC" customModule="Cellulon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="I3k-CL-UNx"/>
                         <viewControllerLayoutGuide type="bottom" id="66F-HV-OWE"/>
@@ -17,9 +17,23 @@
                     <view key="view" contentMode="scaleToFill" id="ZL5-qh-bke">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jmi-1z-p3z" customClass="Automaton2View" customModule="Cellulon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jmi-1z-p3z" firstAttribute="leading" secondItem="ZL5-qh-bke" secondAttribute="leading" id="1AY-9f-OeR"/>
+                            <constraint firstAttribute="trailing" secondItem="Jmi-1z-p3z" secondAttribute="trailing" id="QbR-me-ekk"/>
+                            <constraint firstItem="Jmi-1z-p3z" firstAttribute="top" secondItem="ZL5-qh-bke" secondAttribute="top" id="iYq-Nc-XrR"/>
+                            <constraint firstItem="Jmi-1z-p3z" firstAttribute="bottom" secondItem="66F-HV-OWE" secondAttribute="top" id="w4l-uz-Err"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="2" id="uY1-HW-8a5"/>
+                    <connections>
+                        <outlet property="automatonView" destination="Jmi-1z-p3z" id="YV9-D1-oWu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cM6-G7-fjA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
