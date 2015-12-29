@@ -25,6 +25,12 @@ public extension Point {
     }
 }
 
+public extension CGSize {
+    var gridSize: GridSize {
+        return GridSize(w: Int(width), h: Int(height))
+    }
+}
+
 /*
 This is an abstract class. It has no actual storage. See BasicGrid below.
 */
@@ -107,11 +113,11 @@ public class BasicGrid<V:ColorConvertible> : Grid<V> {
         super.init(def: def, ord: ord)
     }
 
-    override public func valueAtPoint(point: GridPoint) -> V {
+    final override public func valueAtPoint(point: GridPoint) -> V {
         return values[indexForPoint(point)]
     }
     
-    override public func setValue(value: V, atPoint point: GridPoint) {
+    final override public func setValue(value: V, atPoint point: GridPoint) {
         values[indexForPoint(point)] = value
     }
 }

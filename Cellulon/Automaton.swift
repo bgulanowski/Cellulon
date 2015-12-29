@@ -49,7 +49,7 @@ func aboveRight(p: GridPoint) -> GridPoint {
 
 // Returns the exponent and value of the next power of 2 greater than n
 public func nextPowerOf2Log(n: Int) -> (Int, Int) {
-    var p = 62
+    var p = sizeof(Int) * 8 - 2
     var v = 1 << p
     while v > n {
         --p
@@ -108,12 +108,10 @@ public class Automaton1 : Automaton {
 
 // MARK: -
 
-public class Automaton1_5 : BasicGrid<Bool>, Automaton {
+public class AutomatonGrid: BasicGrid<Bool> {
     
     public typealias Cell = Bool
-    
-    var generation = 0
-    let rule: UInt8
+
     let w: Int
     let h: Int
     
@@ -125,21 +123,30 @@ public class Automaton1_5 : BasicGrid<Bool>, Automaton {
         return h
     }
     
-    var maxGenerations: Int {
-        return h - 1
-    }
-    
     var border: Int {
         return (dim - w) / 2
     }
     
-    // FIXME: we need to set an initial value for first generation
-    init(rule: UInt8, w: Int, h: Int) {
-        self.rule = rule
+    public init(w: Int, h: Int) {
         self.w = w
         self.h = h
         let ord = nextPowerOf2Log(max(w, h)).0
         super.init(def: false, ord: ord)
+    }
+}
+
+public class Automaton1_5 : AutomatonGrid, Automaton {
+    
+    var generation = 0
+    let rule: UInt8
+    
+    var maxGenerations: Int {
+        return h - 1
+    }
+    
+    init(rule: UInt8, w: Int, h: Int) {
+        self.rule = rule
+        super.init(w: w, h: h)
     }
     
     convenience init() {
@@ -177,22 +184,16 @@ public class Automaton1_5 : BasicGrid<Bool>, Automaton {
         }
     }
     
-    func pointForCellIndex(index: Int) -> GridPoint {
+    final func pointForCellIndex(index: Int) -> GridPoint {
         return GridPoint(x: index, y: generation)
     }
 }
 
 // MARK: -
 
-public class Automaton2 : BasicGrid<Bool>, Automaton {
+public class Automaton2 : AutomatonGrid, Automaton {
     
-    public typealias Cell = Bool
-
-    public required override init(def: Bool, ord: Int) {
-        super.init(def: def, ord: ord)
-    }
-    
-    public func next(index: Int) -> Cell {
+    final public func next(index: Int) -> Cell {
         let point = pointForIndex(index)
         var value = valueAtPoint(point)
         if !pointOnEdge(point) {
@@ -207,56 +208,66 @@ public class Automaton2 : BasicGrid<Bool>, Automaton {
         return value
     }
     
-    public func update() -> Void {
+    final public func update() -> Void {
         var newCells = [Bool](count: count, repeatedValue: false)
-        for i in 0 ..< count {
-            newCells[i] = next(i)
+        for i in 0 ..< width {
+            for j in 0 ..< height {
+                let index = i + dim * j
+                newCells[index] = next(index)
+            }
         }
         values = newCells
     }
     
-    public func reset() -> Void {
+    final public func reset() -> Void {
         values = [Bool](count: count, repeatedValue: false)
     }
     
-    public func populate() -> Void {
-        let living = count/8 + random() % (count/8)
+    final public func populate() -> Void {
+        let imageCount = width * height
+        let living = imageCount/4 + random() % (imageCount/4)
         for _ in 0 ..< living {
-            values[random()%count] = true
+            let imageIndex = random()%imageCount
+            let gridIndex = imageIndex / width * dim + imageIndex % width
+            values[gridIndex] = true
         }
     }
     
-    func pointOnEdge(point: GridPoint) -> Bool {
+    final func pointOnEdge(point: GridPoint) -> Bool {
         return point.x == minPoint.x || point.y == minPoint.y || point.x == maxPoint.x || point.y == maxPoint.y
     }
 
-    func neighbourCount(point: GridPoint) -> Int {
+    final func neighbourCount(point: GridPoint) -> Int {
+        
+        let index = indexForPoint(point)
         
         var count = 0
         
-        if point.x > 0 && valueAtPoint(left(point)) {
+        // Sides
+        if point.x > 0 && values[index-1] {
             ++count
         }
-        if point.x < width && valueAtPoint(right(point)) {
+        if point.x < width && values[index+1] {
             ++count
         }
-        if point.y > 0 && valueAtPoint(below(point)) {
+        if point.y > 0 && values[index-dim] {
             ++count
         }
-        if point.y < height && valueAtPoint(above(point)) {
+        if point.y < height && values[index+dim] {
             ++count
         }
         
-        if point.x > 0 && point.y > 0 && valueAtPoint(belowLeft(point)) {
+        // Corners
+        if point.x > 0 && point.y > 0 && values[index-1-dim] {
             ++count
         }
-        if point.x < width && point.y > 0 && valueAtPoint(belowRight(point)) {
+        if point.x < width && point.y > 0 && values[index+1-dim] {
             ++count
         }
-        if point.x > 0 && point.y < height && valueAtPoint(aboveLeft(point)) {
+        if point.x > 0 && point.y < height && values[index-1+dim] {
             ++count
         }
-        if point.x < width && point.y < height && valueAtPoint(aboveRight(point)) {
+        if point.x < width && point.y < height && values[index+1+dim] {
             ++count
         }
         

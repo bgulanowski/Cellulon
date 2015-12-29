@@ -34,7 +34,7 @@ class Automaton2View: UIImageView {
     }
     
     func setup() {
-        self.layer.minificationFilter = kCAFilterNearest
+        self.layer.magnificationFilter = kCAFilterNearest
         displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         displayLink.paused = true

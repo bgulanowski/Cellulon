@@ -15,8 +15,7 @@ class Automaton2Test: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // makes a 32x32 grid
-        automaton = Automaton2(def: false, ord: 5)
+        automaton = Automaton2(w: 32, h: 32)
     }
     
     override func tearDown() {

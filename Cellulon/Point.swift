@@ -83,3 +83,11 @@ public func %(lhs: PointI, rhs: Int) -> PointI {
 public func abs(lhs: PointI) -> PointI {
     return PointI(x: abs(lhs.x), y: abs(lhs.y))
 }
+
+public func *=(inout lhs: PointI, rhs: Int) {
+    lhs = lhs * rhs
+}
+
+public func /=(inout lhs: PointI, rhs: Int) {
+    lhs = lhs / rhs
+}
