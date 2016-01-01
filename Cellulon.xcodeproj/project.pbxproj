@@ -16,6 +16,9 @@
 		8409BA8B1C1481BF00962068 /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8A1C1481BF00962068 /* PointTests.swift */; };
 		8409BA8D1C14DA0200962068 /* LeafTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8C1C14DA0200962068 /* LeafTests.swift */; };
 		8409BA8F1C14DBFE00962068 /* BranchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409BA8E1C14DBFE00962068 /* BranchTests.swift */; };
+		841B613F1C36E9F300BE6740 /* Conway.fp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613E1C36E9F300BE6740 /* Conway.fp */; };
+		841B61421C36F48400BE6740 /* Conway.vp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613C1C36E9AF00BE6740 /* Conway.vp */; };
+		841B61451C36F4E900BE6740 /* Grift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B61331C36E94B00BE6740 /* Grift.framework */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
 		8434FFED1C0B9B0A00B1029D /* Automaton1_5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* Automaton1_5VC.swift */; };
@@ -51,11 +54,38 @@
 		84DF93AD1C32D44400813C6C /* Automaton2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93AC1C32D44400813C6C /* Automaton2View.swift */; };
 		84DF93B21C34417B00813C6C /* Automaton2Metal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93B11C34417B00813C6C /* Automaton2Metal.swift */; };
 		84DF93B41C344E3B00813C6C /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93B31C344E3B00813C6C /* MetalView.swift */; };
-		84DF93B61C34518E00813C6C /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 84DF93B51C34518E00813C6C /* Shaders.metal */; };
 		84E86D6F1C1C23B200658C6C /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E86D6E1C1C23B200658C6C /* Automaton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		841B61321C36E94B00BE6740 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841B612C1C36E94B00BE6740 /* Grift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 847661381C36082D00696B04;
+			remoteInfo = Grift;
+		};
+		841B61341C36E94B00BE6740 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841B612C1C36E94B00BE6740 /* Grift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 847661421C36082D00696B04;
+			remoteInfo = GriftTests;
+		};
+		841B61361C36E94B00BE6740 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841B612C1C36E94B00BE6740 /* Grift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8476615E1C3609D800696B04;
+			remoteInfo = Filch;
+		};
+		841B61431C36F4D900BE6740 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 841B612C1C36E94B00BE6740 /* Grift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 847661371C36082D00696B04;
+			remoteInfo = Grift;
+		};
 		8434FFFC1C0B9B0A00B1029D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8434FFDF1C0B9B0A00B1029D /* Project object */;
@@ -75,6 +105,9 @@
 		8409BA8A1C1481BF00962068 /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		8409BA8C1C14DA0200962068 /* LeafTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafTests.swift; sourceTree = "<group>"; };
 		8409BA8E1C14DBFE00962068 /* BranchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchTests.swift; sourceTree = "<group>"; };
+		841B612C1C36E94B00BE6740 /* Grift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Grift.xcodeproj; path = Submodules/Grift/Grift.xcodeproj; sourceTree = "<group>"; };
+		841B613C1C36E9AF00BE6740 /* Conway.vp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.vp; sourceTree = "<group>"; };
+		841B613E1C36E9F300BE6740 /* Conway.fp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.fp; sourceTree = "<group>"; };
 		842F31FA1C1AFC02002202AB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841B61451C36F4E900BE6740 /* Grift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,9 +231,20 @@
 			name = "Automaton 1.5";
 			sourceTree = "<group>";
 		};
+		841B612D1C36E94B00BE6740 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				841B61331C36E94B00BE6740 /* Grift.framework */,
+				841B61351C36E94B00BE6740 /* GriftTests.xctest */,
+				841B61371C36E94B00BE6740 /* Filch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8434FFDE1C0B9B0A00B1029D = {
 			isa = PBXGroup;
 			children = (
+				841B612C1C36E94B00BE6740 /* Grift.xcodeproj */,
 				8434FFE91C0B9B0A00B1029D /* Cellulon */,
 				8434FFFE1C0B9B0A00B1029D /* CellulonTests */,
 				8434FFE81C0B9B0A00B1029D /* Products */,
@@ -252,6 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				847660FA1C355D7200696B04 /* Auto2GLView.swift */,
+				841B613C1C36E9AF00BE6740 /* Conway.vp */,
+				841B613E1C36E9F300BE6740 /* Conway.fp */,
 			);
 			name = "Automaton 2 OpenGL";
 			sourceTree = "<group>";
@@ -310,6 +357,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				841B61441C36F4D900BE6740 /* PBXTargetDependency */,
 			);
 			name = Cellulon;
 			productName = Cellulon;
@@ -365,6 +413,12 @@
 			mainGroup = 8434FFDE1C0B9B0A00B1029D;
 			productRefGroup = 8434FFE81C0B9B0A00B1029D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 841B612D1C36E94B00BE6740 /* Products */;
+					ProjectRef = 841B612C1C36E94B00BE6740 /* Grift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8434FFE61C0B9B0A00B1029D /* Cellulon */,
@@ -372,6 +426,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		841B61331C36E94B00BE6740 /* Grift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Grift.framework;
+			remoteRef = 841B61321C36E94B00BE6740 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841B61351C36E94B00BE6740 /* GriftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GriftTests.xctest;
+			remoteRef = 841B61341C36E94B00BE6740 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		841B61371C36E94B00BE6740 /* Filch.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Filch.app;
+			remoteRef = 841B61361C36E94B00BE6740 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8434FFE51C0B9B0A00B1029D /* Resources */ = {
@@ -381,6 +459,8 @@
 				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
 				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
 				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
+				841B613F1C36E9F300BE6740 /* Conway.fp in Resources */,
+				841B61421C36F48400BE6740 /* Conway.vp in Resources */,
 				84DF93721C2C392E00813C6C /* RuleBitsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +492,6 @@
 				84DF93811C2EEF0000813C6C /* PatternCell.swift in Sources */,
 				84DF93891C2F765700813C6C /* Automaton2VC.swift in Sources */,
 				84DF937F1C2EEDFE00813C6C /* BitView.swift in Sources */,
-				84DF93B61C34518E00813C6C /* Shaders.metal in Sources */,
 				84DF93911C306FC300813C6C /* A1_5Cell.swift in Sources */,
 				84DF93B21C34417B00813C6C /* Automaton2Metal.swift in Sources */,
 				84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */,
@@ -454,6 +533,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		841B61441C36F4D900BE6740 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Grift;
+			targetProxy = 841B61431C36F4D900BE6740 /* PBXContainerItemProxy */;
+		};
 		8434FFFD1C0B9B0A00B1029D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8434FFE61C0B9B0A00B1029D /* Cellulon */;
