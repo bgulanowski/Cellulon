@@ -12,9 +12,7 @@ import Grift
 class Auto2GLView: UIView {
     
     var context: EAGLContext!
-    
-    var frameBuffer: GLuint = 0
-    var colorRenderbuffer: GLuint = 0
+    var framebuffer: Framebuffer!
 
     var program: Program!
     var pointBuffer: Point2Buffer!
@@ -38,30 +36,33 @@ class Auto2GLView: UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        prepareGL()
+        render()
+    }
+    
+    func prepareGL() {
         
-        glLayer.opaque = true
+        let renderbuffer = prepareEAGLContext()
         
-        context = EAGLContext(API: .OpenGLES3)
-        EAGLContext.setCurrentContext(context)
-        
-        glGenRenderbuffers(1, &colorRenderbuffer)
-        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer)
-        
-        context.renderbufferStorage(Int(GL_RENDERBUFFER), fromDrawable: glLayer)
-        
-        glGenFramebuffers(1, &frameBuffer)
-        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), frameBuffer)
-        glFramebufferRenderbuffer(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT0), GLenum(GL_RENDERBUFFER), colorRenderbuffer)
+        framebuffer = Framebuffer()
+        framebuffer.colorAttachment0 = renderbuffer
         
         pointBuffer = makePoints()
+        
         program = Program.newProgramWithName("Conway")
         glClearColor(0.5, 0, 0, 1)
         glDisable(GLenum(GL_CULL_FACE))
         
         let size = bounds.size
         glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
-
-        render()
+    }
+    
+    func prepareEAGLContext() -> Renderbuffer {
+        context = EAGLContext(API: .OpenGLES3)
+        EAGLContext.setCurrentContext(context)
+        let colorBuffer = Renderbuffer()
+        context.renderbufferStorage(colorBuffer, fromDrawable: glLayer)
+        return colorBuffer
     }
     
     func render() {
