@@ -2,6 +2,8 @@
 
 precision highp float;
 
+uniform sampler2D s_texture;
+
 in vec2 point;
 
 out vec4 vFragColor;
@@ -14,5 +16,7 @@ float rnd(vec2 x) {
 
 void main() {
     float random = rnd(point) > 0.5 ? 1.0 : 0.0;
-    vFragColor = vec4(random, random, random, 1.0);
+    vec4 texColor = texture(s_texture, point);
+    vec4 randomColor = vec4(random, random, random, 1.0);
+    vFragColor = texColor * 0.6 + randomColor * .4;
 }

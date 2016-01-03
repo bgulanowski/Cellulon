@@ -19,6 +19,7 @@
 		841B613F1C36E9F300BE6740 /* Conway.fp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613E1C36E9F300BE6740 /* Conway.fp */; };
 		841B61421C36F48400BE6740 /* Conway.vp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613C1C36E9AF00BE6740 /* Conway.vp */; };
 		841B61451C36F4E900BE6740 /* Grift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B61331C36E94B00BE6740 /* Grift.framework */; };
+		841B615F1C39B09B00BE6740 /* David.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B615E1C39B09B00BE6740 /* David.png */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
 		8434FFED1C0B9B0A00B1029D /* Automaton1_5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* Automaton1_5VC.swift */; };
@@ -108,6 +109,7 @@
 		841B612C1C36E94B00BE6740 /* Grift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Grift.xcodeproj; path = Submodules/Grift/Grift.xcodeproj; sourceTree = "<group>"; };
 		841B613C1C36E9AF00BE6740 /* Conway.vp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.vp; sourceTree = "<group>"; };
 		841B613E1C36E9F300BE6740 /* Conway.fp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.fp; sourceTree = "<group>"; };
+		841B615E1C39B09B00BE6740 /* David.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = David.png; sourceTree = "<group>"; };
 		842F31FA1C1AFC02002202AB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +301,7 @@
 				847660FA1C355D7200696B04 /* Auto2GLView.swift */,
 				841B613C1C36E9AF00BE6740 /* Conway.vp */,
 				841B613E1C36E9F300BE6740 /* Conway.fp */,
+				841B615E1C39B09B00BE6740 /* David.png */,
 			);
 			name = "Automaton 2 OpenGL";
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 			files = (
 				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
 				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
+				841B615F1C39B09B00BE6740 /* David.png in Resources */,
 				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
 				841B613F1C36E9F300BE6740 /* Conway.fp in Resources */,
 				841B61421C36F48400BE6740 /* Conway.vp in Resources */,

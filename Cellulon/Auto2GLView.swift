@@ -8,6 +8,7 @@
 
 import UIKit
 import Grift
+import GLKit
 
 class Auto2GLView: UIView {
     
@@ -16,12 +17,13 @@ class Auto2GLView: UIView {
 
     var program: Program!
     var pointBuffer: Point2Buffer!
-
+    var textures = [Texture]()
+    
     func makePoints() -> Point2Buffer {
         let elements = [
             Point2(tuple: (-0.5, -0.5)),
-            Point2(tuple: ( 0.5, -0.5)),
-            Point2(tuple: ( 0.5,  0.5))
+            Point2(tuple: ( 0.5,  0.5)),
+            Point2(tuple: (-0.5,  0.5))
         ]
         return Point2Buffer(elements: elements)
     }
@@ -69,6 +71,9 @@ class Auto2GLView: UIView {
     }
     
     func prepareContent() {
+        if let texture = Texture.textureWithName("David", filetype: "png") {
+            textures.append(texture)
+        }
         pointBuffer = makePoints()
     }
     
@@ -82,6 +87,9 @@ class Auto2GLView: UIView {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         program.use()
         program.submitBuffer(pointBuffer, name: "position")
+        if textures.count > 0 {
+            program.submitTexture(textures[0], uniformName: "s_texture")
+        }
         self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
     }
 }
