@@ -2,9 +2,9 @@
 
 layout(location = 0) in vec2 position;
 
-out vec2 outPosition;
+out vec2 point;
 
 void main() {
-    gl_Position = vec4(position,1,1);
-    outPosition = position;
+    gl_Position = vec4(position, 0, 1);
+    point = position;
 }

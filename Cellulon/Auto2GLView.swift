@@ -12,17 +12,18 @@ import Grift
 class Auto2GLView: UIView {
     
     var context: EAGLContext!
-    var program: Program!
-//    var texture: Texture!
-//    var framebuffer: Framebuffer!
-    var pointBuffer: Point2Buffer!
     
+    var frameBuffer: GLuint = 0
+    var colorRenderbuffer: GLuint = 0
+
+    var program: Program!
+    var pointBuffer: Point2Buffer!
+
     func makePoints() -> Point2Buffer {
         let elements = [
-            Point2(tuple: (0, 0)),
-            Point2(tuple: (1, 0)),
-            Point2(tuple: (0, 1)),
-            Point2(tuple: (1, 1))
+            Point2(tuple: (-0.5, -0.5)),
+            Point2(tuple: ( 0.5, -0.5)),
+            Point2(tuple: ( 0.5,  0.5))
         ]
         return Point2Buffer(elements: elements)
     }
@@ -38,22 +39,35 @@ class Auto2GLView: UIView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
+        glLayer.opaque = true
+        
         context = EAGLContext(API: .OpenGLES3)
-        context.renderbufferStorage(Int(GL_RENDERBUFFER), fromDrawable: glLayer)
         EAGLContext.setCurrentContext(context)
+        
+        glGenRenderbuffers(1, &colorRenderbuffer)
+        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), colorRenderbuffer)
+        
+        context.renderbufferStorage(Int(GL_RENDERBUFFER), fromDrawable: glLayer)
+        
+        glGenFramebuffers(1, &frameBuffer)
+        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), frameBuffer)
+        glFramebufferRenderbuffer(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT0), GLenum(GL_RENDERBUFFER), colorRenderbuffer)
         
         pointBuffer = makePoints()
         program = Program.newProgramWithName("Conway")
+        glClearColor(0.5, 0, 0, 1)
+        glDisable(GLenum(GL_CULL_FACE))
         
-//        glViewport(0, 0, GLsizei(bounds.size.width), GLsizei(bounds.size.height))
-        glViewport(0, 0, 1, 1)
+        let size = bounds.size
+        glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
+
         render()
     }
     
     func render() {
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         program.use()
-        pointBuffer.bind()
-        program.enableBuffer(pointBuffer, name: "")
+        program.submitBuffer(pointBuffer, name: "position")
         self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
     }
 }
