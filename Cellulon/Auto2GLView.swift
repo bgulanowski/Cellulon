@@ -41,28 +41,41 @@ class Auto2GLView: UIView {
     }
     
     func prepareGL() {
+        // this must happen first
+        prepareContext()
         
-        let renderbuffer = prepareEAGLContext()
-        
-        framebuffer = Framebuffer()
-        framebuffer.colorAttachment0 = renderbuffer
-        
-        pointBuffer = makePoints()
-        
-        program = Program.newProgramWithName("Conway")
-        glClearColor(0.5, 0, 0, 1)
-        glDisable(GLenum(GL_CULL_FACE))
-        
-        let size = bounds.size
-        glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
+        // these can happen in any order
+        prepareDrawable()
+        prepareRendererState()
+        prepareShaders()
+        prepareContent()
     }
     
-    func prepareEAGLContext() -> Renderbuffer {
+    func prepareContext() {
         context = EAGLContext(API: .OpenGLES3)
         EAGLContext.setCurrentContext(context)
+    }
+    
+    func prepareDrawable() {
+        // These lines must happen in this exact order
         let colorBuffer = Renderbuffer()
         context.renderbufferStorage(colorBuffer, fromDrawable: glLayer)
-        return colorBuffer
+        framebuffer = Framebuffer()
+        framebuffer.colorAttachment0 = colorBuffer
+    }
+    
+    func prepareShaders() {
+        program = Program.newProgramWithName("Conway")
+    }
+    
+    func prepareContent() {
+        pointBuffer = makePoints()
+    }
+    
+    func prepareRendererState() {
+        let size = bounds.size
+        glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
+        glClearColor(0.5, 0, 0, 1)
     }
     
     func render() {
