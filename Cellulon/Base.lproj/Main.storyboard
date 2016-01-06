@@ -30,7 +30,7 @@
                             <constraint firstItem="Jmi-1z-p3z" firstAttribute="bottom" secondItem="66F-HV-OWE" secondAttribute="top" id="w4l-uz-Err"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="2" id="uY1-HW-8a5"/>
+                    <tabBarItem key="tabBarItem" title="2" image="apple_logo" id="uY1-HW-8a5"/>
                     <connections>
                         <outlet property="automatonView" destination="Jmi-1z-p3z" id="YV9-D1-oWu"/>
                     </connections>
@@ -52,7 +52,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Metal" id="jGv-TQ-wCn"/>
+                    <tabBarItem key="tabBarItem" title="Metal" image="metal_logo" id="jGv-TQ-wCn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBl-lu-1C4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="OpenGL" id="jNH-hP-4NZ"/>
+                    <tabBarItem key="tabBarItem" title="OpenGL" image="opengl_logo" id="jNH-hP-4NZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIF-ez-D39" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -401,7 +401,7 @@
         <scene sceneID="PoA-kX-JXN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uo9-Kh-cax" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="1.5" id="pnN-jO-ztc"/>
+                    <tabBarItem key="tabBarItem" title="1.5" image="CA_logo" id="pnN-jO-ztc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="8tH-Hk-gkV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -417,4 +417,10 @@
             <point key="canvasLocation" x="586" y="387"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CA_logo" width="30" height="30"/>
+        <image name="apple_logo" width="30" height="30"/>
+        <image name="metal_logo" width="30" height="30"/>
+        <image name="opengl_logo" width="30" height="30"/>
+    </resources>
 </document>
