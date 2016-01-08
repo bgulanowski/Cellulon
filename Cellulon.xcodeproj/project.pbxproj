@@ -19,13 +19,13 @@
 		841B613F1C36E9F300BE6740 /* Conway.fp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613E1C36E9F300BE6740 /* Conway.fp */; };
 		841B61421C36F48400BE6740 /* Conway.vp in Resources */ = {isa = PBXBuildFile; fileRef = 841B613C1C36E9AF00BE6740 /* Conway.vp */; };
 		841B61451C36F4E900BE6740 /* Grift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B61331C36E94B00BE6740 /* Grift.framework */; };
-		841B615F1C39B09B00BE6740 /* David.png in Resources */ = {isa = PBXBuildFile; fileRef = 841B615E1C39B09B00BE6740 /* David.png */; };
 		843400001C0B9B0A00B1029D /* CellulonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */; };
 		8434FFEB1C0B9B0A00B1029D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEA1C0B9B0A00B1029D /* AppDelegate.swift */; };
 		8434FFED1C0B9B0A00B1029D /* Automaton1_5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434FFEC1C0B9B0A00B1029D /* Automaton1_5VC.swift */; };
 		8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFEE1C0B9B0A00B1029D /* Main.storyboard */; };
 		8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF11C0B9B0A00B1029D /* Assets.xcassets */; };
 		8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8434FFF31C0B9B0A00B1029D /* LaunchScreen.storyboard */; };
+		84351E631C3F7A980078D5CF /* David med.png in Resources */ = {isa = PBXBuildFile; fileRef = 84351E621C3F7A980078D5CF /* David med.png */; };
 		845F5FB91C25A5B6005337E9 /* Bitmap+ImageCreating.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */; };
 		845F5FBB1C25A725005337E9 /* BitmapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FBA1C25A725005337E9 /* BitmapTests.swift */; };
 		845F5FBD1C270D65005337E9 /* bitmapTestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 845F5FBC1C270D65005337E9 /* bitmapTestImage.png */; };
@@ -36,6 +36,7 @@
 		845F5FC81C2B0045005337E9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC71C2B0045005337E9 /* Settings.swift */; };
 		847660FB1C355D7200696B04 /* Auto2GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847660FA1C355D7200696B04 /* Auto2GLView.swift */; };
 		848607F51C2B080400259B29 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848607F41C2B080400259B29 /* Table.swift */; };
+		84A715AE1C3ABF6F00C8C878 /* Grift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 841B61331C36E94B00BE6740 /* Grift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
 		84DF93721C2C392E00813C6C /* RuleBitsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF93711C2C392E00813C6C /* RuleBitsView.xib */; };
 		84DF937D1C2EEDE600813C6C /* RuleBitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF937C1C2EEDE600813C6C /* RuleBitsView.swift */; };
@@ -96,6 +97,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		84A715AD1C3ABF6600C8C878 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				84A715AE1C3ABF6F00C8C878 /* Grift.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8409BA7C1C13329100962068 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		8409BA801C1332DE00962068 /* Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
@@ -109,7 +123,6 @@
 		841B612C1C36E94B00BE6740 /* Grift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Grift.xcodeproj; path = Submodules/Grift/Grift.xcodeproj; sourceTree = "<group>"; };
 		841B613C1C36E9AF00BE6740 /* Conway.vp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.vp; sourceTree = "<group>"; };
 		841B613E1C36E9F300BE6740 /* Conway.fp */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Conway.fp; sourceTree = "<group>"; };
-		841B615E1C39B09B00BE6740 /* David.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = David.png; sourceTree = "<group>"; };
 		842F31FA1C1AFC02002202AB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		843400011C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFE71C0B9B0A00B1029D /* Cellulon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cellulon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +134,7 @@
 		8434FFF61C0B9B0A00B1029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8434FFFB1C0B9B0A00B1029D /* CellulonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CellulonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8434FFFF1C0B9B0A00B1029D /* CellulonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellulonTests.swift; sourceTree = "<group>"; };
+		84351E621C3F7A980078D5CF /* David med.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "David med.png"; sourceTree = "<group>"; };
 		845F5FB71C25A5B6005337E9 /* Bitmap+ImageCreating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bitmap+ImageCreating.h"; sourceTree = "<group>"; };
 		845F5FB81C25A5B6005337E9 /* Bitmap+ImageCreating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bitmap+ImageCreating.m"; sourceTree = "<group>"; };
 		845F5FBA1C25A725005337E9 /* BitmapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitmapTests.swift; sourceTree = "<group>"; };
@@ -298,10 +312,10 @@
 		847660F91C355D2200696B04 /* Automaton 2 OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				84351E621C3F7A980078D5CF /* David med.png */,
 				847660FA1C355D7200696B04 /* Auto2GLView.swift */,
 				841B613C1C36E9AF00BE6740 /* Conway.vp */,
 				841B613E1C36E9F300BE6740 /* Conway.fp */,
-				841B615E1C39B09B00BE6740 /* David.png */,
 			);
 			name = "Automaton 2 OpenGL";
 			sourceTree = "<group>";
@@ -356,6 +370,7 @@
 				8434FFE31C0B9B0A00B1029D /* Sources */,
 				8434FFE41C0B9B0A00B1029D /* Frameworks */,
 				8434FFE51C0B9B0A00B1029D /* Resources */,
+				84A715AD1C3ABF6600C8C878 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -461,9 +476,9 @@
 			files = (
 				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
 				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
-				841B615F1C39B09B00BE6740 /* David.png in Resources */,
 				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
 				841B613F1C36E9F300BE6740 /* Conway.fp in Resources */,
+				84351E631C3F7A980078D5CF /* David med.png in Resources */,
 				841B61421C36F48400BE6740 /* Conway.vp in Resources */,
 				84DF93721C2C392E00813C6C /* RuleBitsView.xib in Resources */,
 			);
