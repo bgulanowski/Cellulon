@@ -22,15 +22,16 @@ class Auto2GLView: UIView {
     var textureProg: Program!
     var texCoordBuffer: Point2Buffer!
     var reverse = true
+    var first = true
     
     var displayLink: CADisplayLink!
     
     func makePoints() -> Point2Buffer {
         let elements = [
-            Point2(tuple: (-0.75, -0.75)),
-            Point2(tuple: ( 0.75, -0.75)),
-            Point2(tuple: ( 0.75,  0.75)),
-            Point2(tuple: (-0.75,  0.75))
+            Point2(tuple: (-1.0, -1.0)),
+            Point2(tuple: ( 1.0, -1.0)),
+            Point2(tuple: ( 1.0,  1.0)),
+            Point2(tuple: (-1.0,  1.0))
         ]
         return Point2Buffer(elements: elements)
     }
@@ -59,7 +60,7 @@ class Auto2GLView: UIView {
         displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         displayLink.paused = false
-        displayLink.frameInterval = 60
+        displayLink.frameInterval = 4
     }
     
     func prepareGL() {
@@ -117,9 +118,6 @@ class Auto2GLView: UIView {
         
         let source = textures[ reverse ? 1 : 0 ]
         let dest = textures[ reverse ? 0 : 1 ]
-        
-        prepareRendererState()
-        render(source)
 
         let fb1 = Framebuffer()
         fb1.setColorAttachment(source, atIndex: 0)
@@ -128,7 +126,7 @@ class Auto2GLView: UIView {
         fb2.setColorAttachment(dest, atIndex: 0)
         
         fb1.bind(true)
-//        fb1.bind(false)
+        fb2.bind(false)
         
         glViewport(0, 0, 256, 256)
         
@@ -141,11 +139,23 @@ class Auto2GLView: UIView {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
         textureProg.use()
+        if first {
+            textureProg.submitUniform(GLint(1), uniformName: "initRandom")
+            glUniform2f(textureProg.getLocationOfUniform("seed"), 0.1, 0.2)
+        }
         textureProg.submitTexture(source, uniformName: "sampler")
         textureProg.submitBuffer(pointBuffer, name: "position")
         textureProg.submitBuffer(texCoordBuffer, name: "texCoord")
         
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
+
+        if first {
+            textureProg.submitUniform(GLint(0), uniformName: "initRandom")
+            first = false
+        }
+        
+        prepareRendererState()
+        render(textures[0])
 
         reverse = !reverse
     }
