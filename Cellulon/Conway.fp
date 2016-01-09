@@ -8,6 +8,8 @@ uniform vec2 seed;
 
 in vec2 point;
 
+const float pixelWidth = 1.0/256.0;
+
 layout (location = 0) out lowp vec4 vFragColor;
 
 float rnd(vec2 x) {
@@ -16,7 +18,7 @@ float rnd(vec2 x) {
     return 1.0 - float( (n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824.0;
 }
 
-int count(vec2 p, float pixelWidth) {
+int count(vec2 p) {
     
     const vec2 neighbours[8] = vec2[](
         vec2(-1, -1),
@@ -33,7 +35,9 @@ int count(vec2 p, float pixelWidth) {
     
     int count = 0;
     for (int i = 0; i < 8; ++i) {
-        if (texture(sampler, p + neighbours[i] * pixelWidth).r > 0.5) {
+        vec2 neighbour = p + neighbours[i] * pixelWidth;
+        vec4 neighbourColour = texture(sampler, neighbour);
+        if (neighbourColour.r == 1.0) {
             ++count;
         }
     }
@@ -49,29 +53,22 @@ const vec4 alive = vec4(1.0);
 const vec4 dead = vec4(vec3(0.0), 1.0);
 
 void main() {
-
-    vec4 texColor = texture(sampler, point);
-#if 0
-    float random = rnd(point + seed) > 0.5 ? 1.0 : 0.0;
-    vec4 randomColor = vec4(random, random, random, 1.0);
-    vFragColor = texColor * 0.6 + randomColor * .4;
-#else
     if (initRandom) {
-        float random = rnd(point);
+        float random = rnd(point + seed);
         vFragColor = (random > 0.5) ? alive : dead;
     }
     else {
-        int count = count(point, 1.0/256.0);
+        int count = count(point);
+        vec4 texColor = texture(sampler, point);
         
         if (count < min || count > max) {
-            vFragColor = dead;
+            vFragColor = vec4(0.0, 0.0, texColor.b * 31.0/32.0, 1.0);// + vec4(0.0, 0.0, 1.0/16.0, 0.0); // dead; //
         }
         else if (count == add) {
             vFragColor = alive;
         }
         else {
-            vFragColor = texColor;
+            vFragColor = texColor.r == 1.0 ? texColor : dead;
         }
     }
-#endif
 }

@@ -10,6 +10,17 @@ import UIKit
 import Grift
 import GLKit
 
+extension GLKMatrix4 {
+    func toArray() -> [GLfloat] {
+        return [
+            self.m00, self.m01, self.m02, self.m03,
+            self.m10, self.m11, self.m12, self.m13,
+            self.m20, self.m21, self.m22, self.m23,
+            self.m30, self.m31, self.m32, self.m33
+        ]
+    }
+}
+
 class Auto2GLView: UIView {
     
     var context: EAGLContext!
@@ -21,7 +32,7 @@ class Auto2GLView: UIView {
     var textures = [Texture]()
     var textureProg: Program!
     var texCoordBuffer: Point2Buffer!
-    var reverse = true
+    var reverse = false
     var first = true
     
     var displayLink: CADisplayLink!
@@ -56,11 +67,14 @@ class Auto2GLView: UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
+
+        srandom(UInt32(time(nil)))
+
         prepareGL()
         displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         displayLink.paused = false
-        displayLink.frameInterval = 4
+        displayLink.frameInterval = 2
     }
     
     func prepareGL() {
@@ -92,8 +106,11 @@ class Auto2GLView: UIView {
 
 //        let texture0 = Texture(size: CGSize(width: 256, height: 256), data: nil)
         let texture0 = Texture.textureWithName("David med", filetype: "png")!
+        texture0.setParameter(GLint(GL_TEXTURE_MAG_FILTER), value: GLint(GL_NEAREST))
+        
 //        let texture1 = Texture(size: CGSize(width: 256, height: 256), data: nil)
         let texture1 = Texture.textureWithName("grey brick 256", filetype: "jpg")!
+        texture1.setParameter(GLint(GL_TEXTURE_MAG_FILTER), value: GLint(GL_NEAREST))
         
         textures.append(texture0)
         textures.append(texture1)
@@ -112,6 +129,14 @@ class Auto2GLView: UIView {
     func prepareRendererState() {
         let size = bounds.size
         glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
+        
+        program.use()
+        let scaleX = 256.0 / Float(size.width)
+        let scaleY = 256.0 / Float(size.height)
+        let matrix = GLKMatrix4Scale(GLKMatrix4Identity, scaleX, scaleY, 1.0)
+//        let aspect = Float(size.width/size.height)
+//        let matrix = GLKMatrix4Scale(GLKMatrix4Identity, 1.0, aspect, 1.0)
+        glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix.toArray())
     }
     
     func update() {
@@ -141,13 +166,16 @@ class Auto2GLView: UIView {
         textureProg.use()
         if first {
             textureProg.submitUniform(GLint(1), uniformName: "initRandom")
-            glUniform2f(textureProg.getLocationOfUniform("seed"), 0.1, 0.2)
+            let seed1 = GLfloat(random())/GLfloat(INT_MAX)
+            let seed2 = GLfloat(random())/GLfloat(INT_MAX)
+            glUniform2f(textureProg.getLocationOfUniform("seed"), seed1, seed2)
         }
         textureProg.submitTexture(source, uniformName: "sampler")
         textureProg.submitBuffer(pointBuffer, name: "position")
         textureProg.submitBuffer(texCoordBuffer, name: "texCoord")
         
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
+        glFinish()
 
         if first {
             textureProg.submitUniform(GLint(0), uniformName: "initRandom")
@@ -155,33 +183,21 @@ class Auto2GLView: UIView {
         }
         
         prepareRendererState()
-        render(textures[0])
+        render()
 
         reverse = !reverse
     }
     
-    func render(texture: Texture) {
+    func render() {
     
         framebuffer.bind()
         glClearColor(0.5, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         
-        program.use()
-        
-        // TODO: support for matrices in Program.submitUniformMatrix
-        let matrix = Array<GLfloat>( arrayLiteral:
-            1.0, 0.0, 0.0, 0.0,
-            0.0, 1.0, 0.0, 0.0,
-            0.0, 0.0, 1.0, 0.0,
-            0.0, 0.0, 0.0, 1.0
-        )
-        
         // TODO: use blitting instead of rendering textured triangles
         
-        glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix)
-
         program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
-        program.submitTexture(texture, uniformName: "sampler")
+        program.submitTexture(textures[1], uniformName: "sampler")
         program.submitBuffer(pointBuffer, name: "position")
         program.submitBuffer(texCoordBuffer, name: "texCoord")
 
