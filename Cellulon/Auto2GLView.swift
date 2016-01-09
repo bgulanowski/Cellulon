@@ -17,31 +17,30 @@ class Auto2GLView: UIView {
     var program: Program!
     
     var pointBuffer: Point2Buffer!
-    var textures = [Texture]()
 
-    var textureFB: Framebuffer!
+    var textures = [Texture]()
     var textureProg: Program!
     var texCoordBuffer: Point2Buffer!
-    var reverse = false
+    var reverse = true
     
     var displayLink: CADisplayLink!
     
     func makePoints() -> Point2Buffer {
         let elements = [
-            Point2(tuple: (-1.0, -1.0)),
-            Point2(tuple: ( 1.0, -1.0)),
-            Point2(tuple: ( 1.0,  1.0)),
-            Point2(tuple: (-1.0,  1.0))
+            Point2(tuple: (-0.75, -0.75)),
+            Point2(tuple: ( 0.75, -0.75)),
+            Point2(tuple: ( 0.75,  0.75)),
+            Point2(tuple: (-0.75,  0.75))
         ]
         return Point2Buffer(elements: elements)
     }
     
     func makeTexCoords() -> TexCoordBuffer {
         let elements = [
-            TexCoord(tuple: (0.0, 0.0)),
             TexCoord(tuple: (0.0, 1.0)),
             TexCoord(tuple: (1.0, 1.0)),
             TexCoord(tuple: (1.0, 0.0)),
+            TexCoord(tuple: (0.0, 0.0)),
         ]
         return TexCoordBuffer(elements: elements)
     }
@@ -57,11 +56,10 @@ class Auto2GLView: UIView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         prepareGL()
-        displayLink = CADisplayLink(target: self, selector: "render")
+        displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         displayLink.paused = false
-        displayLink.frameInterval = 15
-//        render()
+        displayLink.frameInterval = 60
     }
     
     func prepareGL() {
@@ -71,7 +69,7 @@ class Auto2GLView: UIView {
         // these can happen in any order
         prepareDrawable()
         prepareTextureFramebuffer()
-        prepareRendererState()
+//        prepareRendererState()
         prepareShaders()
         prepareContent()
     }
@@ -83,22 +81,21 @@ class Auto2GLView: UIView {
     
     func prepareDrawable() {
         let colorBuffer = Renderbuffer()
-        // renderbuffer storage must be allocated before it is attached to the framebuffer
         context.renderbufferStorage(colorBuffer, fromDrawable: glLayer)
         framebuffer = Framebuffer()
+        framebuffer.bind(false)
         framebuffer.setColorAttachment(colorBuffer, atIndex: 0)
     }
     
     func prepareTextureFramebuffer() {
-        textureFB = Framebuffer()
+
 //        let texture0 = Texture(size: CGSize(width: 256, height: 256), data: nil)
-        let texture0 = Texture.textureWithName("David med", filetype: "png")
-        let texture1 = Texture(size: CGSize(width: 256, height: 256), data: nil)
-        textureFB.setColorAttachment(texture0, atIndex: 0)
-        textureFB.setColorAttachment(texture1, atIndex: 1)
-        if glCheckFramebufferStatus(GLenum(GL_FRAMEBUFFER)) != GLenum(GL_FRAMEBUFFER_COMPLETE) {
-            print("texture framebuffer is not complete")
-        }
+        let texture0 = Texture.textureWithName("David med", filetype: "png")!
+//        let texture1 = Texture(size: CGSize(width: 256, height: 256), data: nil)
+        let texture1 = Texture.textureWithName("grey brick 256", filetype: "jpg")!
+        
+        textures.append(texture0)
+        textures.append(texture1)
     }
     
     func prepareShaders() {
@@ -114,31 +111,49 @@ class Auto2GLView: UIView {
     func prepareRendererState() {
         let size = bounds.size
         glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
-        glClearColor(0.5, 0, 0, 1)
     }
     
     func update() {
         
-        textureFB.bind()
-        var drawBuffer = GLenum(reverse ? GL_COLOR_ATTACHMENT0 : GL_COLOR_ATTACHMENT1)
-        glDrawBuffers(1, &drawBuffer)
+        let source = textures[ reverse ? 1 : 0 ]
+        let dest = textures[ reverse ? 0 : 1 ]
+        
+        prepareRendererState()
+        render(source)
+
+        let fb1 = Framebuffer()
+        fb1.setColorAttachment(source, atIndex: 0)
+        
+        let fb2 = Framebuffer()
+        fb2.setColorAttachment(dest, atIndex: 0)
+        
+        fb1.bind(true)
+//        fb1.bind(false)
+        
+        glViewport(0, 0, 256, 256)
+        
+        if reverse {
+            glClearColor(0, 0, 0.5, 1)
+        }
+        else {
+            glClearColor(0, 0.5, 0, 1)
+        }
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
         textureProg.use()
-        let texture = textureFB.colorAttachmentAtIndex(reverse ? 1 : 0)
-
-        textureProg.submitTexture(texture as! Texture, uniformName: "sampler")
+        textureProg.submitTexture(source, uniformName: "sampler")
         textureProg.submitBuffer(pointBuffer, name: "position")
         textureProg.submitBuffer(texCoordBuffer, name: "texCoord")
         
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
-        glFinish()
 
         reverse = !reverse
     }
     
-    func render() {
-        
+    func render(texture: Texture) {
+    
         framebuffer.bind()
+        glClearColor(0.5, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         
         program.use()
@@ -151,18 +166,19 @@ class Auto2GLView: UIView {
             0.0, 0.0, 0.0, 1.0
         )
         
+        // TODO: use blitting instead of rendering textured triangles
+        
         glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix)
 
-        let texture = textureFB.colorAttachmentAtIndex(reverse ? 1 : 0)
         program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
-        program.submitTexture(texture as! Texture, uniformName: "sampler")
+        program.submitTexture(texture, uniformName: "sampler")
         program.submitBuffer(pointBuffer, name: "position")
         program.submitBuffer(texCoordBuffer, name: "texCoord")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
 
-        self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
+//        glInsertEventMarkerEXT(0, "com.apple.GPUTools.event.debug-frame")
         
-        update()
+        self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
     }
 }
