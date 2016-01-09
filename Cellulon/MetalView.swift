@@ -11,6 +11,7 @@ import QuartzCore
 
 class MetalView: UIView {
 
+#if false
 #if arch(arm) || arch(arm64)
     let vertexData:[Float] = [
         +0.0, +1.0, +0.0,
@@ -116,5 +117,6 @@ class MetalView: UIView {
             }
         }
     }
+#endif
 #endif
 }
