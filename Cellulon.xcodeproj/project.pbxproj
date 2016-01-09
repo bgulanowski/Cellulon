@@ -36,6 +36,8 @@
 		845F5FC81C2B0045005337E9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F5FC71C2B0045005337E9 /* Settings.swift */; };
 		847660FB1C355D7200696B04 /* Auto2GLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847660FA1C355D7200696B04 /* Auto2GLView.swift */; };
 		848607F51C2B080400259B29 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848607F41C2B080400259B29 /* Table.swift */; };
+		849F2D5B1C40B260003AA11C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849F2D5A1C40B260003AA11C /* OpenGLES.framework */; };
+		849F2D5D1C40C7D3003AA11C /* grey brick 256.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 849F2D5C1C40C7D3003AA11C /* grey brick 256.jpg */; };
 		84A715AE1C3ABF6F00C8C878 /* Grift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 841B61331C36E94B00BE6740 /* Grift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84DC50E31C204FB3007D2DED /* Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DC50E21C204FB3007D2DED /* Bitmap.m */; };
 		84DF93721C2C392E00813C6C /* RuleBitsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DF93711C2C392E00813C6C /* RuleBitsView.xib */; };
@@ -146,6 +148,8 @@
 		845F5FC71C2B0045005337E9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		847660FA1C355D7200696B04 /* Auto2GLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auto2GLView.swift; sourceTree = "<group>"; };
 		848607F41C2B080400259B29 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		849F2D5A1C40B260003AA11C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		849F2D5C1C40C7D3003AA11C /* grey brick 256.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "grey brick 256.jpg"; sourceTree = "<group>"; };
 		84DC50E01C204FB3007D2DED /* Cellulon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cellulon-Bridging-Header.h"; sourceTree = "<group>"; };
 		84DC50E11C204FB3007D2DED /* Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
 		84DC50E21C204FB3007D2DED /* Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bitmap.m; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849F2D5B1C40B260003AA11C /* OpenGLES.framework in Frameworks */,
 				841B61451C36F4E900BE6740 /* Grift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +265,7 @@
 		8434FFDE1C0B9B0A00B1029D = {
 			isa = PBXGroup;
 			children = (
+				849F2D5A1C40B260003AA11C /* OpenGLES.framework */,
 				841B612C1C36E94B00BE6740 /* Grift.xcodeproj */,
 				8434FFE91C0B9B0A00B1029D /* Cellulon */,
 				8434FFFE1C0B9B0A00B1029D /* CellulonTests */,
@@ -313,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				84351E621C3F7A980078D5CF /* David med.png */,
+				849F2D5C1C40C7D3003AA11C /* grey brick 256.jpg */,
 				847660FA1C355D7200696B04 /* Auto2GLView.swift */,
 				841B613C1C36E9AF00BE6740 /* Conway.vp */,
 				841B613E1C36E9F300BE6740 /* Conway.fp */,
@@ -474,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849F2D5D1C40C7D3003AA11C /* grey brick 256.jpg in Resources */,
 				8434FFF51C0B9B0A00B1029D /* LaunchScreen.storyboard in Resources */,
 				8434FFF21C0B9B0A00B1029D /* Assets.xcassets in Resources */,
 				8434FFF01C0B9B0A00B1029D /* Main.storyboard in Resources */,
