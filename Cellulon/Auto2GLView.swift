@@ -65,6 +65,10 @@ class Auto2GLView: UIView {
         return layer as! CAEAGLLayer
     }
     
+    var pixelSize: CGSize {
+        return bounds.size * UIScreen.mainScreen().scale
+    }
+    
     override class func layerClass() -> AnyClass {
         return CAEAGLLayer.self
     }
@@ -99,6 +103,7 @@ class Auto2GLView: UIView {
     }
     
     func prepareDrawable() {
+        glLayer.contentsScale = UIScreen.mainScreen().scale
         let colorBuffer = Renderbuffer()
         context.renderbufferStorage(colorBuffer, fromDrawable: glLayer)
         framebuffer = Framebuffer()
@@ -107,6 +112,9 @@ class Auto2GLView: UIView {
     }
     
     func prepareTextureFramebuffer() {
+        
+        // TODO: we are loading the textures wrong when they have no data
+        // for now, use some test images (which will never be drawn unless there is a bug)
 
 //        let texture0 = Texture(size: CGSize(width: 256, height: 256), data: nil)
         let texture0 = Texture.textureWithName("David med", filetype: "png")!
@@ -122,6 +130,11 @@ class Auto2GLView: UIView {
     
     func prepareShaders() {
         program = Program()
+        
+        program.use()
+        let matrix = GLKMatrix4Identity
+        glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix.toArray())
+
         textureProg = Program.newProgramWithName("Conway")
     }
     
@@ -131,16 +144,36 @@ class Auto2GLView: UIView {
     }
     
     func prepareRendererState() {
+        setCenteredViewport(4.0)
+    }
+    
+    func setCenteredViewport(scale: CGFloat) {
+        let size = pixelSize
+        let x = GLint((size.width - 256.0 * scale) / 2.0)
+        let y = GLint((size.height - 256.0 * scale) / 2.0)
+        glViewport(x, y, 256 * GLint(scale), 256 * GLint(scale))
+    }
+    
+    func logCurrentViewport() {
+        var viewport: [GLint] = [0, 0, 0, 0]
+        viewport.withUnsafeMutableBufferPointer({ (inout p: UnsafeMutableBufferPointer<Int32>) in
+            glGetIntegerv(GLenum(GL_VIEWPORT), p.baseAddress)
+        })
+        print("existing viewport: \(viewport)")
+    }
+    
+    // These matrices are only useful if the viewport of the presentation layer is the size of the screen
+    func makeProportionalMatrix() -> GLKMatrix4 {
         let size = bounds.size
-        glViewport(0, 0, GLsizei(size.width), GLsizei(size.height))
-        
-        program.use()
+        let aspect = Float(size.height/size.width)
+        return GLKMatrix4Scale(GLKMatrix4Identity, 1.0, aspect, 1.0)
+    }
+    
+    func makeSizedMatrix() -> GLKMatrix4 {
+        let size = bounds.size
         let scaleX = 256.0 / Float(size.width)
         let scaleY = 256.0 / Float(size.height)
-        let matrix = GLKMatrix4Scale(GLKMatrix4Identity, scaleX, scaleY, 1.0)
-//        let aspect = Float(size.width/size.height)
-//        let matrix = GLKMatrix4Scale(GLKMatrix4Identity, 1.0, aspect, 1.0)
-        glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix.toArray())
+        return GLKMatrix4Scale(GLKMatrix4Identity, scaleX, scaleY, 1.0)
     }
     
     func update() {
@@ -186,7 +219,6 @@ class Auto2GLView: UIView {
             first = false
         }
         
-        prepareRendererState()
         render()
 
         reverse = !reverse
@@ -195,19 +227,21 @@ class Auto2GLView: UIView {
     func render() {
     
         framebuffer.bind()
+
+        prepareRendererState()
+
         glClearColor(0.5, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         
         // TODO: use blitting instead of rendering textured triangles
         
+        program.use()
         program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
         program.submitTexture(textures[1], uniformName: "sampler")
         program.submitBuffer(pointBuffer, name: "position")
         program.submitBuffer(texCoordBuffer, name: "texCoord")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
-
-//        glInsertEventMarkerEXT(0, "com.apple.GPUTools.event.debug-frame")
         
         self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
     }
