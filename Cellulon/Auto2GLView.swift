@@ -36,6 +36,8 @@ class Auto2GLView: UIView {
     var textures = [Texture]()
     var textureProg: Program!
     var texCoordBuffer: Point2Buffer!
+    var texFramebuffer: Framebuffer!
+    
     var reverse = false
     var first = true
     
@@ -89,11 +91,11 @@ class Auto2GLView: UIView {
         // this must happen first
         prepareContext()
         
-        // these can happen in any order
         prepareDrawable()
         prepareTextureFramebuffer()
-//        prepareRendererState()
         prepareShaders()
+        
+        // shaders must be prepared before content
         prepareContent()
     }
     
@@ -113,19 +115,22 @@ class Auto2GLView: UIView {
     
     func prepareTextureFramebuffer() {
         
-        // TODO: we are loading the textures wrong when they have no data
+        // FIXME: we are loading the textures wrong when they have no data
         // for now, use some test images (which will never be drawn unless there is a bug)
 
 //        let texture0 = Texture(size: CGSize(width: 256, height: 256), data: nil)
+//        let texture1 = Texture(size: CGSize(width: 256, height: 256), data: nil)
+
         let texture0 = Texture.textureWithName("David med", filetype: "png")!
         texture0.setParameter(GLint(GL_TEXTURE_MAG_FILTER), value: GLint(GL_NEAREST))
         
-//        let texture1 = Texture(size: CGSize(width: 256, height: 256), data: nil)
         let texture1 = Texture.textureWithName("grey brick 256", filetype: "jpg")!
         texture1.setParameter(GLint(GL_TEXTURE_MAG_FILTER), value: GLint(GL_NEAREST))
         
         textures.append(texture0)
         textures.append(texture1)
+        
+        texFramebuffer = Framebuffer()
     }
     
     func prepareShaders() {
@@ -188,24 +193,19 @@ class Auto2GLView: UIView {
         let source = textures[ reverse ? 1 : 0 ]
         let dest = textures[ reverse ? 0 : 1 ]
 
-        let fb1 = Framebuffer()
-        fb1.setColorAttachment(source, atIndex: 0)
-        
-        let fb2 = Framebuffer()
-        fb2.setColorAttachment(dest, atIndex: 0)
-        
-        fb1.bind(true)
-        fb2.bind(false)
+        texFramebuffer.setColorAttachment(dest, atIndex: 0)
+        texFramebuffer.bind()
         
         glViewport(0, 0, 256, 256)
         
-        if reverse {
-            glClearColor(0, 0, 0.5, 1)
-        }
-        else {
-            glClearColor(0, 0.5, 0, 1)
-        }
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        // This is useful if the shader breaks, but need to still confirm texture swapping works
+//        if reverse {
+//            glClearColor(0, 0, 0.5, 1)
+//        }
+//        else {
+//            glClearColor(0, 0.5, 0, 1)
+//        }
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
         textureProg.use()
         if first {
@@ -243,6 +243,7 @@ class Auto2GLView: UIView {
         // TODO: use blitting instead of rendering textured triangles
         
         program.use()
+        // ???: I don't know how this works without togging the source texture
         program.submitTexture(textures[1], uniformName: "sampler")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
