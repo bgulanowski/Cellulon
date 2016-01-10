@@ -21,6 +21,10 @@ extension GLKMatrix4 {
     }
 }
 
+func *(size: CGSize, factor: CGFloat) -> CGSize {
+    return CGSize(width: size.width * factor, height: size.height * factor)
+}
+
 class Auto2GLView: UIView {
     
     var context: EAGLContext!
