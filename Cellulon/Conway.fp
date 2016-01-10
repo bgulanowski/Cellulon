@@ -12,10 +12,8 @@ const float pixelWidth = 1.0/256.0;
 
 layout (location = 0) out lowp vec4 vFragColor;
 
-float rnd(vec2 x) {
-    int n = int(x.x * 400.0 + x.y * 64000.0);
-    n = (n << 13) ^ n;
-    return 1.0 - float( (n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824.0;
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
 }
 
 int count(vec2 p) {
@@ -54,7 +52,7 @@ const vec4 dead = vec4(vec3(0.0), 1.0);
 
 void main() {
     if (initRandom) {
-        float random = rnd(point + seed);
+        float random = rand(point + seed);
         vFragColor = (random > 0.5) ? alive : dead;
     }
     else {
