@@ -129,11 +129,16 @@ class Auto2GLView: UIView {
     }
     
     func prepareShaders() {
+        
         program = Program()
         
         program.use()
         let matrix = GLKMatrix4Identity
+        // TODO: support for matrix submission in Program class
         glUniformMatrix4fv(program.getLocationOfUniform("MVP"), 1, GLboolean(GL_FALSE), matrix.toArray())
+
+        // We can set these once, because they never change
+        program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
 
         textureProg = Program.newProgramWithName("Conway")
     }
@@ -141,6 +146,8 @@ class Auto2GLView: UIView {
     func prepareContent() {
         pointBuffer = makePoints()
         texCoordBuffer = makeTexCoords()
+        program.submitBuffer(pointBuffer, name: "position")
+        program.submitBuffer(texCoordBuffer, name: "texCoord")
     }
     
     func prepareRendererState() {
@@ -236,10 +243,7 @@ class Auto2GLView: UIView {
         // TODO: use blitting instead of rendering textured triangles
         
         program.use()
-        program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
         program.submitTexture(textures[1], uniformName: "sampler")
-        program.submitBuffer(pointBuffer, name: "position")
-        program.submitBuffer(texCoordBuffer, name: "texCoord")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
         

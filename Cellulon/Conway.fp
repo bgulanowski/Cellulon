@@ -60,7 +60,7 @@ void main() {
         vec4 texColor = texture(sampler, point);
         
         if (count < min || count > max) {
-            vFragColor = vec4(0.0, 0.0, texColor.b * 31.0/32.0, 1.0);// + vec4(0.0, 0.0, 1.0/16.0, 0.0); // dead; //
+            vFragColor = vec4(0.0, 0.0, texColor.b * 31.0/32.0, 1.0);
         }
         else if (count == add) {
             vFragColor = alive;
