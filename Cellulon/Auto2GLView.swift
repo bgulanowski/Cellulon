@@ -55,10 +55,10 @@ class Auto2GLView: UIView {
     
     func makeTexCoords() -> TexCoordBuffer {
         let elements = [
-            TexCoord(tuple: (0.0, 1.0)),
-            TexCoord(tuple: (1.0, 1.0)),
-            TexCoord(tuple: (1.0, 0.0)),
             TexCoord(tuple: (0.0, 0.0)),
+            TexCoord(tuple: (1.0, 0.0)),
+            TexCoord(tuple: (1.0, 1.0)),
+            TexCoord(tuple: (0.0, 1.0)),
         ]
         return TexCoordBuffer(elements: elements)
     }
@@ -243,8 +243,7 @@ class Auto2GLView: UIView {
         // TODO: use blitting instead of rendering textured triangles
         
         program.use()
-        // ???: I don't know how this works without togging the source texture
-        program.submitTexture(textures[1], uniformName: "sampler")
+        program.submitTexture(textures[reverse ? 1 : 1], uniformName: "sampler")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
         
