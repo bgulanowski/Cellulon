@@ -170,7 +170,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vPe-ZB-NdN">
+                            <imageView contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vPe-ZB-NdN">
                                 <rect key="frame" x="0.0" y="64" width="600" height="544"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -185,7 +185,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="1.5" id="T0z-ub-EVF"/>
                     <connections>
-                        <outlet property="imageView" destination="vPe-ZB-NdN" id="xxp-42-wgH"/>
+                        <outlet property="imageView" destination="vPe-ZB-NdN" id="XUk-nn-C3J"/>
                         <segue destination="OV0-fY-NPR" kind="presentation" identifier="settings" id="6fe-pL-dZ6"/>
                     </connections>
                 </viewController>
