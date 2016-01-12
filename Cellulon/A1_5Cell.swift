@@ -32,4 +32,8 @@ class A1_5Cell: UICollectionViewCell {
             })
         }
     }
+    
+    override func prepareForReuse() {
+        imageView.image = nil
+    }
 }
