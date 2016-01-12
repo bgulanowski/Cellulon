@@ -146,6 +146,11 @@ class Auto2GLView: UIView {
         program.submitUniform(GLuint(GL_TRUE), uniformName: "useTex")
 
         textureProg = Program.newProgramWithName("Conway")
+        textureProg.use()
+        textureProg.submitUniform(GLint(1), uniformName: "initRandom")
+        let seed1 = GLfloat(random())/GLfloat(INT_MAX)
+        let seed2 = GLfloat(random())/GLfloat(INT_MAX)
+        glUniform2f(textureProg.getLocationOfUniform("seed"), seed1, seed2)
     }
     
     func prepareContent() {
@@ -208,12 +213,6 @@ class Auto2GLView: UIView {
 //        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         
         textureProg.use()
-        if first {
-            textureProg.submitUniform(GLint(1), uniformName: "initRandom")
-            let seed1 = GLfloat(random())/GLfloat(INT_MAX)
-            let seed2 = GLfloat(random())/GLfloat(INT_MAX)
-            glUniform2f(textureProg.getLocationOfUniform("seed"), seed1, seed2)
-        }
         textureProg.submitTexture(source, uniformName: "sampler")
         textureProg.submitBuffer(pointBuffer, name: "position")
         textureProg.submitBuffer(texCoordBuffer, name: "texCoord")
