@@ -84,7 +84,7 @@ class Auto2GLView: UIView {
         displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         displayLink.paused = false
-        displayLink.frameInterval = 2
+        displayLink.frameInterval = 8
     }
     
     func prepareGL() {
@@ -226,9 +226,9 @@ class Auto2GLView: UIView {
             first = false
         }
         
-        render()
-
         reverse = !reverse
+        
+        render()
     }
     
     func render() {
@@ -243,7 +243,7 @@ class Auto2GLView: UIView {
         // TODO: use blitting instead of rendering textured triangles
         
         program.use()
-        program.submitTexture(textures[reverse ? 1 : 1], uniformName: "sampler")
+        program.submitTexture(textures[reverse ? 1 : 0], uniformName: "sampler")
 
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
         
