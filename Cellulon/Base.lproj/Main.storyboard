@@ -50,7 +50,7 @@
                     <view key="view" contentMode="scaleToFill" id="oPe-v8-KaU" customClass="MetalView" customModule="Cellulon" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Metal" image="metal_logo" id="jGv-TQ-wCn"/>
                 </viewController>
@@ -69,7 +69,7 @@
                     <view key="view" contentMode="scaleToFill" id="AMd-XU-Rvp" customClass="Auto2GLView" customModule="Cellulon" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="OpenGL" image="opengl_logo" id="jNH-hP-4NZ"/>
                 </viewController>
