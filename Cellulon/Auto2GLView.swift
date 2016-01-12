@@ -38,30 +38,11 @@ class Auto2GLView: UIView {
     var texCoordBuffer: Point2Buffer!
     var texFramebuffer: Framebuffer!
     
+    var scale: CGFloat!
     var reverse = false
     var first = true
     
     var displayLink: CADisplayLink!
-    
-    func makePoints() -> Point2Buffer {
-        let elements = [
-            Point2(tuple: (-1.0, -1.0)),
-            Point2(tuple: ( 1.0, -1.0)),
-            Point2(tuple: ( 1.0,  1.0)),
-            Point2(tuple: (-1.0,  1.0))
-        ]
-        return Point2Buffer(elements: elements)
-    }
-    
-    func makeTexCoords() -> TexCoordBuffer {
-        let elements = [
-            TexCoord(tuple: (0.0, 0.0)),
-            TexCoord(tuple: (1.0, 0.0)),
-            TexCoord(tuple: (1.0, 1.0)),
-            TexCoord(tuple: (0.0, 1.0)),
-        ]
-        return TexCoordBuffer(elements: elements)
-    }
     
     var glLayer: CAEAGLLayer {
         return layer as! CAEAGLLayer
@@ -75,17 +56,42 @@ class Auto2GLView: UIView {
         return CAEAGLLayer.self
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        srandom(UInt32(time(nil)))
+        prepareGestureRecognizers()
+    }
+    
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
+        
+        if nil == context {
+            scale = calculateViewportScale()
+            prepareGL()
+            prepareDisplayLink()
+        }
+        
+        displayLink.paused = superview == nil
+    }
+    
+    func prepareGestureRecognizers() {
+        let oneTap = UITapGestureRecognizer(target: self, action: "toggleAnimation:")
+        let twoTap = UITapGestureRecognizer(target: self, action: "saveImage:")
+        oneTap.numberOfTapsRequired = 1
+        twoTap.numberOfTapsRequired = 2
+        oneTap.requireGestureRecognizerToFail(twoTap)
+        self.addGestureRecognizer(oneTap)
+        self.addGestureRecognizer(twoTap)
+    }
 
-        srandom(UInt32(time(nil)))
-
-        prepareGL()
+    func prepareDisplayLink() {
         displayLink = CADisplayLink(target: self, selector: "update")
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
-        displayLink.paused = false
         displayLink.frameInterval = 8
+        displayLink.paused = true
     }
+    
+    // MARK: OpenGL prep
     
     func prepareGL() {
         // this must happen first
@@ -160,9 +166,29 @@ class Auto2GLView: UIView {
         program.submitBuffer(texCoordBuffer, name: "texCoord")
     }
     
-    func prepareRendererState() {
-        setCenteredViewport(4.0)
+    // MARK: data model prep
+    
+    func makePoints() -> Point2Buffer {
+        let elements = [
+            Point2(tuple: (-1.0, -1.0)),
+            Point2(tuple: ( 1.0, -1.0)),
+            Point2(tuple: ( 1.0,  1.0)),
+            Point2(tuple: (-1.0,  1.0))
+        ]
+        return Point2Buffer(elements: elements)
     }
+    
+    func makeTexCoords() -> TexCoordBuffer {
+        let elements = [
+            TexCoord(tuple: (0.0, 0.0)),
+            TexCoord(tuple: (1.0, 0.0)),
+            TexCoord(tuple: (1.0, 1.0)),
+            TexCoord(tuple: (0.0, 1.0)),
+        ]
+        return TexCoordBuffer(elements: elements)
+    }
+    
+    // MARK: Viewport conveniences
     
     func setCenteredViewport(scale: CGFloat) {
         let size = pixelSize
@@ -179,6 +205,17 @@ class Auto2GLView: UIView {
         print("existing viewport: \(viewport)")
     }
     
+    func calculateViewportScale() -> CGFloat {
+        var scale = 1
+        let size = pixelSize
+        let minLen = Int(min(size.width, size.height))
+        while scale * 256 < minLen {
+            ++scale
+        }
+        return CGFloat(scale)
+    }
+    
+    // MARK: Transformation Matrix Utilities
     // These matrices are only useful if the viewport of the presentation layer is the size of the screen
     func makeProportionalMatrix() -> GLKMatrix4 {
         let size = bounds.size
@@ -191,6 +228,12 @@ class Auto2GLView: UIView {
         let scaleX = 256.0 / Float(size.width)
         let scaleY = 256.0 / Float(size.height)
         return GLKMatrix4Scale(GLKMatrix4Identity, scaleX, scaleY, 1.0)
+    }
+    
+    // MARK: updates
+    
+    func updateRendererState() {
+        setCenteredViewport(CGFloat(scale))
     }
     
     func update() {
@@ -234,9 +277,9 @@ class Auto2GLView: UIView {
     
         framebuffer.bind()
 
-        prepareRendererState()
+        updateRendererState()
 
-        glClearColor(0.5, 0, 0, 1)
+        glClearColor(0.0, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT))
         
         // TODO: use blitting instead of rendering textured triangles
@@ -247,5 +290,36 @@ class Auto2GLView: UIView {
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, pointBuffer.count)
         
         self.context.presentRenderbuffer(Int(GL_FRAMEBUFFER))
+    }
+    
+    // MARK: actions
+    
+    func toggleAnimation(sender: UITapGestureRecognizer) {
+        displayLink.paused = !displayLink.paused
+    }
+    
+    func saveImage(sender: UITapGestureRecognizer) {
+        let wasPaused = displayLink.paused
+        displayLink.paused = true
+        
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0)
+        self.drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let url = NSURL(fileURLWithPath: path.first!).URLByAppendingPathComponent("Conway \(NSDate())")
+        
+        UIImagePNGRepresentation(image)?.writeToURL(url, atomically: true)
+        print("saved image to file \(url)")
+        
+//        texFramebuffer.bind(true)
+//        var pixels = malloc(256 * 256 * 4)
+//        glReadPixels(0, 0, 256, 256, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), pixels)
+//        UIImage(data: NSData()
+        
+        self.snapshotViewAfterScreenUpdates(true)
+        
+        displayLink.paused = wasPaused
     }
 }
