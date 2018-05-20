@@ -236,7 +236,7 @@ class Auto2GLView: UIView {
         setCenteredViewport(CGFloat(scale))
     }
     
-    func update() {
+    @objc func update() {
         
         let source = textures[ reverse ? 1 : 0 ]
         let dest = textures[ reverse ? 0 : 1 ]
@@ -294,11 +294,11 @@ class Auto2GLView: UIView {
     
     // MARK: actions
     
-    func toggleAnimation(_ sender: UITapGestureRecognizer) {
+    @objc func toggleAnimation(_ sender: UITapGestureRecognizer) {
         displayLink.isPaused = !displayLink.isPaused
     }
     
-    func saveImage(_ sender: UITapGestureRecognizer) {
+    @objc func saveImage(_ sender: UITapGestureRecognizer) {
         let wasPaused = displayLink.isPaused
         displayLink.isPaused = true
         

@@ -32,16 +32,16 @@ class BitmapTests: XCTestCase {
         let cgColor = ColorToCGColor(color).takeUnretainedValue()
         XCTAssertEqual(cgColor.numberOfComponents, 4, "color had wrong number of components")
         
-        let comps = CGColorGetComponents(cgColor)
+        let comps = cgColor.components!
         let actual = [ comps[0], comps[1], comps[2], comps[3] ]
         let expected: [CGFloat] = [ 0.5, 0.5, 0.5, 1.0 ]
         XCTAssertEqual(actual, expected, "color had wrong components")
     }
 
     func testBitmapGetColor() {
-        let bitmap = Bitmap(size: CGSize(width: 128, height: 128), CGColor: UIColor.whiteColor().CGColor)
+        let bitmap = Bitmap(size: CGSize(width: 128, height: 128), cgColor: UIColor.white.cgColor)
         let whiteColor = Color(c: Components(r: 255, g: 255, b: 255, a: 255))
-        XCTAssertEqual(bitmap.colorAtPoint(CGPoint(x: 127, y: 127)).v, whiteColor.v)
+        XCTAssertEqual(bitmap.color(at: CGPoint(x: 127, y: 127)).v, whiteColor.v)
     }
     
     func testBitmapGetImage() {
@@ -77,7 +77,7 @@ public func saveImageData(_ data: Data, withName name: String, type: String) {
 extension Bitmap {
     static func sampleBitmap() -> Bitmap {
     
-        let bitmap = Bitmap(size: CGSizeMake(128, 128), CGColor: UIColor.blackColor().CGColor)
+        let bitmap = Bitmap(size: CGSize (width: 128, height: 128), cgColor: UIColor.black.cgColor)
         let borderColor = UIColor.red.cgColor
         let diagonalColor = UIColor.blue.cgColor
         let checkColor = UIColor.white.cgColor
@@ -85,13 +85,13 @@ extension Bitmap {
         for i in 0 ..< 127 {
             for j in 0 ..< 127 {
                 if i == 0 || i == 127 || j == 0 || j == 127 {
-                    bitmap.setCGColor(borderColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                    bitmap.setCGColor(borderColor, at: CGPoint(CGFloat(i), CGFloat(j)))
                 }
                 else if i == j || i + j == 127 {
-                    bitmap.setCGColor(diagonalColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                    bitmap.setCGColor(diagonalColor, at: CGPoint(CGFloat(i), CGFloat(j)))
                 }
                 else if (i+j) % 2 == 0 {
-                    bitmap.setCGColor(checkColor, atPoint: CGPointMake(CGFloat(i), CGFloat(j)))
+                    bitmap.setCGColor(checkColor, at: CGPoint(CGFloat(i), CGFloat(j)))
                 }
             }
         }

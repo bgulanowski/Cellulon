@@ -50,7 +50,7 @@ class Automaton2View: UIImageView {
         displayLink.isPaused = true
     }
     
-    func update() {
+    @objc func update() {
         if step == period {
             self.image = imageProvider?.image
             step = 0

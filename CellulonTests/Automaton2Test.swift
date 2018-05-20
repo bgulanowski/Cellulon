@@ -27,7 +27,7 @@ class Automaton2Test: XCTestCase {
         automaton.populate()
         let image = automaton.bitmap.image
         XCTAssertNotNil( image )
-        XCTAssertTrue((image.size).equalTo(CGSize(width: 32, height: 32)))
+        XCTAssertTrue((image!.size).equalTo(CGSize(width: 32, height: 32)))
     }
     
     func testUpdate() {
@@ -42,7 +42,7 @@ class Automaton2Test: XCTestCase {
         
         for i in 0 ..< 4 {
             let image = automaton.bitmap.image
-            if let actual = UIImagePNGRepresentation(image) {
+            if let actual = UIImagePNGRepresentation(image!) {
                 let imageName = "automaton2TestImage_\(i)", filetype = "png"
                 if let expected = loadDataForImageNamed(imageName, type: filetype) {
                     XCTAssertEqual(actual, expected)

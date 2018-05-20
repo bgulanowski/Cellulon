@@ -96,7 +96,7 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: Actions
-    func showSettings(_ sender: UIBarButtonItem) {
+    @objc func showSettings(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: settingsSegueID, sender: sender)
     }
     

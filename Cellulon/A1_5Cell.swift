@@ -23,7 +23,7 @@ class A1_5Cell: UICollectionViewCell {
     
     func makeImage() {
         let automaton = Automaton1_5(rule: self.rule, w: dim, h: dim)
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async { () -> Void in
+        DispatchQueue.global(qos: .userInteractive).async { () -> Void in
             automaton[GridPoint(x: automaton.w/2, y: 0)] = true
             automaton.complete()
             let image = automaton.bitmap.image
