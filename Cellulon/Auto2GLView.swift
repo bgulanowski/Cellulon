@@ -49,10 +49,10 @@ class Auto2GLView: UIView {
     }
     
     var pixelSize: CGSize {
-        return bounds.size * UIScreen.mainScreen().scale
+        return bounds.size * UIScreen.main.scale
     }
     
-    override class func layerClass() -> AnyClass {
+    override class var layerClass : AnyClass {
         return CAEAGLLayer.self
     }
     
@@ -71,24 +71,24 @@ class Auto2GLView: UIView {
             prepareDisplayLink()
         }
         
-        displayLink.paused = superview == nil
+        displayLink.isPaused = superview == nil
     }
     
     func prepareGestureRecognizers() {
-        let oneTap = UITapGestureRecognizer(target: self, action: "toggleAnimation:")
-        let twoTap = UITapGestureRecognizer(target: self, action: "saveImage:")
+        let oneTap = UITapGestureRecognizer(target: self, action: #selector(Auto2GLView.toggleAnimation(_:)))
+        let twoTap = UITapGestureRecognizer(target: self, action: #selector(Auto2GLView.saveImage(_:)))
         oneTap.numberOfTapsRequired = 1
         twoTap.numberOfTapsRequired = 2
-        oneTap.requireGestureRecognizerToFail(twoTap)
+        oneTap.require(toFail: twoTap)
         self.addGestureRecognizer(oneTap)
         self.addGestureRecognizer(twoTap)
     }
 
     func prepareDisplayLink() {
-        displayLink = CADisplayLink(target: self, selector: "update")
-        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        displayLink = CADisplayLink(target: self, selector: #selector(Auto2GLView.update))
+        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
         displayLink.frameInterval = 8
-        displayLink.paused = true
+        displayLink.isPaused = true
     }
     
     // MARK: OpenGL prep
@@ -106,12 +106,12 @@ class Auto2GLView: UIView {
     }
     
     func prepareContext() {
-        context = EAGLContext(API: .OpenGLES3)
-        EAGLContext.setCurrentContext(context)
+        context = EAGLContext(api: .openGLES3)
+        EAGLContext.setCurrent(context)
     }
     
     func prepareDrawable() {
-        glLayer.contentsScale = UIScreen.mainScreen().scale
+        glLayer.contentsScale = UIScreen.main.scale
         let colorBuffer = Renderbuffer()
         context.renderbufferStorage(colorBuffer, fromDrawable: glLayer)
         framebuffer = Framebuffer()
@@ -154,8 +154,8 @@ class Auto2GLView: UIView {
         textureProg = Program.newProgramWithName("Conway")
         textureProg.use()
         textureProg.submitUniform(GLint(1), uniformName: "initRandom")
-        let seed1 = GLfloat(random())/GLfloat(INT_MAX)
-        let seed2 = GLfloat(random())/GLfloat(INT_MAX)
+        let seed1 = GLfloat(arc4random())/GLfloat(INT_MAX)
+        let seed2 = GLfloat(arc4random())/GLfloat(INT_MAX)
         glUniform2f(textureProg.getLocationOfUniform("seed"), seed1, seed2)
     }
     
@@ -190,7 +190,7 @@ class Auto2GLView: UIView {
     
     // MARK: Viewport conveniences
     
-    func setCenteredViewport(scale: CGFloat) {
+    func setCenteredViewport(_ scale: CGFloat) {
         let size = pixelSize
         let x = GLint((size.width - 256.0 * scale) / 2.0)
         let y = GLint((size.height - 256.0 * scale) / 2.0)
@@ -199,7 +199,7 @@ class Auto2GLView: UIView {
     
     func logCurrentViewport() {
         var viewport: [GLint] = [0, 0, 0, 0]
-        viewport.withUnsafeMutableBufferPointer({ (inout p: UnsafeMutableBufferPointer<Int32>) in
+        viewport.withUnsafeMutableBufferPointer({ (p: inout UnsafeMutableBufferPointer<Int32>) in
             glGetIntegerv(GLenum(GL_VIEWPORT), p.baseAddress)
         })
         print("existing viewport: \(viewport)")
@@ -210,7 +210,7 @@ class Auto2GLView: UIView {
         let size = pixelSize
         let minLen = Int(min(size.width, size.height))
         while scale * 256 < minLen {
-            ++scale
+            scale += 1
         }
         return CGFloat(scale)
     }
@@ -294,23 +294,23 @@ class Auto2GLView: UIView {
     
     // MARK: actions
     
-    func toggleAnimation(sender: UITapGestureRecognizer) {
-        displayLink.paused = !displayLink.paused
+    func toggleAnimation(_ sender: UITapGestureRecognizer) {
+        displayLink.isPaused = !displayLink.isPaused
     }
     
-    func saveImage(sender: UITapGestureRecognizer) {
-        let wasPaused = displayLink.paused
-        displayLink.paused = true
+    func saveImage(_ sender: UITapGestureRecognizer) {
+        let wasPaused = displayLink.isPaused
+        displayLink.isPaused = true
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0)
-        self.drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let url = NSURL(fileURLWithPath: path.first!).URLByAppendingPathComponent("Conway \(NSDate())")
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        let url = URL(fileURLWithPath: path.first!).appendingPathComponent("Conway \(Date())")
         
-        UIImagePNGRepresentation(image)?.writeToURL(url, atomically: true)
+        try? UIImagePNGRepresentation(image!)?.write(to: url, options: [.atomic])
         print("saved image to file \(url)")
         
 //        texFramebuffer.bind(true)
@@ -318,8 +318,8 @@ class Auto2GLView: UIView {
 //        glReadPixels(0, 0, 256, 256, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), pixels)
 //        UIImage(data: NSData()
         
-        self.snapshotViewAfterScreenUpdates(true)
+        self.snapshotView(afterScreenUpdates: true)
         
-        displayLink.paused = wasPaused
+        displayLink.isPaused = wasPaused
     }
 }

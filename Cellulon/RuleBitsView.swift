@@ -54,7 +54,7 @@ class RuleBitsView: UIView, BitViewDelegate {
     
     // MARK: BitViewDelegate
     
-    func bitViewChanged(bitView: BitView) {
+    func bitViewChanged(_ bitView: BitView) {
         updateNumberText()
         ruleKeeper.rule = rule
     }

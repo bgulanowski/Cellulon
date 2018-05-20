@@ -15,7 +15,7 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
             if ruleBitsView != nil {
                 ruleBitsView.rule = rule
             }
-            tableView?.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+            tableView?.reloadSections(IndexSet(integer: 0), with: .none)
         }
     }
     
@@ -55,29 +55,29 @@ class Settings: UIViewController, UINavigationBarDelegate, UITableViewDelegate, 
     
     func loadRuleBits() {
         let nib = UINib(nibName: "RuleBitsView", bundle: nil)
-        ruleBitsView = nib.instantiateWithOwner(nil, options: nil).first as! RuleBitsView
+        ruleBitsView = nib.instantiate(withOwner: nil, options: nil).first as! RuleBitsView
         ruleBitsView.ruleKeeper = self
         ruleBitsView.rule = rule
     }
     
     // MARK: UINavigationBarDelegate
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
     
     // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 66 : tableView.sectionHeaderHeight
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return section == 0 ? ruleBitsView : nil
     }
     
     // MARK: Actions
     
     @IBAction func dismiss() {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -34,11 +34,11 @@ public extension CGSize {
 /*
 This is an abstract class. It has no actual storage. See BasicGrid below.
 */
-public class Grid<V : ColorConvertible> {
+open class Grid<V : ColorConvertible> {
     
-    public let def: V
-    public let ord: Int
-    public let dim: Int
+    open let def: V
+    open let ord: Int
+    open let dim: Int
     
     public init(def: V, ord: Int) {
         self.def = def
@@ -46,43 +46,43 @@ public class Grid<V : ColorConvertible> {
         self.dim = pow2(ord)
     }
     
-    public var minPoint: GridPoint {
+    open var minPoint: GridPoint {
         return GridPoint(n: 0)
     }
     
-    public var maxPoint: GridPoint {
+    open var maxPoint: GridPoint {
         return GridPoint(n: dim - 1)
     }
     
-    public var width: Int {
+    open var width: Int {
         return dim
     }
     
-    public var height: Int {
+    open var height: Int {
         return dim
     }
     
-    public var size: GridSize {
+    open var size: GridSize {
         return GridSize(w: dim, h: dim)
     }
     
-    public var count: Int {
+    open var count: Int {
         return areaForOrder(ord)
     }
     
-    public func valueAtPoint(point: GridPoint) -> V {
+    open func valueAtPoint(_ point: GridPoint) -> V {
         return def
     }
     
-    public func setValue(value: V, atPoint point: GridPoint) -> Void {
+    open func setValue(_ value: V, atPoint point: GridPoint) -> Void {
     }
 
-    public func indexForPoint(point: GridPoint) -> Int {
+    open func indexForPoint(_ point: GridPoint) -> Int {
         assert(point.x < dim && point.y < dim)
         return point.y * dim + point.x
     }
     
-    public func pointForIndex(index: Int) -> GridPoint {
+    open func pointForIndex(_ index: Int) -> GridPoint {
         assert(index < dim * dim)
         return GridPoint(x: index % dim, y: index / dim)
     }
@@ -99,7 +99,7 @@ public extension Grid {
     }
 }
 
-public class BasicGrid<V:ColorConvertible> : Grid<V> {
+open class BasicGrid<V:ColorConvertible> : Grid<V> {
     
     var values: [V]
     
@@ -109,15 +109,15 @@ public class BasicGrid<V:ColorConvertible> : Grid<V> {
     }
 
     public override init(def: V, ord: Int) {
-        self.values = [V](count: areaForOrder(ord), repeatedValue: def)
+        self.values = [V](repeating: def, count: areaForOrder(ord))
         super.init(def: def, ord: ord)
     }
 
-    final override public func valueAtPoint(point: GridPoint) -> V {
+    final override public func valueAtPoint(_ point: GridPoint) -> V {
         return values[indexForPoint(point)]
     }
     
-    final override public func setValue(value: V, atPoint point: GridPoint) {
+    final override public func setValue(_ value: V, atPoint point: GridPoint) {
         values[indexForPoint(point)] = value
     }
 }

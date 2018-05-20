@@ -56,7 +56,7 @@ class BranchTests: XCTestCase {
     
     func testBranchSet() {
         let branch = Branch(def: 0, ord: 7, lev: 2, idx: 0, root: nil)
-        let expectation = self.expectationWithDescription("hi")
+        let expectation = self.expectation(description: "hi")
         branch.onBuild = { _, _ in
             expectation.fulfill()
         }
@@ -64,6 +64,6 @@ class BranchTests: XCTestCase {
         let p = GridPoint(x: 127, y: 127)
         branch.setValue(1, atPoint: p)
         XCTAssertEqual(branch.valueAtPoint(p), 1)
-        self.waitForExpectationsWithTimeout(0.5, handler: nil)
+        self.waitForExpectations(timeout: 0.5, handler: nil)
     }
 }

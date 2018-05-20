@@ -420,9 +420,11 @@
 					8434FFE61C0B9B0A00B1029D = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = UA9654EX3X;
+						LastSwiftMigration = 0830;
 					};
 					8434FFFA1C0B9B0A00B1029D = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 8434FFE61C0B9B0A00B1029D;
 					};
 				};
@@ -687,6 +689,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cellulon/Cellulon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -701,6 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.Cellulon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cellulon/Cellulon-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -712,6 +716,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.CellulonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cellulon.app/Cellulon";
 			};
 			name = Debug;
@@ -724,6 +729,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichen-labs.CellulonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cellulon.app/Cellulon";
 			};
 			name = Release;

@@ -25,25 +25,25 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
         updateCellSize()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == detailSegueID {
-            let detail = segue.destinationViewController as! Automaton1_5VC
+            let detail = segue.destination as! Automaton1_5VC
             detail.rule = ruleToPresent
         }
     }
     
     // MARK: UICollectionViewDataSource
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 256
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! A1_5Cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! A1_5Cell
         cell.dim = cellDim
         cell.rule = Rule(indexPath.row)
         return cell
@@ -51,14 +51,14 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     
     // MARK: UICollectionViewDelegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         ruleToPresent = Rule(indexPath.row)
-        performSegueWithIdentifier(detailSegueID, sender: self)
+        performSegue(withIdentifier: detailSegueID, sender: self)
     }
     
     // MARK: UINavigationControllerDelegate
     
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         navigationController.setNavigationBarHidden(viewController === self, animated: true)
     }
     
@@ -67,7 +67,7 @@ class Automaton1_5CollectionVC: UICollectionViewController, UINavigationControll
     func updateCellSize() {
         
         let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         let columns: CGFloat = 3.0
         
         var itemWidth = layout.itemSize.width

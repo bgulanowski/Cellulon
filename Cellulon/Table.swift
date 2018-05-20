@@ -14,23 +14,23 @@ class Table: NSObject, UITableViewDataSource {
     
     // MARK: UITableViewDataSource
     
-    @objc func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    @objc func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].numberOfRows
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return sections[indexPath.section].tableView(tableView, cellForRowAtIndex: indexPath.row)
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].headerTitle
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return sections[section].footerTitle
     }
 }
@@ -39,9 +39,9 @@ protocol TableSection {
     var numberOfRows: Int { get }
     var headerTitle: String { get }
     var footerTitle: String { get }
-    func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell
 }
 
 protocol TableRow {
-    func cellForTableView(tableView: UITableView) -> UITableViewCell
+    func cellForTableView(_ tableView: UITableView) -> UITableViewCell
 }

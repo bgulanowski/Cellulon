@@ -27,7 +27,7 @@ class Automaton2Test: XCTestCase {
         automaton.populate()
         let image = automaton.bitmap.image
         XCTAssertNotNil( image )
-        XCTAssertTrue(CGSizeEqualToSize(image.size, CGSize(width: 32, height: 32)))
+        XCTAssertTrue((image.size).equalTo(CGSize(width: 32, height: 32)))
     }
     
     func testUpdate() {
@@ -60,7 +60,7 @@ extension Automaton2 {
     
     // each design includes a 1-point border
     
-    func makeBlockWithSize(size: GridSize, offset: GridPoint) {
+    func makeBlockWithSize(_ size: GridSize, offset: GridPoint) {
         for i in 1 + offset.x ..< 1 + size.x + offset.x {
             for j in 1 + offset.y ..< 1 + size.y + offset.y {
                 self[GridPoint(x: i, y: j)] = true
@@ -68,12 +68,12 @@ extension Automaton2 {
         }
     }
     
-    func makeBeaconWithOffset(offset: GridPoint) {
+    func makeBeaconWithOffset(_ offset: GridPoint) {
         self.makeBlockWithSize(GridSize(w: 2, h: 2), offset: offset)
         self.makeBlockWithSize(GridSize(w: 2, h: 2), offset: offset + GridPoint(x: 2, y: 2))
     }
     
-    func makeGliderWithOffset(offset: GridPoint) {
+    func makeGliderWithOffset(_ offset: GridPoint) {
         self[GridPoint(x: 1, y: 1) + offset] = true
         self[GridPoint(x: 2, y: 1) + offset] = true
         self[GridPoint(x: 3, y: 1) + offset] = true
@@ -81,7 +81,7 @@ extension Automaton2 {
         self[GridPoint(x: 2, y: 3) + offset] = true
     }
     
-    func makePulsarWithOffset(offset: GridPoint) {
+    func makePulsarWithOffset(_ offset: GridPoint) {
         
         // Quadrant 1
         makeHorizontalLine(GridPoint(x: 3, y: 1) + offset, length: 3)
@@ -115,13 +115,13 @@ extension Automaton2 {
 //        
 //    }
     
-    func makeVerticalLine(start: GridPoint, length: Int) {
+    func makeVerticalLine(_ start: GridPoint, length: Int) {
         for i in 0 ..< length {
             self[start + GridPoint(x: 0, y: i)] = true
         }
     }
     
-    func makeHorizontalLine(start: GridPoint, length: Int) {
+    func makeHorizontalLine(_ start: GridPoint, length: Int) {
         for i in 0 ..< length {
         self[start + GridPoint(x: i, y: 0)] = true
         }

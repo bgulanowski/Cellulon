@@ -35,19 +35,19 @@ class Automaton2View: UIImageView {
     
     func setup() {
         self.layer.magnificationFilter = kCAFilterNearest
-        displayLink = CADisplayLink(target: self, selector: "update")
-        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
-        displayLink.paused = true
+        displayLink = CADisplayLink(target: self, selector: #selector(Automaton2View.update))
+        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        displayLink.isPaused = true
     }
     
     override func startAnimating() {
         if imageProvider != nil {
-            displayLink.paused = false
+            displayLink.isPaused = false
         }
     }
     
     override func stopAnimating() {
-        displayLink.paused = true
+        displayLink.isPaused = true
     }
     
     func update() {
@@ -56,7 +56,7 @@ class Automaton2View: UIImageView {
             step = 0
         }
         else {
-            ++step
+            step += 1
         }
     }
 }

@@ -12,24 +12,24 @@ class Collection: NSObject, UICollectionViewDataSource {
     
     var sections = [CollectionSection]()
     
-    @objc func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    @objc func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
     
-    @objc func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].numberOfItems
     }
     
-    @objc func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    @objc func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return sections[indexPath.section].cellForCollectionView(collectionView, index: indexPath.row)
     }
 }
 
 protocol CollectionSection {
     var numberOfItems: Int { get }
-    func cellForCollectionView(collectionView: UICollectionView, index: Int) -> UICollectionViewCell
+    func cellForCollectionView(_ collectionView: UICollectionView, index: Int) -> UICollectionViewCell
 }
 
 protocol CollectionItem {
-    func cellForCollectionView(collectionView: UICollectionView) -> UICollectionViewCell
+    func cellForCollectionView(_ collectionView: UICollectionView) -> UICollectionViewCell
 }

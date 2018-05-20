@@ -23,11 +23,11 @@ public extension Grid {
 
 extension Bitmap {
     public convenience init<V:ColorConvertible>(grid: Grid<V>) {
-        self.init(size: grid.cgSize, color: ColorFromCGColor(UIColor.whiteColor().CGColor))
+        self.init(size: grid.cgSize, color: ColorFromCGColor(UIColor.white.cgColor))
         for i in 0 ..< grid.width {
             for j in 0 ..< grid.height {
                 let point = GridPoint(x: i, y: j)
-                setColor(grid.valueAtPoint(point).color, atPoint: CGPoint(x: i, y: j))
+                setColor(grid.valueAtPoint(point).color, at: CGPoint(x: i, y: j))
             }
         }
     }

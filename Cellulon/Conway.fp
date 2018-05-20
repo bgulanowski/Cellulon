@@ -52,8 +52,8 @@ const vec4 dead = vec4(vec3(0.0), 1.0);
 
 void main() {
     if (initRandom) {
-        float random = rand(point + seed);
-        vFragColor = (random > 0.5) ? alive : dead;
+        float arc4random = rand(point + seed);
+        vFragColor = (arc4random > 0.5) ? alive : dead;
     }
     else {
         int count = count(point);

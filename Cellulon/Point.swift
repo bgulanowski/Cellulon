@@ -80,14 +80,14 @@ public func %(lhs: PointI, rhs: Int) -> PointI {
     return PointI(x: lhs.x % rhs, y: lhs.y % rhs)
 }
 
-public func abs(lhs: PointI) -> PointI {
+public func abs(_ lhs: PointI) -> PointI {
     return PointI(x: abs(lhs.x), y: abs(lhs.y))
 }
 
-public func *=(inout lhs: PointI, rhs: Int) {
+public func *=(lhs: inout PointI, rhs: Int) {
     lhs = lhs * rhs
 }
 
-public func /=(inout lhs: PointI, rhs: Int) {
+public func /=(lhs: inout PointI, rhs: Int) {
     lhs = lhs / rhs
 }

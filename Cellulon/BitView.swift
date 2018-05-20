@@ -8,10 +8,10 @@
 
 import UIKit
 
-let borderColor = UIColor.grayColor()
+let borderColor = UIColor.gray
 
 protocol BitViewDelegate {
-    func bitViewChanged(bitView: BitView)
+    func bitViewChanged(_ bitView: BitView)
 }
 
 class BitView : UIView {
@@ -19,12 +19,12 @@ class BitView : UIView {
     var delegate: BitViewDelegate? {
         didSet {
             if delegate != nil {
-                self.userInteractionEnabled = true
-                tapRecognizer = UITapGestureRecognizer(target: self, action: "didTap:")
+                self.isUserInteractionEnabled = true
+                tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BitView.didTap(_:)))
                 self.addGestureRecognizer(tapRecognizer!)
             }
             else if delegate == nil {
-                self.userInteractionEnabled = false
+                self.isUserInteractionEnabled = false
                 if tapRecognizer != nil {
                     self.removeGestureRecognizer(tapRecognizer!)
                     tapRecognizer = nil
@@ -46,7 +46,7 @@ class BitView : UIView {
     }
     
     func configureBit() {
-        self.layer.borderColor = borderColor.CGColor
+        self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = 1.0
     }
     
@@ -70,10 +70,10 @@ class BitView : UIView {
     }
     
     func disable() {
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
     }
     
-    @IBAction func didTap(sender: UITapGestureRecognizer) {
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
         enabled = !enabled
         delegate?.bitViewChanged(self)
     }

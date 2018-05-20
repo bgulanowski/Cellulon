@@ -12,8 +12,8 @@ import Cellulon
 class BitmapTests: XCTestCase {
 
     func testColorFromWhite() {
-        let uiColor = UIColor.whiteColor()
-        let cgColor = uiColor.CGColor
+        let uiColor = UIColor.white
+        let cgColor = uiColor.cgColor
         let actual = ColorFromCGColor(cgColor)
         XCTAssertEqual(actual.v, UINT32_MAX, "color was not opaque pure white")
     }
@@ -21,7 +21,7 @@ class BitmapTests: XCTestCase {
     func testColorFromMustardYellow() {
         let comps: [CGFloat] = [ 0.5, 0.5, 0, 1.0 ]
         let space = CGColorSpaceCreateDeviceRGB()
-        let cgColor = CGColorCreate(space, comps)!
+        let cgColor = CGColor(colorSpace: space, components: comps)!
         let actual = ColorFromCGColor(cgColor)
         XCTAssertEqual(actual.v, NSSwapBigIntToHost(0x7F7F00FF), "color was not opaque mustard yellow")
     }
@@ -30,7 +30,7 @@ class BitmapTests: XCTestCase {
         
         let color = Color(c: Components(r: 127, g: 127, b: 127, a: 255))
         let cgColor = ColorToCGColor(color).takeUnretainedValue()
-        XCTAssertEqual(CGColorGetNumberOfComponents(cgColor), 4, "color had wrong number of components")
+        XCTAssertEqual(cgColor.numberOfComponents, 4, "color had wrong number of components")
         
         let comps = CGColorGetComponents(cgColor)
         let actual = [ comps[0], comps[1], comps[2], comps[3] ]
@@ -39,9 +39,9 @@ class BitmapTests: XCTestCase {
     }
 
     func testBitmapGetColor() {
-        let bitmap = Bitmap(size: CGSizeMake(128, 128), CGColor: UIColor.whiteColor().CGColor)
+        let bitmap = Bitmap(size: CGSize(width: 128, height: 128), CGColor: UIColor.whiteColor().CGColor)
         let whiteColor = Color(c: Components(r: 255, g: 255, b: 255, a: 255))
-        XCTAssertEqual(bitmap.colorAtPoint(CGPointMake(127, 127)).v, whiteColor.v)
+        XCTAssertEqual(bitmap.colorAtPoint(CGPoint(x: 127, y: 127)).v, whiteColor.v)
     }
     
     func testBitmapGetImage() {
@@ -58,19 +58,19 @@ class BitmapTests: XCTestCase {
     }
 }
 
-public func loadDataForImageNamed(name: String, type: String) -> NSData? {
-    let bundle = NSBundle(forClass: BitmapTests.self)
-    if let url = bundle.URLForResource(name, withExtension: type) {
-        return NSData(contentsOfURL: url)
+public func loadDataForImageNamed(_ name: String, type: String) -> Data? {
+    let bundle = Bundle(for: BitmapTests.self)
+    if let url = bundle.url(forResource: name, withExtension: type) {
+        return (try? Data(contentsOf: url))
     }
     else {
         return nil
     }
 }
 
-public func saveImageData(data: NSData, withName name: String, type: String) {
-    let url = NSURL(fileURLWithPath: NSString(string: "~/Documents/\(name).\(type)").stringByExpandingTildeInPath)
-    data.writeToURL(url, atomically: true)
+public func saveImageData(_ data: Data, withName name: String, type: String) {
+    let url = URL(fileURLWithPath: NSString(string: "~/Documents/\(name).\(type)").expandingTildeInPath)
+    try? data.write(to: url, options: [.atomic])
     print("test image file has been saved to \(url); copy into bundle")
 }
 
@@ -78,9 +78,9 @@ extension Bitmap {
     static func sampleBitmap() -> Bitmap {
     
         let bitmap = Bitmap(size: CGSizeMake(128, 128), CGColor: UIColor.blackColor().CGColor)
-        let borderColor = UIColor.redColor().CGColor
-        let diagonalColor = UIColor.blueColor().CGColor
-        let checkColor = UIColor.whiteColor().CGColor
+        let borderColor = UIColor.red.cgColor
+        let diagonalColor = UIColor.blue.cgColor
+        let checkColor = UIColor.white.cgColor
         
         for i in 0 ..< 127 {
             for j in 0 ..< 127 {

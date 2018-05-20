@@ -15,7 +15,7 @@ class Automaton2VC: UIViewController, ImageProvider {
     
     @IBOutlet var automatonView: Automaton2View!
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if firstAppearance {
             createAutomaton()
@@ -24,7 +24,7 @@ class Automaton2VC: UIViewController, ImageProvider {
         automatonView.startAnimating()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         automatonView.stopAnimating()
     }
     

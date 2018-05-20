@@ -8,29 +8,29 @@
 
 import Foundation
 
-public class TreeSupport {
-    static var serialQueue = dispatch_queue_create("Tree", DISPATCH_QUEUE_SERIAL)
+open class TreeSupport {
+    static var serialQueue = DispatchQueue(label: "Tree", attributes: [])
 }
 
-public class Tree<V:ColorConvertible> : Branch<V> {
+open class Tree<V:ColorConvertible> : Branch<V> {
     
-    override public func valueAtPoint(point: GridPoint) -> V {
+    override open func valueAtPoint(_ point: GridPoint) -> V {
         return super.valueAtPoint(transformedPoint(point))
     }
     
-    override public func setValue(value: V, atPoint point: GridPoint) {
+    override open func setValue(_ value: V, atPoint point: GridPoint) {
         super.setValue(value, atPoint: transformedPoint(point))
     }
     
-    override func sectorForPoint(point: GridPoint) -> Sector {
+    override func sectorForPoint(_ point: GridPoint) -> Sector {
         return Sector.sectorForPoint(point)!
     }
     
-    func transformedPoint(point: GridPoint) -> GridPoint {
+    func transformedPoint(_ point: GridPoint) -> GridPoint {
         return abs(point)
     }
     
-    func expandSector(sector: Sector) -> Void {
+    func expandSector(_ sector: Sector) -> Void {
         
     }
     

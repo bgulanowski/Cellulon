@@ -14,7 +14,7 @@ public enum Sector : Int {
     case s2 = 2
     case s3 = 3
 
-    static func sectorForPoint(point: GridPoint, dim: Int) -> Sector? {
+    static func sectorForPoint(_ point: GridPoint, dim: Int) -> Sector? {
         if dim == 0 || (point.x < dim * 2 && point.y < dim * 2) {
             return self.init(rawValue: (point.x > dim ? 0 : 1) + (point.y > dim ? 0 : 2))!
         }
@@ -23,12 +23,12 @@ public enum Sector : Int {
         }
     }
     
-    static func sectorForPoint(point: GridPoint) -> Sector? {
+    static func sectorForPoint(_ point: GridPoint) -> Sector? {
         return Sector.sectorForPoint(point, dim: 0)
     }
 }
 
-public class Branch<V:ColorConvertible> : Grid<V> {
+open class Branch<V:ColorConvertible> : Grid<V> {
 
     public typealias Address = GridPoint
 
@@ -39,7 +39,7 @@ public class Branch<V:ColorConvertible> : Grid<V> {
         return [Grid<V>](_limbs.values)
     }
     
-    override public func valueAtPoint(point: GridPoint) -> V {
+    override open func valueAtPoint(_ point: GridPoint) -> V {
         if let limb = limbForPoint(point) {
             return limb.valueAtPoint(offsetPointForLimbs(point))
         }
@@ -48,13 +48,13 @@ public class Branch<V:ColorConvertible> : Grid<V> {
         }
     }
     
-    override public func setValue(value: V, atPoint point: GridPoint) {
+    override open func setValue(_ value: V, atPoint point: GridPoint) {
         if let limb = limbForPoint(point) {
             limb.setValue(value, atPoint: offsetPointForLimbs(point))
         }
     }
     
-    override public func indexForPoint(point: GridPoint) -> Int {
+    override open func indexForPoint(_ point: GridPoint) -> Int {
         return indexOffsetForPoint(point) + super.indexForPoint(offsetPointForLimbs(point))
     }
     
@@ -68,7 +68,7 @@ public class Branch<V:ColorConvertible> : Grid<V> {
     var address: Address {
         return Branch.addressForLevel(lev, index: idx)
     }
-    private var _limbs = [ Sector : Grid<V> ]()
+    fileprivate var _limbs = [ Sector : Grid<V> ]()
 
     required public init(def: V, ord: Int, lev: Int, idx: Int, root: Branch?) {
     
@@ -91,15 +91,15 @@ public class Branch<V:ColorConvertible> : Grid<V> {
     }
     
     let leafDim: Int
-    public var onBuild: (branch: Branch, sector: Sector) -> Void
+    open var onBuild: (_ branch: Branch, _ sector: Sector) -> Void
     
     // MARK: - index calculations
         
-    func indexOffsetForPoint(point: GridPoint) -> Int {
+    func indexOffsetForPoint(_ point: GridPoint) -> Int {
         return leafIndexForPoint(point) * leafDim * leafDim
     }
     
-    func leafIndexForPoint(point: GridPoint) -> Int {
+    func leafIndexForPoint(_ point: GridPoint) -> Int {
         
         var address = addressForPoint(point)
         let lev = Branch.levelForAddress(address) - 1
@@ -115,47 +115,47 @@ public class Branch<V:ColorConvertible> : Grid<V> {
         return total
     }
     
-    func limbIndexForSector(sector: Sector) -> Int {
+    func limbIndexForSector(_ sector: Sector) -> Int {
         return idx * 4 + sector.rawValue
     }
     
     // MARK: - point calculations
     
-    func offsetPointForLimbs(point: GridPoint) -> GridPoint {
+    func offsetPointForLimbs(_ point: GridPoint) -> GridPoint {
         return point - originForPoint(point)
     }
     
-    func originForPoint(point: GridPoint) -> GridPoint {
+    func originForPoint(_ point: GridPoint) -> GridPoint {
         return addressForPoint(point) * leafDim
     }
     
-    func limbAddressForSector(sector: Sector) -> Address {
+    func limbAddressForSector(_ sector: Sector) -> Address {
         return self.address * 2 + addressForSector(sector)
     }
     
-    func addressForSector(sector: Sector) -> Address {
+    func addressForSector(_ sector: Sector) -> Address {
         return Address(x: sector.rawValue & 1, y: sector.rawValue & 2)
     }
     
     // MARK: - address calculations
     
-    func addressForPoint(point: GridPoint) -> Address {
+    func addressForPoint(_ point: GridPoint) -> Address {
         return point / leafDim
     }
     
-    public static func levelForAddress(address: Address) -> Int {
+    open static func levelForAddress(_ address: Address) -> Int {
         let maxDim = address.max()
         return maxDim > 0 ? log2(maxDim) + 1 : 0
     }
     
-    public static func addressForLevel(level: Int, index: Int) -> Address {
+    open static func addressForLevel(_ level: Int, index: Int) -> Address {
         // FIXME: this is hard/expensive?
         return Address(n: 0)
     }
     
     // MARK: - descendent lookup
     
-    func leafForPoint(point: GridPoint) -> Grid<V>? {
+    func leafForPoint(_ point: GridPoint) -> Grid<V>? {
         var grid = limbForPoint(point)
         while grid != nil {
             // FIXME: type inspection
@@ -169,7 +169,7 @@ public class Branch<V:ColorConvertible> : Grid<V> {
         return grid
     }
 
-    func limbForPoint(point: GridPoint) -> Grid<V>? {
+    func limbForPoint(_ point: GridPoint) -> Grid<V>? {
         if let sector = sectorForPoint(point) {
             return limbForSector(sector)
         }
@@ -178,50 +178,50 @@ public class Branch<V:ColorConvertible> : Grid<V> {
         }
     }
     
-    func sectorForPoint(point: GridPoint) -> Sector? {
+    func sectorForPoint(_ point: GridPoint) -> Sector? {
         return Sector.sectorForPoint(point, dim: dim)
     }
     
     // MARK: - tree growth
     
-    func newLimbForPoint(point: GridPoint) -> Grid<V> {
+    func newLimbForPoint(_ point: GridPoint) -> Grid<V> {
         return lev > 1 ? newLimbWithIndex(limbIndexForSector(sectorForPoint(point)!)) : newLeafForPoint(point)
     }
     
-    func newLeafForPoint(point: GridPoint) -> Leaf<V> {
+    func newLeafForPoint(_ point: GridPoint) -> Leaf<V> {
         return self.newLeafWithIndex(leafIndexForPoint(point))
     }
     
-    func newLeafWithIndex(index: Int) -> Leaf<V> {
+    func newLeafWithIndex(_ index: Int) -> Leaf<V> {
         return Leaf<V>(index: index, def: def, ord: ord)
     }
     
-    func newLimbWithIndex(index: Int) -> Branch {
+    func newLimbWithIndex(_ index: Int) -> Branch {
         return Branch(def: def, ord: ord, lev: lev-1, idx: index, root: self)
     }
     
     // MARK: - sector calculations
     
-    func limbForSector(sector: Sector) -> Grid<V> {
+    func limbForSector(_ sector: Sector) -> Grid<V> {
         if let limb = _limbs[sector] {
             return limb
         }
         else {
             _limbs[sector] = newLimbForSector(sector)
-            onBuild(branch: self, sector: sector)
+            onBuild(self, sector)
             return _limbs[sector]!
         }
     }
     
-    func newLimbForSector(sector: Sector) -> Grid<V> {
+    func newLimbForSector(_ sector: Sector) -> Grid<V> {
         return lev > 1 ? newLimbWithIndex(indexForSector(sector)) : newLeafForSector(sector)
     }
     
-    func newLeafForSector(sector: Sector) -> Grid<V> {
+    func newLeafForSector(_ sector: Sector) -> Grid<V> {
         return newLeafWithIndex(indexForSector(sector))
     }
     
-    func indexForSector(sector: Sector) -> Int {
+    func indexForSector(_ sector: Sector) -> Int {
         return idx * 4 + sector.rawValue
     }
 

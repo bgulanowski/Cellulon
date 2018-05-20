@@ -12,19 +12,19 @@ typealias Rule = UInt8
 
 extension Rule {
     
-    func bit(index: Int) -> Bool {
+    func bit(_ index: Int) -> Bool {
         return (Int(self) & 1 << index) > 0
     }
     
-    mutating func updateBit(index: Int, value: Bool) {
+    mutating func updateBit(_ index: Int, value: Bool) {
         if value { setBit(index) } else { clearBit(index) }
     }
     
-    mutating func setBit(index: Int) {
+    mutating func setBit(_ index: Int) {
         self |= UInt8(1 << index)
     }
     
-    mutating func clearBit(index: Int) {
+    mutating func clearBit(_ index: Int) {
         self &= ~(UInt8(1 << index))
     }
 }
@@ -46,7 +46,7 @@ class RuleBitsSection: TableSection {
     var footerTitle: String {
         return ""
     }
-    func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
         return UITableViewCell()
     }
 }
@@ -82,8 +82,8 @@ class PatternsSection: TableSection, RuleKeeper {
         return ""
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Pattern") as! PatternCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndex index: Int) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Pattern") as! PatternCell
         cell.ruleKeeper = self
         cell.number = index
         return cell

@@ -22,16 +22,16 @@ class PatternCell: UITableViewCell {
     var number: Int = 0 {
         didSet {
             label.text = "\(number)"
-            enabledSwitch.on = ruleKeeper.rule.bit(number)
+            enabledSwitch.isOn = ruleKeeper.rule.bit(number)
             bit0View.enabled = (number & 1 == 1)
             bit1View.enabled = (number & 2 == 2)
             bit2View.enabled = (number & 4 == 4)
         }
     }
     
-    @IBAction func updateEnabled(sender: UISwitch) {
+    @IBAction func updateEnabled(_ sender: UISwitch) {
         var rule = ruleKeeper.rule
-        if sender.on {
+        if sender.isOn {
             rule.setBit(number)
         }
         else {

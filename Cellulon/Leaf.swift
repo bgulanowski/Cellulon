@@ -8,9 +8,9 @@
 
 import Foundation
 
-public class Leaf<V:ColorConvertible> : BasicGrid<V> {
+open class Leaf<V:ColorConvertible> : BasicGrid<V> {
     
-    public var index: Int
+    open var index: Int
     
     public init(index: Int, def: V, ord: Int) {
         self.index = index
@@ -18,12 +18,12 @@ public class Leaf<V:ColorConvertible> : BasicGrid<V> {
         super.init(def: def, ord: ord, values: values)
     }
     
-    static func loadValues(index: Int, def: V, count: Int) -> [V] {
+    static func loadValues(_ index: Int, def: V, count: Int) -> [V] {
         // TODO: load from storage
-        return [V](count: count, repeatedValue: def)
+        return [V](repeating: def, count: count)
     }
     
-    static func storeValues(leaf: Leaf) -> Void {
+    static func storeValues(_ leaf: Leaf) -> Void {
         // TODO:
     }
 }

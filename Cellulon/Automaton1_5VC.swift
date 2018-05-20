@@ -14,11 +14,11 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
     
     var rule: Rule = 165
     
-    private var automaton: Automaton1_5!
-    private var firstAppearance = true
-    private var settings: Settings?
-    private var edgesWrap = false
-    private var firstGen = FirstGeneration.Default
+    fileprivate var automaton: Automaton1_5!
+    fileprivate var firstAppearance = true
+    fileprivate var settings: Settings?
+    fileprivate var edgesWrap = false
+    fileprivate var firstGen = FirstGeneration.default
 
     var singleTapGR: UITapGestureRecognizer!
     var doubleTapGR: UITapGestureRecognizer!
@@ -29,17 +29,17 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "showSettings:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(Automaton1_5VC.showSettings(_:)))
         imageView.layer.magnificationFilter = "nearest"
-        singleTapGR = UITapGestureRecognizer(target: self, action: "toggleBars:")
-        doubleTapGR = UITapGestureRecognizer(target: self, action: "saveImage:")
+        singleTapGR = UITapGestureRecognizer(target: self, action: #selector(Automaton1_5VC.toggleBars(_:)))
+        doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(Automaton1_5VC.saveImage(_:)))
         doubleTapGR.numberOfTapsRequired = 2
-        singleTapGR.requireGestureRecognizerToFail(doubleTapGR)
+        singleTapGR.require(toFail: doubleTapGR)
         imageView.addGestureRecognizer(singleTapGR)
         imageView.addGestureRecognizer(doubleTapGR)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if settings != nil {
             updateWithRule(settings!.rule, width: automaton.w, height: automaton.h, firstGen: settings!.firstGeneration, edgesWrap: false)
@@ -47,7 +47,7 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if firstAppearance {
             showFirstTime()
@@ -55,23 +55,23 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == settingsSegueID {
-            let settings = segue.destinationViewController as! Settings
+            let settings = segue.destination as! Settings
             settings.rule = automaton.rule
             settings.firstGeneration = firstGen
             self.settings = settings
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
     // MARK: UIGestureRecognizerDelegate
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return otherGestureRecognizer == singleTapGR || otherGestureRecognizer == doubleTapGR
     }
     
@@ -79,10 +79,10 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
     
     func showFirstTime() {
         let size = view.bounds.size
-        updateWithRule(rule, width: Int(size.width), height: Int(size.height), firstGen: .Default, edgesWrap: false)
+        updateWithRule(rule, width: Int(size.width), height: Int(size.height), firstGen: .default, edgesWrap: false)
     }
 
-    func updateWithRule(rule: Rule, width: Int, height: Int, firstGen: FirstGeneration, edgesWrap: Bool) {
+    func updateWithRule(_ rule: Rule, width: Int, height: Int, firstGen: FirstGeneration, edgesWrap: Bool) {
         automaton = Automaton1_5(rule: rule, w: width, h: height)
         self.firstGen = firstGen
         self.edgesWrap = edgesWrap
@@ -96,36 +96,36 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: Actions
-    func showSettings(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier(settingsSegueID, sender: sender)
+    func showSettings(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: settingsSegueID, sender: sender)
     }
     
-    @IBAction func toggleBars(sender: UITapGestureRecognizer) {
+    @IBAction func toggleBars(_ sender: UITapGestureRecognizer) {
         if let nav = self .navigationController {
-            let hidden = nav.navigationBarHidden
+            let hidden = nav.isNavigationBarHidden
             nav.setNavigationBarHidden(!hidden, animated: true)
         }
     }
     
-    @IBAction func saveImage(sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "Save Image", message: "Where would you like to save the image?", preferredStyle: .Alert)
-        let photosAction = UIAlertAction(title: "Photo Library", style: .Default, handler: { (action: UIAlertAction) in
+    @IBAction func saveImage(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: "Save Image", message: "Where would you like to save the image?", preferredStyle: .alert)
+        let photosAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
             // TODO:
         })
-        photosAction.enabled = false
+        photosAction.isEnabled = false
         alert.addAction(photosAction)
-        alert.addAction(UIAlertAction(title: "Documents", style: .Default, handler: { (action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Documents", style: .default, handler: { (action: UIAlertAction) in
             self.saveImageToDocuments()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func saveImageToDocuments() {
         if let image = imageView.image {
-            if let directory = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first {
-                let url = NSURL(fileURLWithPath: directory).URLByAppendingPathComponent("Rule \(rule).png")
-                UIImagePNGRepresentation(image)?.writeToURL(url, atomically: true)
+            if let directory = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first {
+                let url = URL(fileURLWithPath: directory).appendingPathComponent("Rule \(rule).png")
+                try? UIImagePNGRepresentation(image)?.write(to: url, options: [.atomic])
                 print("saved image to %@", url)
             }
         }
@@ -133,25 +133,25 @@ class Automaton1_5VC: UIViewController, UIGestureRecognizerDelegate {
 }
 
 extension FirstGeneration {
-    func updateAutomaton(automaton: Automaton1_5) {
+    func updateAutomaton(_ automaton: Automaton1_5) {
         switch self {
-        case .Default:
+        case .default:
             automaton[GridPoint(x: (automaton.w / 2), y: 0)] = true
             
-        case .Random:
-            var index = random() % 8
+        case .random:
+            var index: Int = FirstGeneration.random.rawValue % 8
             repeat {
                 automaton[GridPoint(x: index, y: 0)] = true
-                index += random() % 8
+                index += Int(arc4random()) % 8
             } while index < automaton.w
             
-        case .Dots:
-            for index in 0.stride(to: automaton.w, by: 2) {
+        case .dots:
+            for index in stride(from: 0, to: automaton.w, by: 2) {
                 automaton[GridPoint(x: index, y: 0)] = true
             }
             
-        case .Dashes:
-            for index in 0.stride(to: automaton.w - 8, by: 8) {
+        case .dashes:
+            for index in stride(from: 0, to: automaton.w - 8, by: 8) {
                 for offset in index ..< index+4 {
                     automaton[GridPoint(x: offset, y: 0)] = true
                 }
